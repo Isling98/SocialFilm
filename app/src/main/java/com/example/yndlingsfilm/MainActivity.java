@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new HomeFragment()).commit();
 
     }
-
+    //navigationbaren bliver opsat, med de forskellige fragments.  R.id_nav = ikonerne + titel som er referert fra bottom_navigation.xml filen
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
