@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yndlingsfilm.HomeFeedAdapter;
 import com.example.yndlingsfilm.R;
+import com.example.yndlingsfilm.SingleNews;
+
+import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-    private RecyclerView recyclerView;
+    private RecyclerView homeFeed;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -27,14 +31,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
+        ArrayList<SingleNews> singleNews = new ArrayList<>();
+        for(int i=0; i<10; i++) {
+            singleNews.add(new SingleNews(R.drawable.ic_android, R.drawable.ic_android,
+                    "Åkanden kommenterede:", "Jeg elsker Markus", "Harry Potter", "6"));
+        }
+
+
+
+
+        homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
+        homeFeed.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        homeFeed.setLayoutManager(layoutManager);
 
+        mAdapter = new HomeFeedAdapter(singleNews);
+        homeFeed.setAdapter(mAdapter);
 
-       // recyclerView.setAdapter();
 
 
         return view;
