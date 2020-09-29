@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -50,22 +51,35 @@ public class HomeFragment extends Fragment {
         mAdapter.setOnItemClickListener(new HomeFeedAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                //singleNews.get(position).openDetails();
-               // openDialog(getLayoutInflater().inflate(R.layout.popup_news_details, null));
-                Dialog dialog = new Dialog(getContext());
-
-                // du laver et nyt view her tåger
-                View view = getLayoutInflater().inflate(R.layout.popup_news_details, null);
-                ImageView moviePic = (ImageView) view.findViewById(R.id.moviePic);
-                moviePic.setImageResource(singleNews.get(position).getMoviePicResource());
-
-
+                final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.popup_news_details);
-                dialog.show();
 
+                ImageView moviePic = (ImageView) dialog.findViewById(R.id.moviePic);
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+                TextView rating = (TextView) dialog.findViewById(R.id.rating);
+                TextView closeButton = (TextView) dialog.findViewById(R.id.closeButton);
+
+                moviePic.setImageResource(singleNews.get(position).getMoviePicResource());
+                text.setText(singleNews.get(position).getText());
+                rating.setText(singleNews.get(position).getRating());
+
+                closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                moviePic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new HomeFragment()).commit();
+                    }
+                });
+
+                dialog.show();
             }
         });
-
         return view;
     }
 }
