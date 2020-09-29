@@ -6,9 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginBottom="16dp"
-    android:background="@color/cardview_light_background"
     card_view:cardCornerRadius="16dp"
-    card_view:cardElevation="32dp"
+    card_view:cardElevation="8dp"
     card_view:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout

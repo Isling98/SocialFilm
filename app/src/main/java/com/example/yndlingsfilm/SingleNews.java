@@ -1,5 +1,11 @@
 package com.example.yndlingsfilm;
 
+
+import android.app.Dialog;
+import android.widget.PopupMenu;
+
+import androidx.fragment.app.FragmentActivity;
+
 public class SingleNews {
     private int profilePicResource;
     private int moviePicResource;
@@ -17,6 +23,10 @@ public class SingleNews {
         this.text = text;
         this.movieName = movieName;
         this.rating = rating;
+    }
+    // åben detail fragment her
+    public void openDetails(){
+        // popup
     }
 
 

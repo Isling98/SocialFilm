@@ -13,6 +13,15 @@ import java.util.ArrayList;
 
 public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefeedViewHolder> {
    private ArrayList<SingleNews> mSingleNewsList;
+   private OnItemClickListener mListener;
+
+   public interface OnItemClickListener{
+       void onItemClick(int position);
+   }
+
+   public void setOnItemClickListener(OnItemClickListener listener){
+       mListener = listener;
+   }
     
     public static class homefeedViewHolder extends RecyclerView.ViewHolder {
         public ImageView profilePic;
@@ -22,7 +31,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         public TextView movieTitle;
         public TextView rating;
         
-        public homefeedViewHolder(View itemView) {
+        public homefeedViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             profilePic = itemView.findViewById(R.id.profilePic);
             moviePic = itemView.findViewById(R.id.moviePic);
@@ -30,6 +39,18 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
             text = itemView.findViewById(R.id.text);
             movieTitle = itemView.findViewById(R.id.movieTitle);
             rating = itemView.findViewById(R.id.rating);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -45,7 +66,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         View view = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.view_homefeed, parent, false);
 
-        homefeedViewHolder viewHolder = new homefeedViewHolder(view);
+        homefeedViewHolder viewHolder = new homefeedViewHolder(view, mListener);
         return viewHolder;
     }
 
