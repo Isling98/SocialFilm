@@ -77,6 +77,8 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
+
+
                 dialog.show();
             }
         });

@@ -1,11 +1,5 @@
 package com.example.yndlingsfilm;
 
-
-import android.app.Dialog;
-import android.widget.PopupMenu;
-
-import androidx.fragment.app.FragmentActivity;
-
 public class SingleNews {
     private int profilePicResource;
     private int moviePicResource;
@@ -13,6 +7,7 @@ public class SingleNews {
     private String text;
     private String movieName;
     private String rating;
+//    private User user; så vi kan komme ind på useren profil direkte.
 
     // tag hellere kun et enkelt objekt i konstruktøren og brug dets getmetoder til at initialisere.
     public SingleNews(int profilePicResource, int moviePicResource,
@@ -28,12 +23,6 @@ public class SingleNews {
     public void openDetails(){
         // popup
     }
-
-
-
-
-
-
 
 
     public int getProfilePicResource() {

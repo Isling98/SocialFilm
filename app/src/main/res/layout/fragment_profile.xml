@@ -3,12 +3,23 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/cardview_light_background">
 
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="4dp" />
+
     <TextView
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="profile Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
-
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="21dp"
+        android:layout_toEndOf="@+id/profilePic"
+        android:text="Username:"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
 
 </RelativeLayout>
