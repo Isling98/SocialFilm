@@ -7,15 +7,15 @@ Denne klasse indeholder de de ting, som hver del af recyclerviewet skal indehold
  */
 
 public class ModelVertical {
-    String titel;
+    String genre;
     ArrayList<ModelHorizontal> arrayList;
 
-    public String getTitel() {
-        return titel;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public ArrayList<ModelHorizontal> getArrayList() {
