@@ -3,6 +3,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@drawable/popup_news_detail_background"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools">
@@ -46,14 +47,14 @@
         app:layout_constraintVertical_bias="0.071" />
 
     <androidx.cardview.widget.CardView
-        android:background="@color/theme1"
+        android:background="@color/theme3"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rating"
-        card_view:cardBackgroundColor="@color/theme1"
+        card_view:cardBackgroundColor="@color/theme4"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp">
 

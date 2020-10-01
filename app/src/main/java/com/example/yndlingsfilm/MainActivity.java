@@ -19,16 +19,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         Toast.makeText(this, "MainAcitivty created.",
                 Toast.LENGTH_SHORT).show();
 
 
-        //BottomNavigationView bottomNavn = findViewById(R.id.bottom_navigation);
-        //bottomNavn.setOnNavigationItemSelectedListener(navlistener);
+        BottomNavigationView bottomNavn = findViewById(R.id.bottom_navigation);
+        bottomNavn.setOnNavigationItemSelectedListener(navlistener);
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new HomeFragment()).commit();
 
     }
     //navigationbaren bliver opsat, med de forskellige fragments.  R.id_nav = ikonerne + titel som er referert fra bottom_navigation.xml filen

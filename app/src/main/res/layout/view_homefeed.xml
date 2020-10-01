@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginBottom="16dp"
-    card_view:cardBackgroundColor="@color/theme1"
-    card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="16dp"
+    card_view:cardBackgroundColor="@color/theme4"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
     card_view:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout
@@ -33,6 +33,7 @@
             android:layout_toEndOf="@+id/profilePic"
             android:text="Åkanden gjorde noget:"
             android:textSize="24sp"
+            android:textColor="@color/theme1"
             android:textStyle="bold" />
 
         <TextView
@@ -46,6 +47,7 @@
             android:layout_marginBottom="4dp"
             android:layout_toEndOf="@+id/profilePic"
             android:text="I love Markus"
+            android:textColor="@color/theme1"
             android:textSize="18sp" />
 
         <ImageView
@@ -66,6 +68,7 @@
             android:layout_toEndOf="@+id/moviePic"
             android:text="Harry Potter (2001):"
             android:textSize="22sp"
+            android:textColor="@color/theme1"
             android:textStyle="bold" />
 
         <TextView
@@ -79,6 +82,7 @@
             android:layout_marginBottom="4dp"
             android:layout_toEndOf="@+id/profilePic"
             android:text="9/10 *"
+            android:textColor="@color/theme1"
             android:textSize="18sp" />
 
 

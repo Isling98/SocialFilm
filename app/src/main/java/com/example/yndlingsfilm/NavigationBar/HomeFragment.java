@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
 
         final ArrayList<SingleNews> singleNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
-            singleNews.add(new SingleNews(R.drawable.ic_android, R.drawable.ic_android,
+            singleNews.add(new SingleNews(R.drawable.profile_pic, R.drawable.movie_pic,
                     "Åkanden kommenterede:", "Jeg elsker Markus", "Harry Potter", "6"));
         }
 
@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(int position) {
                 final Dialog dialog = new Dialog(getContext());
                 dialog.setContentView(R.layout.popup_news_details);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 ImageView moviePic = (ImageView) dialog.findViewById(R.id.moviePic);
                 TextView text = (TextView) dialog.findViewById(R.id.text);
