@@ -14,19 +14,9 @@ import com.example.yndlingsfilm.R;
 
 
 public class ProfileFragment extends Fragment {
-    private ImageView profilePic;
-    private TextView username;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-            profilePic = (ImageView) getView().findViewById(R.id.profilePic);
-            username = (TextView) getView().findViewById(R.id.username);
-            // lav user.
-            //profilePic.setImageResource(user.getUserName);
-
-
 
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
