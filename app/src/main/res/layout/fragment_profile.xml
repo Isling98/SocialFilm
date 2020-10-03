@@ -33,6 +33,7 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/add_friend"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_add_friend"
@@ -74,6 +75,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/profile_followers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -110,6 +112,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/profile_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -162,6 +165,7 @@
             android:layout_marginRight="30dp">
 
             <LinearLayout
+                android:id="@+id/profile_bio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -195,6 +199,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_top_rated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -228,6 +233,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_reviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -261,6 +267,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_latest_comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

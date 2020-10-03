@@ -13,6 +13,7 @@
     <color name="theme2">#EA5455</color>
     <color name="theme3">#DECDC3</color>
     <color name="theme4">#E5E5E5</color>
+    <color name="theme2_faded">#e58a86</color>
 
     <color name="transparent_color_light">#1affffff</color>
     <color name="transparent_color_medium">#66ffffff</color>

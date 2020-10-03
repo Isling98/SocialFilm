@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
         final ArrayList<SingleNews> singleNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
             singleNews.add(new SingleNews(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Åkanden kommenterede:", "Jeg elsker Markus", "Harry Potter", "6"));
+                    "Åkanden kommenterede:", "Jeg elsker Markus", "Harry Potter", 4));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -55,14 +56,14 @@ public class HomeFragment extends Fragment {
                 dialog.setContentView(R.layout.popup_news_details);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                ImageView moviePic = (ImageView) dialog.findViewById(R.id.moviePic);
-                TextView text = (TextView) dialog.findViewById(R.id.text);
-                TextView rating = (TextView) dialog.findViewById(R.id.rating);
-                TextView closeButton = (TextView) dialog.findViewById(R.id.closeButton);
+                ImageView moviePic = dialog.findViewById(R.id.moviePic);
+                TextView text = dialog.findViewById(R.id.text);
+                RatingBar rating = dialog.findViewById(R.id.rating);
+                TextView closeButton = dialog.findViewById(R.id.closeButton);
 
                 moviePic.setImageResource(singleNews.get(position).getMoviePicResource());
                 text.setText(singleNews.get(position).getText());
-                rating.setText(singleNews.get(position).getRating());
+                rating.setRating(singleNews.get(position).getRating());
 
                 closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override

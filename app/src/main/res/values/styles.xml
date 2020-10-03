@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/theme4</item>
     </style>
 
+    <style name="RatingBar" parent="AppTheme">
+        <item name="colorControlActivated">@color/theme2</item>
+        <item name="colorControlNormal">@color/theme2_faded</item>
+    </style>
+
 </resources>

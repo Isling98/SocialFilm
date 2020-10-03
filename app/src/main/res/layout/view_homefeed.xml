@@ -8,7 +8,7 @@
     android:layout_marginBottom="16dp"
     card_view:cardBackgroundColor="@color/theme4"
     card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp"
+    card_view:cardElevation="8dp"
     card_view:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout
@@ -71,19 +71,20 @@
             android:textColor="@color/theme1"
             android:textStyle="bold" />
 
-        <TextView
+        <RatingBar
             android:id="@+id/rating"
+            android:numStars="6"
+            style="?android:attr/ratingBarStyleSmall"
+            android:theme="@style/RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:isIndicator="true"
             android:layout_below="@+id/headline"
             android:layout_marginStart="3dp"
             android:layout_marginTop="103dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            android:layout_toEndOf="@+id/profilePic"
-            android:text="9/10 *"
-            android:textColor="@color/theme1"
-            android:textSize="18sp" />
+            android:layout_toEndOf="@+id/profilePic" />
 
 
     </RelativeLayout>

@@ -6,12 +6,12 @@ public class SingleNews {
     private String headLine;
     private String text;
     private String movieName;
-    private String rating;
+    private int rating;
 //    private User user; så vi kan komme ind på useren profil direkte.
 
     // tag hellere kun et enkelt objekt i konstruktøren og brug dets getmetoder til at initialisere.
     public SingleNews(int profilePicResource, int moviePicResource,
-                      String headLine, String text, String movieName, String rating) {
+                      String headLine, String text, String movieName, int rating) {
         this.profilePicResource = profilePicResource;
         this.moviePicResource = moviePicResource;
         this.headLine = headLine;
@@ -45,7 +45,7 @@ public class SingleNews {
         return movieName;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 }

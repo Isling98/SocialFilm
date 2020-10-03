@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +30,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         public TextView headLine;
         public TextView text;
         public TextView movieTitle;
-        public TextView rating;
+        public RatingBar rating;
         
         public homefeedViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -81,7 +82,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         holder.headLine.setText(singleNews.getHeadLine());
         holder.text.setText(singleNews.getText());
         holder.movieTitle.setText(singleNews.getMovieName());
-        holder.rating.setText(singleNews.getRating());
+        holder.rating.setRating(singleNews.getRating());
 
 
     }
