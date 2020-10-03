@@ -5,11 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.yndlingsfilm.FollowersFragment;
+import com.example.yndlingsfilm.FriendsListFragment;
+import com.example.yndlingsfilm.ProfileBioFragment;
+import com.example.yndlingsfilm.ProfileLatestCommentsFragment;
+import com.example.yndlingsfilm.ProfileReviewsFragment;
+import com.example.yndlingsfilm.ProfileTopRatedFragment;
 import com.example.yndlingsfilm.R;
 
 
@@ -56,21 +61,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 addFriend.setImageResource(R.drawable.ic_friend_added);
                 break;
             case R.id.profile_bio:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileBioFragment()).commit();
 
                 break;
             case R.id.profile_top_rated:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileTopRatedFragment()).commit();
 
                 break;
             case R.id.profile_reviews:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileReviewsFragment()).commit();
 
                 break;
             case R.id.profile_latest_comments:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileLatestCommentsFragment()).commit();
 
                 break;
             case R.id.profile_friends:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new FriendsListFragment()).commit();
 
                 break;
             case R.id.profile_followers:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new FollowersFragment()).commit();
 
                 break;
         }
