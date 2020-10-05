@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetailsFragment"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/MoviePic"
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:src="@drawable/movie_pic"
+                android:adjustViewBounds="true"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/MoviePic">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/movieTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Harry Potter"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/movieGenres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Fantasy | Drama"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/runTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/time"
+                        android:drawablePadding="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center_vertical"
+                        android:text="120 min"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/releaseDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:drawableStart="@drawable/calender"
+                        android:drawablePadding="4dp"
+                        android:gravity="center_vertical"
+                        android:text="10-05-2001"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:rating="4"
+                        android:numStars="6"
+                        android:theme="@style/RatingBar"
+                        style="?android:attr/ratingBarStyleSmall"/>
+
+                    <ImageView
+                        android:id="@+id/imdbLink"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/imdb"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Overview"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_margin="10dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world." />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@color/theme3"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your friends had this to say:"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

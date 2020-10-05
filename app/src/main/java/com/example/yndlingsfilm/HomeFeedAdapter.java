@@ -73,8 +73,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
 
 
     public void onBindViewHolder(homefeedViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+
         SingleNews singleNews = mSingleNewsList.get(position);
 
         holder.profilePic.setImageResource(singleNews.getProfilePicResource());

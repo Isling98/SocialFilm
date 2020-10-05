@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yndlingsfilm.HomeFeedAdapter;
+import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.R;
 import com.example.yndlingsfilm.SingleNews;
 
@@ -84,11 +85,12 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         //open moviedetails fragment
+                        getFragmentManager().beginTransaction().replace
+                                (R.id.fragment_nagivation, new MovieDetailsFragment() )
+                                .addToBackStack(null).commit();
+                        dialog.dismiss();
                     }
                 });
-
-
-
                 dialog.show();
             }
         });
