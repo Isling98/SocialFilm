@@ -36,9 +36,10 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
     @Override
     public void onBindViewHolder(@NonNull HorizontalRecyclerViewViewHolder holder, int position) {
         ModelHorizontal modelHorizontal = arrayList.get(position);
-        String titel = modelHorizontal.getName();
+        //String titel = modelHorizontal.getName();
 
-        holder.titel.setText(titel);
+        holder.titel.setText(arrayList.get(position).getName());
+        holder.filmPlakat.setImageResource(arrayList.get(position).getImageUrl());
 
     }
 

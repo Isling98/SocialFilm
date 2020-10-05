@@ -10,6 +10,11 @@ public class ModelVertical {
     String genre;
     ArrayList<ModelHorizontal> arrayList;
 
+    public ModelVertical(String genre, ArrayList<ModelHorizontal> arrayList) {
+        this.genre = genre;
+        this.arrayList = arrayList;
+    }
+
     public String getGenre() {
         return genre;
     }

@@ -6,7 +6,14 @@ Denne klasse indeholder de de ting, som hver del af recyclerviewet skal indehold
  */
 
 public class ModelHorizontal {
+
     String name;
+    Integer imageUrl;
+
+    public ModelHorizontal(String name, Integer imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
 
     public String getName() {
         return name;
@@ -14,5 +21,14 @@ public class ModelHorizontal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public Integer getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(Integer imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

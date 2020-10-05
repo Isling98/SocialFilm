@@ -47,9 +47,8 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
 
         holder.genre.setText(genre);
         HorizontalRecyclerViewAdapter horizontalRecyclerViewAdapter = new HorizontalRecyclerViewAdapter(context, singleItem);
-        holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-
+        holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setAdapter(horizontalRecyclerViewAdapter);
 
     }
@@ -74,8 +73,9 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
 
         public VerticalRecyclerViewViewHolder(@NonNull View itemView) {
             super(itemView);
-            recyclerView = itemView.findViewById(R.id.recyclerview2);
+
             genre = itemView.findViewById(R.id.genre);
+            recyclerView = itemView.findViewById(R.id.recyclerview2);
         }
     }
 
