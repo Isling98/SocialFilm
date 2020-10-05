@@ -55,35 +55,35 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
-            case R.id.add_friend:
-                // send friend request and update
-                addFriend.setImageResource(R.drawable.ic_friend_added);
-                break;
-            case R.id.profile_bio:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileBioFragment()).commit();
+        if (view.getId() == R.id.add_friend) {
+            // send friend request and update
+            addFriend.setImageResource(R.drawable.ic_friend_added);
+        } else {
+            Fragment selectedFragment = null;
+            switch (view.getId()) {
+                case R.id.profile_bio:
+                    selectedFragment = new ProfileBioFragment();
+                    break;
+                case R.id.profile_top_rated:
+                    selectedFragment = new ProfileTopRatedFragment();
+                    break;
+                case R.id.profile_reviews:
+                    selectedFragment = new ProfileReviewsFragment();
+                    break;
+                case R.id.profile_latest_comments:
+                    selectedFragment = new ProfileLatestCommentsFragment();
+                    break;
+                case R.id.profile_friends:
+                    selectedFragment = new FriendsListFragment();
+                    break;
+                case R.id.profile_followers:
+                    selectedFragment = new FollowersFragment();
+                    break;
+            }
+            getFragmentManager().beginTransaction().replace
+                    (R.id.fragment_nagivation, selectedFragment).addToBackStack(null).commit();
 
-                break;
-            case R.id.profile_top_rated:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileTopRatedFragment()).commit();
-
-                break;
-            case R.id.profile_reviews:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileReviewsFragment()).commit();
-
-                break;
-            case R.id.profile_latest_comments:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new ProfileLatestCommentsFragment()).commit();
-
-                break;
-            case R.id.profile_friends:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new FriendsListFragment()).commit();
-
-                break;
-            case R.id.profile_followers:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_nagivation,new FollowersFragment()).commit();
-
-                break;
         }
     }
+
 }
