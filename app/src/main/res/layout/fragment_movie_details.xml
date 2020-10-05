@@ -16,7 +16,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/MoviePic"
+                android:id="@+id/moviePic"
                 android:layout_width="120dp"
                 android:layout_height="180dp"
                 android:src="@drawable/movie_pic"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/MoviePic">
+                android:layout_toEndOf="@id/moviePic">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/movieTitle"
@@ -121,7 +121,7 @@
             android:maxLines="5"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world." />
+            tools:text="@tools:sample/lorem/random" />
 
         <View
             android:layout_width="match_parent"

@@ -14,8 +14,6 @@ public class DataController {
     }
 
     public ArrayList<Movie> getWatchedMovies() {
-        watchedMovies.add(new Movie(1,"Harry Potter 1"));
-        watchedMovies.add(new Movie(2,"Lord Of The Piv Rings"));
         return watchedMovies;
     }
 

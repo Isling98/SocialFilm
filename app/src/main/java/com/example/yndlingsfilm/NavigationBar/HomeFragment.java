@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         final ArrayList<SingleNews> singleNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
             singleNews.add(new SingleNews(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Åkanden kommenterede:", "Jeg elsker Markus", "Harry Potter", 4));
+                    "Åkanden kommenterede:", "en god film", "Harry Potter", 4));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
