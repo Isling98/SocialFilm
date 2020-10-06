@@ -137,7 +137,32 @@
             android:text="Your friends had this to say:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_margin="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="venners kommentarer står her"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/writeReviewButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:text="Write a full review"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/theme1"/>
+
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

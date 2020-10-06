@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MovieDetailsFragment extends Fragment {
     TextView overview;
     TextView releaseDate;
     RatingBar rating;
+    Button writeReviewButton;
 
 
     @Override
@@ -52,6 +54,7 @@ public class MovieDetailsFragment extends Fragment {
         overview = view.findViewById(R.id.overview);
         releaseDate = view.findViewById(R.id.releaseDate);
         rating = view.findViewById(R.id.rating);
+        writeReviewButton = view.findViewById(R.id.writeReviewButton);
 
         movieTitle.setText(movie.getMovieTitle());
         overview.setText(movie.getOverview());
@@ -61,6 +64,14 @@ public class MovieDetailsFragment extends Fragment {
         moviePic.setImageResource(movie.getMoviePic());
 
 
+        writeReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,
+                        R.anim.slide_out_left).replace(R.id.fragment_nagivation, new WriteReviewFragment())
+                        .addToBackStack(null).commit();
+            }
+        });
 
         imdbLink.setOnClickListener(view1 -> {
             //åben imdb-link.
