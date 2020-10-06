@@ -5,10 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.yndlingsfilm.Data.User;
+import com.example.yndlingsfilm.Data.UserViewModel;
 import com.example.yndlingsfilm.FollowersFragment;
 import com.example.yndlingsfilm.FriendsListFragment;
 import com.example.yndlingsfilm.ProfileBioFragment;
@@ -26,6 +32,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View latestComments;
     View friends;
     View followers;
+//    TextView profileName;
 
     @Nullable
     @Override
@@ -39,6 +46,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         latestComments = view.findViewById(R.id.profile_latest_comments);
         friends = view.findViewById(R.id.profile_friends);
         followers = view.findViewById(R.id.profile_followers);
+//
+//        profileName = view.findViewById(R.id.profileName);
+//        profileName.setText(model.getUser().getValue().getUsername());
+
+
+
 
         addFriend.setOnClickListener(this);
         bio.setOnClickListener(this);
@@ -47,6 +60,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         latestComments.setOnClickListener(this);
         friends.setOnClickListener(this);
         followers.setOnClickListener(this);
+
 
 
         return view;
