@@ -6,16 +6,37 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.yndlingsfilm.Data.Fetch.UserRepo;
+
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Test af livedata + modelview. VI kommer tilbage til det når backenden er klar.
+ */
+//UserViewModel holder på userdata for profile viewet
 public class UserViewModel extends ViewModel {
+    UserRepo userRepo;
 
     private MutableLiveData<List<User>> users;
-    private MutableLiveData<User> CurrentuserMutableLiveData;
-/*
-Test af livedata + modelview. VI kommer tilbage til det når backenden er klar. 
- */
+    private MutableLiveData<User> user;
+
+    public MutableLiveData<User> getUser(String userName) {
+        //userRepo metoden findes ikke endnu;
+    user = userRepo.getUser(String userName);
+    if (user == null) {
+        user = new MutableLiveData<>();
+    }
+    return user;
+
+}
+
+
+
+
+
+
+
+//Randomness
 
     public LiveData<List<User>> getUsers() {
         if (users == null) {
@@ -46,12 +67,5 @@ Test af livedata + modelview. VI kommer tilbage til det når backenden er klar.
         System.out.println(hej.get(0).getUsername());
         users.postValue(hej);
     }
-    public MutableLiveData<User> getUser() {
 
-        if (CurrentuserMutableLiveData == null) {
-            CurrentuserMutableLiveData = new MutableLiveData<>();
-        }
-        return CurrentuserMutableLiveData;
-
-    }
 }
