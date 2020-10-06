@@ -30,9 +30,7 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-
 
         verticalRecyclerView = view.findViewById(R.id.recyclerview1);
         verticalRecyclerView.setHasFixedSize(true); //Dette gør at alle children til recyclerviewet har en fixed størrelse.
@@ -55,16 +53,16 @@ public class SearchFragment extends Fragment {
 
         //Log siger det skippes mange frames, så måske nedenstående metode skal klares i baggrunden oppe mens viewet laves ovenover?
         setDataInRecyclerviews();
-
     }
 
     public void setDataInRecyclerviews(){
-/*
+
         //Første kategori
         ArrayList<ModelHorizontal> modelHorizontalArrayList = new ArrayList<>();
         modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 1", R.drawable.ringenes_herre_1_poster_1));
         modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 2", R.drawable.ringenes_herre_2));
         modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 3", R.drawable.ringenes_herre_3_poster_1));
+        modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 1", R.drawable.harry_potter_1));
         modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 2", R.drawable.harry_potter_2));
 
         //Anden kategori
@@ -86,11 +84,10 @@ public class SearchFragment extends Fragment {
         modelVerticalArrayList1.add(new ModelVertical("Action", modelHorizontalArrayList2));
         modelVerticalArrayList1.add(new ModelVertical("Horror", modelHorizontalArrayList3));
 
-
-        arrayList.add(modelVerticalArrayList1);
+        arrayList.addAll(modelVerticalArrayList1);
         verticalRecyclerViewAdapter.notifyDataSetChanged();
-        */
 
+/*
 //Nedenstående er en besværlig løsning til at indsætte data, så derfor skal ovenstående laves så det virker og er lettere
         ArrayList<ModelHorizontal> modelHorizontalArrayList = new ArrayList<>();
         ArrayList<ModelHorizontal> modelHorizontalArrayList2 = new ArrayList<>();
@@ -140,7 +137,6 @@ public class SearchFragment extends Fragment {
         modelVertical.setArrayList(modelHorizontalArrayList3);
         arrayList.add(modelVertical3);
 
-        verticalRecyclerViewAdapter.notifyDataSetChanged();
-
+        verticalRecyclerViewAdapter.notifyDataSetChanged(); */
     }
 }

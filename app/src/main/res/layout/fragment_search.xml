@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background">
+    android:background="@color/design_default_color_error">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search Fragment"
+        android:text="Search Fragment"
         android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="680dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="40dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
