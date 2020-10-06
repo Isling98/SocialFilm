@@ -20,18 +20,19 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
 
     Context context;
     ArrayList<ModelHorizontal> arrayList;
-    private RecyclerViewClickListener clickListener;
+    private OnNoteListener mOnNoteListener;
 
-    public HorizontalRecyclerViewAdapter(Context context, ArrayList<ModelHorizontal>arrayList){
+    public HorizontalRecyclerViewAdapter(Context context, ArrayList<ModelHorizontal>arrayList, OnNoteListener onNoteListener){
         this.context = context;
         this.arrayList = arrayList;
+        this.mOnNoteListener = onNoteListener;
     }
 
     @NonNull
     @Override
     public HorizontalRecyclerViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_horizontal, parent, false);
-        return new HorizontalRecyclerViewViewHolder(view);
+        return new HorizontalRecyclerViewViewHolder(view, mOnNoteListener);
     }
 
     @Override
@@ -49,20 +50,29 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
         return arrayList.size();
     }
 
-    public class HorizontalRecyclerViewViewHolder extends RecyclerView.ViewHolder{
+    public class HorizontalRecyclerViewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView filmPlakat;
         TextView titel;
+        OnNoteListener onNoteListener;
 
-        public HorizontalRecyclerViewViewHolder(View itemView){
+        public HorizontalRecyclerViewViewHolder(View itemView, OnNoteListener onNoteListener){
             super(itemView);
             filmPlakat = itemView.findViewById(R.id.filmPlakat);
             titel = itemView.findViewById(R.id.titel);
+            this.onNoteListener = onNoteListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onNoteListener.onNoteClick(getBindingAdapterPosition());
         }
     }
 
-    public interface RecyclerViewClickListener{
-        void onClick(View view, int position);
+    public interface OnNoteListener {
+        void onNoteClick(int position);
     }
 
 }

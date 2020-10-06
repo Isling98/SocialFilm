@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.R;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 Denne klasse skal styre det vertikale recyclerview, dvs det skal indeholde alle de andre horizontale recyclerviews samt deres tilknyttet genre.
  */
 
-public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRecyclerViewAdapter.VerticalRecyclerViewViewHolder> {
+public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRecyclerViewAdapter.VerticalRecyclerViewViewHolder> implements HorizontalRecyclerViewAdapter.OnNoteListener {
 
     Context context;
     ArrayList<ModelVertical> arrayList;
@@ -46,7 +49,7 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
         ArrayList<ModelHorizontal> singleItem = modelVertical.getArrayList();
 
         holder.genre.setText(genre);
-        HorizontalRecyclerViewAdapter horizontalRecyclerViewAdapter = new HorizontalRecyclerViewAdapter(context, singleItem);
+        HorizontalRecyclerViewAdapter horizontalRecyclerViewAdapter = new HorizontalRecyclerViewAdapter(context, singleItem, this);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setAdapter(horizontalRecyclerViewAdapter);
@@ -59,6 +62,16 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        System.out.println("Der blev klikket");
+
+        /*
+        Her skal der sættes op til at skifte til movieDetail fragmentet
+         */
+
     }
 
 
