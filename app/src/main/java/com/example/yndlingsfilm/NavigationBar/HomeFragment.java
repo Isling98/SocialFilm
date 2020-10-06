@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         final ArrayList<SingleNews> singleNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
             singleNews.add(new SingleNews(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Åkanden kommenterede:", "en god film", "Harry Potter", 4));
+                    "Asger Åkanden:", "2hrs", "Harry Potter", 4));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
                 ImageView closeButton = dialog.findViewById(R.id.closeButton);
 
                 moviePic.setImageResource(singleNews.get(position).getMoviePicResource());
-                text.setText(singleNews.get(position).getText());
+                text.setText(singleNews.get(position).getTime());
                 rating.setRating(singleNews.get(position).getRating());
 
                 closeButton.setOnClickListener(new View.OnClickListener() {

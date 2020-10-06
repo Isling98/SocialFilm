@@ -23,9 +23,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_end="24dp" />
 
-    <ImageView
+    <TextView
         android:id="@+id/voresLogo"
-        android:layout_width="80dp"
+        android:text="Cinemano"
+        android:textSize="42dp"
+        android:textColor="@color/theme1"
+        android:fontFamily="cursive"
+        android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginTop="80dp"
         android:src="@drawable/ic_android"
@@ -83,6 +87,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/button_login"
-        android:textColor="@color/transparent_color_medium"
+        android:textColor="@color/theme1"
         android:layout_marginTop="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

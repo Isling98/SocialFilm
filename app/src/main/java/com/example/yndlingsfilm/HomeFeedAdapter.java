@@ -28,27 +28,50 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         public ImageView profilePic;
         public ImageView moviePic;
         public TextView headLine;
-        public TextView text;
+        public TextView time;
         public TextView movieTitle;
         public RatingBar rating;
+        public View like;
+        public View comment;
+        public ImageView thumbsUp;
+
+        private boolean liked = false;
         
         public homefeedViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             profilePic = itemView.findViewById(R.id.profilePic);
             moviePic = itemView.findViewById(R.id.moviePic);
             headLine = itemView.findViewById(R.id.headline);
-            text = itemView.findViewById(R.id.text);
+            time = itemView.findViewById(R.id.time);
             movieTitle = itemView.findViewById(R.id.movieTitle);
             rating = itemView.findViewById(R.id.rating);
+            like = itemView.findViewById(R.id.like);
+            comment = itemView.findViewById(R.id.comment);
+            thumbsUp = itemView.findViewById(R.id.thumbsUp);
 
-            itemView.setOnClickListener(new View.OnClickListener(){
+
+            like.setOnClickListener(view -> {
+                if(!liked){
+                    liked = true;
+                    thumbsUp.setImageResource(R.drawable.ic_baseline_thumb_up_24);
+                } else {
+                    liked = false;
+                    thumbsUp.setImageResource(R.drawable.ic_baseline_thumb_up_24_light);
+                }
+            });
+
+            comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(position);
-                        }
+                    //åben dialog?
+                }
+            });
+
+            itemView.setOnClickListener(view -> {
+                if(listener != null){
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(position);
                     }
                 }
             });
@@ -79,7 +102,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         holder.profilePic.setImageResource(singleNews.getProfilePicResource());
         holder.moviePic.setImageResource(singleNews.getMoviePicResource());
         holder.headLine.setText(singleNews.getHeadLine());
-        holder.text.setText(singleNews.getText());
+        holder.time.setText(singleNews.getTime());
         holder.movieTitle.setText(singleNews.getMovieName());
         holder.rating.setRating(singleNews.getRating());
 

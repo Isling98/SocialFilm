@@ -11,8 +11,8 @@
         android:layout_width="120dp"
         android:layout_height="160dp"
         android:layout_below="@+id/profilePic"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +26,6 @@
         android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/moviePic"
         android:fontFamily="sans-serif-light"
-        android:text="Harry Potter"
         android:textColor="@color/theme1"
         android:textSize="32dp"
         app:layout_constraintEnd_toStartOf="@+id/closeButton"
@@ -36,7 +35,6 @@
 
     <RatingBar
         android:id="@+id/rating"
-
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_below="@+id/headline"

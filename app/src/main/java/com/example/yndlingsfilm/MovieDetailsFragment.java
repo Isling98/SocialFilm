@@ -67,8 +67,11 @@ public class MovieDetailsFragment extends Fragment {
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment f = new WriteReviewFragment();
+                f.setArguments(new Intent().putExtra("movieTitle", movie.getMovieTitle()).getExtras());
+
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,
-                        R.anim.slide_out_left).replace(R.id.fragment_nagivation, new WriteReviewFragment())
+                        R.anim.slide_out_left).replace(R.id.fragment_nagivation, f)
                         .addToBackStack(null).commit();
             }
         });
