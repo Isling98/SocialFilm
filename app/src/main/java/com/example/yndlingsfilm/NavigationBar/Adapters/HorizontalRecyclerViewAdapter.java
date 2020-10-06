@@ -20,6 +20,7 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
 
     Context context;
     ArrayList<ModelHorizontal> arrayList;
+    private RecyclerViewClickListener clickListener;
 
     public HorizontalRecyclerViewAdapter(Context context, ArrayList<ModelHorizontal>arrayList){
         this.context = context;
@@ -58,6 +59,10 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
             filmPlakat = itemView.findViewById(R.id.filmPlakat);
             titel = itemView.findViewById(R.id.titel);
         }
+    }
+
+    public interface RecyclerViewClickListener{
+        void onClick(View view, int position);
     }
 
 }
