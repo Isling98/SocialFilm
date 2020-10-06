@@ -1,6 +1,5 @@
 package com.example.yndlingsfilm.NavigationBar;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +45,6 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,25 +57,27 @@ public class SearchFragment extends Fragment {
 
         //Første kategori
         ArrayList<ModelHorizontal> modelHorizontalArrayList = new ArrayList<>();
-        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 1", R.drawable.ringenes_herre_1_poster_1));
-        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 2", R.drawable.ringenes_herre_2));
-        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 3", R.drawable.ringenes_herre_3_poster_1));
-        modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 1", R.drawable.harry_potter_1));
-        modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 2", R.drawable.harry_potter_2));
+        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 1", R.drawable.poster_ringenes_herre_1_poster_1));
+        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 2", R.drawable.poster_ringenes_herre_2));
+        modelHorizontalArrayList.add(new ModelHorizontal("Ringenes Herre 3", R.drawable.poster_ringenes_herre_3_poster_1));
+        modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 1", R.drawable.poster_harry_potter_1));
+        modelHorizontalArrayList.add(new ModelHorizontal("Harry Potter 2", R.drawable.poster_harry_potter_2));
 
         //Anden kategori
         ArrayList<ModelHorizontal> modelHorizontalArrayList2 = new ArrayList<>();
-        modelHorizontalArrayList2.add(new ModelHorizontal("Harry Potter 2", R.drawable.harry_potter_2));
-        modelHorizontalArrayList2.add(new ModelHorizontal("Ringenes Herre 1", R.drawable.ringenes_herre_1_poster_1));
-        modelHorizontalArrayList2.add(new ModelHorizontal("Ringenes Herre 2", R.drawable.ringenes_herre_2));
-        modelHorizontalArrayList2.add(new ModelHorizontal("Ringenes Herre 3", R.drawable.ringenes_herre_3_poster_1));
+        modelHorizontalArrayList2.add(new ModelHorizontal("Enemy at the gates", R.drawable.poster_enemy_at_the_gates));
+        modelHorizontalArrayList2.add(new ModelHorizontal("Fury", R.drawable.poster_fury_1));
+        modelHorizontalArrayList2.add(new ModelHorizontal("The transporter", R.drawable.poster_the_transporter));
+        modelHorizontalArrayList2.add(new ModelHorizontal("The marksman", R.drawable.poster_the_marksman));
+        modelHorizontalArrayList2.add(new ModelHorizontal("The detonator", R.drawable.poster_the_detonator));
 
         //Tredje kategori
         ArrayList<ModelHorizontal> modelHorizontalArrayList3 = new ArrayList<>();
-        modelHorizontalArrayList3.add(new ModelHorizontal("Ringenes Herre 1", R.drawable.ringenes_herre_1_poster_1));
-        modelHorizontalArrayList3.add(new ModelHorizontal("Ringenes Herre 2", R.drawable.ringenes_herre_2));
-        modelHorizontalArrayList3.add(new ModelHorizontal("Harry Potter 2", R.drawable.harry_potter_2));
-        modelHorizontalArrayList3.add(new ModelHorizontal("Ringenes Herre 3", R.drawable.ringenes_herre_3_poster_1));
+        modelHorizontalArrayList3.add(new ModelHorizontal("The nun", R.drawable.poster_the_nun));
+        modelHorizontalArrayList3.add(new ModelHorizontal("Hereditary", R.drawable.poster_hereditary));
+        modelHorizontalArrayList3.add(new ModelHorizontal("Insidious", R.drawable.poster_insidious));
+        modelHorizontalArrayList3.add(new ModelHorizontal("Sinister", R.drawable.poster_sinister));
+        modelHorizontalArrayList3.add(new ModelHorizontal("The conjuring", R.drawable.poster_the_conjuring));
 
         ArrayList<ModelVertical> modelVerticalArrayList1 = new ArrayList<>();
         modelVerticalArrayList1.add(new ModelVertical("Fantasy", modelHorizontalArrayList));
@@ -86,57 +86,5 @@ public class SearchFragment extends Fragment {
 
         arrayList.addAll(modelVerticalArrayList1);
         verticalRecyclerViewAdapter.notifyDataSetChanged();
-
-/*
-//Nedenstående er en besværlig løsning til at indsætte data, så derfor skal ovenstående laves så det virker og er lettere
-        ArrayList<ModelHorizontal> modelHorizontalArrayList = new ArrayList<>();
-        ArrayList<ModelHorizontal> modelHorizontalArrayList2 = new ArrayList<>();
-        ArrayList<ModelHorizontal> modelHorizontalArrayList3 = new ArrayList<>();
-        ModelVertical modelVertical = new ModelVertical("Action", modelHorizontalArrayList);
-        ModelVertical modelVertical2 = new ModelVertical("Fantasy", modelHorizontalArrayList2);
-        ModelVertical modelVertical3 = new ModelVertical("Comedy", modelHorizontalArrayList3);
-
-        //Første genre
-        ModelHorizontal modelHorizontal = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_2);
-        ModelHorizontal modelHorizontal2 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_3_poster_1);
-        ModelHorizontal modelHorizontal3 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_1_poster_1);
-        ModelHorizontal modelHorizontal4 = new ModelHorizontal("Harry Potter", R.drawable.harry_potter_2);
-
-        modelHorizontalArrayList.add(modelHorizontal);
-        modelHorizontalArrayList.add(modelHorizontal2);
-        modelHorizontalArrayList.add(modelHorizontal3);
-        modelHorizontalArrayList.add(modelHorizontal4);
-
-        //Anden genre
-        ModelHorizontal modelHorizontal5 = new ModelHorizontal("Harry Potter", R.drawable.harry_potter_2);
-        ModelHorizontal modelHorizontal6 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_3_poster_1);
-        ModelHorizontal modelHorizontal7 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_1_poster_1);
-        ModelHorizontal modelHorizontal8 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_2);
-
-        modelHorizontalArrayList2.add(modelHorizontal5);
-        modelHorizontalArrayList2.add(modelHorizontal6);
-        modelHorizontalArrayList2.add(modelHorizontal7);
-        modelHorizontalArrayList2.add(modelHorizontal8);
-
-        //Tredje genre
-        ModelHorizontal modelHorizontal9 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_3_poster_1);
-        ModelHorizontal modelHorizontal10 = new ModelHorizontal("Harry Potter", R.drawable.harry_potter_2);
-        ModelHorizontal modelHorizontal11 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_1_poster_1);
-        ModelHorizontal modelHorizontal12 = new ModelHorizontal("Ringenes Herre", R.drawable.ringenes_herre_2);
-
-        modelHorizontalArrayList3.add(modelHorizontal9);
-        modelHorizontalArrayList3.add(modelHorizontal10);
-        modelHorizontalArrayList3.add(modelHorizontal11);
-        modelHorizontalArrayList3.add(modelHorizontal12);
-
-        //Adder de forskellige genre til det vertikale recyclerview
-        modelVertical.setArrayList(modelHorizontalArrayList);
-        arrayList.add(modelVertical);
-        modelVertical2.setArrayList(modelHorizontalArrayList2);
-        arrayList.add(modelVertical2);
-        modelVertical.setArrayList(modelHorizontalArrayList3);
-        arrayList.add(modelVertical3);
-
-        verticalRecyclerViewAdapter.notifyDataSetChanged(); */
     }
 }
