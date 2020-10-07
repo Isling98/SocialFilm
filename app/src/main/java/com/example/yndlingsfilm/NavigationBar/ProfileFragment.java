@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+
 import androidx.savedstate.SavedStateRegistry;
 
 import com.example.yndlingsfilm.Data.User;
@@ -34,7 +34,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View friends;
     View followers;
     TextView profileName;
-    UserViewModel model;
+//    UserViewModel model;
 
     @Nullable
     @Override

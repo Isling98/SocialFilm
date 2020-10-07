@@ -15,9 +15,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 /*
+//UserViewModel holder på userdata for profile viewet
 Test af livedata + modelview. VI kommer tilbage til det når backenden er klar.
  */
-//UserViewModel holder på userdata for profile viewet
+
 public class UserViewModel extends ViewModel {
     @Inject
     UserRepo userRepo;
@@ -32,7 +33,7 @@ public class UserViewModel extends ViewModel {
 
     public MutableLiveData<User> getUser(String userName) {
         //userRepo metoden findes ikke endnu;
-    user = userRepo.getUser(String userName);
+//    user = userRepo.getUser(String userName);
     if (user == null) {
         user = new MutableLiveData<>();
     }
