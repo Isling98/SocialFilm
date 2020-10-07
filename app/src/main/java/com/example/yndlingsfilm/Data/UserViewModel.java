@@ -4,21 +4,31 @@ import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.example.yndlingsfilm.Data.Fetch.UserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
 /*
 Test af livedata + modelview. VI kommer tilbage til det når backenden er klar.
  */
 //UserViewModel holder på userdata for profile viewet
 public class UserViewModel extends ViewModel {
+    @Inject
     UserRepo userRepo;
 
+    private SavedStateHandle mState;
     private MutableLiveData<List<User>> users;
     private MutableLiveData<User> user;
+
+    public UserViewModel(SavedStateHandle savedStateHandle) {
+        mState = savedStateHandle;
+    }
 
     public MutableLiveData<User> getUser(String userName) {
         //userRepo metoden findes ikke endnu;
@@ -27,13 +37,7 @@ public class UserViewModel extends ViewModel {
         user = new MutableLiveData<>();
     }
     return user;
-
 }
-
-
-
-
-
 
 
 //Randomness

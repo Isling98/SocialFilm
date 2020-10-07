@@ -5,8 +5,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class UserRepo implements Webservice{
-    @Inject
-    UserRepo userRepo;
+
 
 
 }
