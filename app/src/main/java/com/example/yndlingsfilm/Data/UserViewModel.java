@@ -4,15 +4,15 @@ import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
+//import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.example.yndlingsfilm.Data.Fetch.UserRepo;
+//import com.example.yndlingsfilm.Data.Fetch.UserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
+//import javax.inject.Inject;
 
 /*
 //UserViewModel holder på userdata for profile viewet
@@ -20,16 +20,16 @@ Test af livedata + modelview. VI kommer tilbage til det når backenden er klar.
  */
 
 public class UserViewModel extends ViewModel {
-    @Inject
-    UserRepo userRepo;
+ //   @Inject
+  //  UserRepo userRepo;
 
-    private SavedStateHandle mState;
+  //  private SavedStateHandle mState;
     private MutableLiveData<List<User>> users;
     private MutableLiveData<User> user;
 
-    public UserViewModel(SavedStateHandle savedStateHandle) {
-        mState = savedStateHandle;
-    }
+  //  public UserViewModel(SavedStateHandle savedStateHandle) {
+     //   mState = savedStateHandle;
+   // }
 
     public MutableLiveData<User> getUser(String userName) {
         //userRepo metoden findes ikke endnu;

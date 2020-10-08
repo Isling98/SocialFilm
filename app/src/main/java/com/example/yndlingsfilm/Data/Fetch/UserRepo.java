@@ -1,5 +1,5 @@
 package com.example.yndlingsfilm.Data.Fetch;
-
+/*
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -9,3 +9,4 @@ public class UserRepo implements Webservice{
 
 
 }
+*/

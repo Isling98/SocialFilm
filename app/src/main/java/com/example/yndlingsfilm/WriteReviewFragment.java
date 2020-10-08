@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WriteReviewFragment extends Fragment {
 
     ImageView moviePic;
     TextView movieTitle;
+    RatingBar ratingBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,10 +27,19 @@ public class WriteReviewFragment extends Fragment {
 
          moviePic = view.findViewById(R.id.moviePic);
          movieTitle = view.findViewById(R.id.movieTitle);
+         ratingBar = view.findViewById(R.id.rating);
 
          movieTitle.setText(getArguments().getString("movieTitle"));
          //moviePic.setImageResource(getArguments().getParcelable("moviePic"));
          moviePic.setImageResource(R.drawable.movie_pic);
+
+
+         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+             @Override
+             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                 Toast.makeText(getActivity(), String.valueOf(rating), Toast.LENGTH_LONG).show();
+             }
+         });
 
 
         return view;
