@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.yndlingsfilm.Data.DataController;
 import com.example.yndlingsfilm.NavigationBar.ChatFragment;
 import com.example.yndlingsfilm.NavigationBar.HomeFragment;
 import com.example.yndlingsfilm.NavigationBar.ProfileFragment;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //lav transition
         setContentView(R.layout.activity_main);
+
+        DataController dataController = new DataController();
+        dataController.testData();
 
         BottomNavigationView bottomNavn = findViewById(R.id.bottom_navigation);
         bottomNavn.setOnNavigationItemSelectedListener(navlistener);

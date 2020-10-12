@@ -5,7 +5,7 @@ import retrofit2.http.Path;
 
 public interface Webservice {
 
-    @GET("cinemano/user")
-    private getUser(@Path())
+   // @GET("cinemano/user")
+   // private getUser(@Path())
 }
 */

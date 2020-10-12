@@ -61,14 +61,15 @@ public class User {
         this.rated = rated;
     }
 
-    public User(int userId, String username, String password, String email, ArrayList<Movie> watchedMovies,
-                ArrayList<Review> reviews, ArrayList<Rated> rated) {
+    public User(int userId, String username, String password, String email) {
+        reviews = new ArrayList<>();
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.watchedMovies = watchedMovies;
-        this.reviews = reviews;
-        this.rated = rated;
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
     }
 }
