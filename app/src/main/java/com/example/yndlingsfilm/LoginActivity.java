@@ -22,11 +22,13 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         setContentView(R.layout.activity_login);
 //        model = new ViewModelProvider(this).get(UserViewModel.class);
 //        model.getUsers();
-        Button loginButton = (Button) findViewById(R.id.button_login);
-        EditText mail = (EditText) findViewById(R.id.mail);
-        EditText password = (EditText) findViewById(R.id.password);
-        TextView forgotPassword = (TextView) findViewById(R.id.forgot_password);
+        Button loginButton = findViewById(R.id.button_login);
+        EditText mail = findViewById(R.id.mail);
+        EditText password = findViewById(R.id.password);
+        TextView forgotPassword = findViewById(R.id.forgot_password);
+        TextView newAccount = findViewById(R.id.new_account);
         loginButton.setOnClickListener(this);
+
 
 
     }

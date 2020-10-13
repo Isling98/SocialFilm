@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import androidx.savedstate.SavedStateRegistry;
@@ -34,12 +35,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View friends;
     View followers;
     TextView profileName;
-//    UserViewModel model;
+    UserViewModel viewModel; // her
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class); // her
 
         addFriend = view.findViewById(R.id.add_friend);
         bio = view.findViewById(R.id.profile_bio);

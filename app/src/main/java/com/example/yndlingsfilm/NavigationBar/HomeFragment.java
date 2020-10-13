@@ -3,7 +3,6 @@ package com.example.yndlingsfilm.NavigationBar;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yndlingsfilm.HomeFeedAdapter;
 import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.R;
-import com.example.yndlingsfilm.SingleNews;
+import com.example.yndlingsfilm.Data.News;
 
 import java.util.ArrayList;
 
@@ -36,9 +35,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final ArrayList<SingleNews> singleNews = new ArrayList<>();
+        final ArrayList<News> aNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
-            singleNews.add(new SingleNews(R.drawable.profile_pic, R.drawable.movie_pic,
+            aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,
                     "Asger Åkanden:", "2hrs", "Harry Potter", 4));
         }
 
@@ -48,51 +47,40 @@ public class HomeFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         homeFeed.setLayoutManager(layoutManager);
 
-        mAdapter = new HomeFeedAdapter(singleNews);
+        mAdapter = new HomeFeedAdapter(aNews);
         homeFeed.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(new HomeFeedAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                final Dialog dialog = new Dialog(getContext());
-                dialog.setContentView(R.layout.popup_news_details);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mAdapter.setOnItemClickListener(position -> {
+            final Dialog dialog = new Dialog(getContext());
+            dialog.setContentView(R.layout.popup_news_details);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                // sætter popup til at fylde parent
-                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                lp.copyFrom(dialog.getWindow().getAttributes());
-                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-                dialog.getWindow().setAttributes(lp);
+            // sætter popup til at fylde parent
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(dialog.getWindow().getAttributes());
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setAttributes(lp);
 
-                ImageView moviePic = dialog.findViewById(R.id.moviePic);
-                TextView text = dialog.findViewById(R.id.text);
-                RatingBar rating = dialog.findViewById(R.id.rating);
-                ImageView closeButton = dialog.findViewById(R.id.closeButton);
+            ImageView moviePic = dialog.findViewById(R.id.moviePic);
+            TextView text = dialog.findViewById(R.id.text);
+            RatingBar rating = dialog.findViewById(R.id.rating);
+            ImageView closeButton = dialog.findViewById(R.id.closeButton);
 
-                moviePic.setImageResource(singleNews.get(position).getMoviePicResource());
-                text.setText(singleNews.get(position).getTime());
-                rating.setRating(singleNews.get(position).getRating());
+            moviePic.setImageResource(aNews.get(position).getMoviePicResource());
+            text.setText(aNews.get(position).getTime());
+            rating.setRating(aNews.get(position).getRating());
 
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
+            closeButton.setOnClickListener(view1 -> dialog.dismiss());
 
-                moviePic.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //open moviedetails fragment
-                        getFragmentManager().beginTransaction().replace
-                                (R.id.fragment_nagivation, new MovieDetailsFragment() )
-                                .addToBackStack(null).commit();
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
+            moviePic.setOnClickListener(view1 -> {
+                //open moviedetails fragment
+                getFragmentManager().beginTransaction().replace
+                        (R.id.fragment_nagivation, new MovieDetailsFragment() )
+                        .addToBackStack(null).commit();
+                dialog.dismiss();
+            });
+            dialog.show();
         });
         return view;
     }

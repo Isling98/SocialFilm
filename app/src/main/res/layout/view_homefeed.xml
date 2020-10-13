@@ -85,6 +85,14 @@
             android:layout_marginBottom="4dp"
             android:layout_toEndOf="@+id/profilePic" />
 
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headline"
+            android:layout_toRightOf="@id/headline"
+            android:text="Likes:"
+            android:layout_margin="20dp"/>
         <View
             android:id="@+id/bottomLine"
             android:layout_width="match_parent"

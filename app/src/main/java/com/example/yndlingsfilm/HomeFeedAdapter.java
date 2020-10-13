@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yndlingsfilm.Data.News;
+
 import java.util.ArrayList;
 
 
 public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefeedViewHolder> {
-   private ArrayList<SingleNews> mSingleNewsList;
+   private ArrayList<News> mNewsList;
    private OnItemClickListener mListener;
 
    public interface OnItemClickListener{
@@ -34,6 +36,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         public View like;
         public View comment;
         public ImageView thumbsUp;
+        public TextView likes;
 
         private boolean liked = false;
         
@@ -48,6 +51,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
             like = itemView.findViewById(R.id.like);
             comment = itemView.findViewById(R.id.comment);
             thumbsUp = itemView.findViewById(R.id.thumbsUp);
+            likes = itemView.findViewById(R.id.likes);
 
 
             like.setOnClickListener(view -> {
@@ -79,8 +83,8 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
     }
 
 
-    public HomeFeedAdapter(ArrayList<SingleNews> singleNewsList) {
-        mSingleNewsList = singleNewsList;
+    public HomeFeedAdapter(ArrayList<News> newsList) {
+        mNewsList = newsList;
     }
 
 
@@ -97,19 +101,19 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
 
     public void onBindViewHolder(homefeedViewHolder holder, int position) {
 
-        SingleNews singleNews = mSingleNewsList.get(position);
+        News news = mNewsList.get(position);
 
-        holder.profilePic.setImageResource(singleNews.getProfilePicResource());
-        holder.moviePic.setImageResource(singleNews.getMoviePicResource());
-        holder.headLine.setText(singleNews.getHeadLine());
-        holder.time.setText(singleNews.getTime());
-        holder.movieTitle.setText(singleNews.getMovieName());
-        holder.rating.setRating(singleNews.getRating());
+        holder.profilePic.setImageResource(news.getProfilePicResource());
+        holder.moviePic.setImageResource(news.getMoviePicResource());
+        holder.headLine.setText(news.getHeadLine());
+        holder.time.setText(news.getTime());
+        holder.movieTitle.setText(news.getMovieName());
+        holder.rating.setRating(news.getRating());
 
 
     }
 
     public int getItemCount() {
-        return mSingleNewsList.size();
+        return mNewsList.size();
     }
 }

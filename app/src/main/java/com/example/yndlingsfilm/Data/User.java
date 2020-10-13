@@ -11,11 +11,75 @@ public class User {
     private ArrayList<Movie> watchedMovies;
     private ArrayList<Review> reviews;
     private ArrayList<Rated> rated;
+    private int friends; // antallet kan vi hente direkte fra listen af venner, men for nu har vi ikke listen
+    private int followers; //same
 
+
+    public User(int userId, String username, String password, String email) {
+        reviews = new ArrayList<>();
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public int getFriends() {
+        return friends;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
 
     public String getUsername() {
         return username;
     }
+
+
+    public ArrayList<Movie> getWatchedMovies() {
+        return watchedMovies;
+    }
+
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public ArrayList<Rated> getRated() {
+        return rated;
+    }
+
+
+
+    public void addRated(Rated newRated) {
+        rated.add(newRated);
+    }
+
+    public void addWatchedMovies(Movie movie) {
+        watchedMovies.add(movie);
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
+    }
+
+    public void addFriend() {
+        friends+=1;
+    }
+
+    public void addFollower() {
+        followers+=1;
+    }
+
+    public void deleteFriend() {
+        friends-=1;
+    }
+
+    public void deleteFollower() {
+        followers-=1;
+    }
+
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -35,41 +99,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public ArrayList<Movie> getWatchedMovies() {
-        return watchedMovies;
-    }
-
-    public void setWatchedMovies(ArrayList<Movie> watchedMovies) {
-        this.watchedMovies = watchedMovies;
-    }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public ArrayList<Rated> getRated() {
-        return rated;
-    }
-
-    public void setRated(ArrayList<Rated> rated) {
-        this.rated = rated;
-    }
-
-    public User(int userId, String username, String password, String email) {
-        reviews = new ArrayList<>();
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
     }
 }
