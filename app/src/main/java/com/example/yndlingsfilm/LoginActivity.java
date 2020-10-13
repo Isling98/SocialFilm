@@ -27,16 +27,13 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         EditText password = findViewById(R.id.password);
         TextView forgotPassword = findViewById(R.id.forgot_password);
         TextView newAccount = findViewById(R.id.new_account);
+
         loginButton.setOnClickListener(this);
-
-
-
+        newAccount.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
-
 //        for(int i =0; i< model.getUsers().getValue().size(); i++){
 //
 //            User u = model.getUsers().getValue().get(i);
@@ -44,9 +41,14 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 //                model.getUser().setValue(u);
 //                System.out.println("Hej jeg har nu sat model til " + u.getUsername());
 //        }}
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        this.finish();
-
+        if(view.getId()== R.id.button_login) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            this.finish();
+        } else if(view.getId() == R.id.new_account) {
+            Intent intent = new Intent(this, CreateAccountActivity.class);
+            startActivity(intent);
+            this.finish();
+        }
     }
 }
