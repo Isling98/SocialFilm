@@ -51,16 +51,16 @@ public class HomeFragment extends Fragment {
         homeFeed.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(position -> {
-            final Dialog dialog = new Dialog(getContext());
+            final Dialog dialog = new Dialog(getContext(), R.style.AnimationDialog);
             dialog.setContentView(R.layout.popup_news_details);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            // sætter popup til at fylde parent
-            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            lp.copyFrom(dialog.getWindow().getAttributes());
-            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-            dialog.getWindow().setAttributes(lp);
+                // sætter popup til at fylde parent
+                //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                //lp.copyFrom(dialog.getWindow().getAttributes());
+                //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                //lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                //dialog.getWindow().setAttributes(lp);
 
             ImageView moviePic = dialog.findViewById(R.id.moviePic);
             TextView text = dialog.findViewById(R.id.text);

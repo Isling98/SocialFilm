@@ -14,4 +14,15 @@
         <item name="colorControlNormal">@color/theme2_faded</item>
     </style>
 
+    <!-- Custom Dialog Animation -->
+    <style name="AnimationDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle"> @style/CustomDialogAnimation</item>
+    </style>
+
+    <style name="CustomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_up</item>
+    </style>
+
+
 </resources>
