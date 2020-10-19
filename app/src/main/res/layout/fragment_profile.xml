@@ -75,7 +75,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/profile_followers"
+            android:id="@+id/profile_followers_window"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -92,6 +92,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/profile_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
@@ -112,7 +113,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/profile_friends"
+            android:id="@+id/profile_friends_window"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -129,6 +130,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/profile_friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"

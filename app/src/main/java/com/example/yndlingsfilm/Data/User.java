@@ -21,6 +21,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+        friends = 0;
+        followers = 0;
     }
 
     public int getFriends() {

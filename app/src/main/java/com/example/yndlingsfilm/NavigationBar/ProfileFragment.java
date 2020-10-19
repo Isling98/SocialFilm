@@ -25,6 +25,8 @@ import com.example.yndlingsfilm.ProfileReviewsFragment;
 import com.example.yndlingsfilm.ProfileTopRatedFragment;
 import com.example.yndlingsfilm.R;
 
+import java.util.List;
+
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     ImageView addFriend;
@@ -32,8 +34,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View topRated;
     View reviews;
     View latestComments;
-    View friends;
-    View followers;
+    TextView friends;
+    TextView followers;
     TextView profileName;
     UserViewModel viewModel; // her
 
@@ -42,7 +44,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        viewModel = new ViewModelProvider(this).get(UserViewModel.class); // her
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        viewModel.init();
+        viewModel.getUsers().observe(getViewLifecycleOwner(), users -> {
+            //opdater her
+            // vi skal have fat i hvilken bruger der er logget ind og kunne finde brugere på id ofc
+           // profileName.setText(users.get(0).getUsername());
+           // friends.setText(users.get(0).getFriends());
+            //followers.setText(users.get(0).getFollowers());
+            updateView();
+        });
 
         addFriend = view.findViewById(R.id.add_friend);
         bio = view.findViewById(R.id.profile_bio);
@@ -51,12 +62,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         latestComments = view.findViewById(R.id.profile_latest_comments);
         friends = view.findViewById(R.id.profile_friends);
         followers = view.findViewById(R.id.profile_followers);
-//
-//        profileName = view.findViewById(R.id.profileName);
-//        profileName.setText(model.getUser().getValue().getUsername());
+        profileName = view.findViewById(R.id.profileName);
 
-
-
+        profileName.setText((viewModel.getUsers().getValue().get(0)).getUsername());
+        friends.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFriends())));
+        followers.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFollowers())));
 
 
         addFriend.setOnClickListener(this);
@@ -68,8 +78,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         followers.setOnClickListener(this);
 
 
-
         return view;
+    }
+
+    public void updateView(){
+        profileName.setText((viewModel.getUsers().getValue().get(0)).getUsername());
+        friends.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFriends())));
+        followers.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFollowers())));
     }
 
     @Override
@@ -78,6 +93,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         if (view.getId() == R.id.add_friend) {
             // send friend request and update
             addFriend.setImageResource(R.drawable.ic_friend_added);
+            // få fat i rigtig bruger. dette blot test
+            viewModel.getUsers().getValue().get(0).addFriend();
         } else {
             Fragment selectedFragment = null;
             switch (view.getId()) {

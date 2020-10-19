@@ -1,36 +1,36 @@
 package com.example.yndlingsfilm.Data;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
+
+import com.example.yndlingsfilm.Data.Fetch.UserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserViewModel extends ViewModel {
 
-    private SavedStateHandle savedStateHandle = new SavedStateHandle();
     private MutableLiveData<List<User>> users;
+    private UserRepo userRepo;
 
-    public MutableLiveData<List<User>> getUsers() {
-        //userRepo metoden findes ikke endnu;
-//    user = userRepo.getUser(String userName);
+    public void init(){
+        if(users!=null){
+            return;
+        }
+        userRepo = UserRepo.getInstance();
+        users = userRepo.getUsers();
+    }
+
+    public LiveData<List<User>> getUsers() {
         if (users == null) {
             users = new MutableLiveData<>();
-            loadUsers();
         }
         return users;
     }
 
-    public void loadUsers() {
-        List<User> usersExample = new ArrayList<>();
-        User user1 = new User(1, "Asger", "ikkekodeher","AA@rs.com");
-        User user2 = new User(2, "Markus", "ikkekodeher","MA@rs.com");
-        usersExample.add(user1);
-        usersExample.add(user2);
-
-        users.setValue(usersExample);
+    public void addFriend(){
 
     }
-
 }
