@@ -1,12 +1,18 @@
 package com.example.yndlingsfilm.NavigationBar.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,14 +72,34 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
 
     @Override
     public void onNoteClick(int position) {
-        System.out.println("Der blev klikket");
+        final Dialog dialog1 = new Dialog(context, R.style.AnimationDialog);
+        dialog1.setContentView(R.layout.explore_movie_details);
+        dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView moviePicExplore = dialog1.findViewById(R.id.moviePicture);
+        TextView title = dialog1.findViewById(R.id.movieTitleExplore);
+        ImageView closeButton = dialog1.findViewById(R.id.closeButton2);
+        Button readMore = dialog1.findViewById(R.id.readMore);
 
         /*
-        Her skal der sættes op til at skifte til movieDetail fragmentet
+        Nedenstående skal i sidste ende sættes til at have de informationer, der svarer til det
+        card man har klikket på under searchFragment. Der er problemer med dette lige nu, så
+        til at starte med er det blot hardcoded.
          */
+        moviePicExplore.setImageResource(R.drawable.poster_harry_potter_1);
+        title.setText("Harry Potter");
 
+        closeButton.setOnClickListener(view1 -> dialog1.dismiss());
+
+        readMore.setOnClickListener(view1 -> {
+            //Åbner movieDetails fragmentet
+            ((AppCompatActivity)context).getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.fragment_nagivation, new MovieDetailsFragment())
+                    .addToBackStack(null).commit();
+            dialog1.dismiss();
+        });
+        dialog1.show();
     }
-
 
     /*
     Nedenstående viser hvad det vertikale recyclerview indeholder,
