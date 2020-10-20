@@ -1,6 +1,6 @@
 package com.example.yndlingsfilm.Data;
 
-public class Movie {
+public class Movie{
     private String movieId;
     private String movieTitle;
     private String overview;

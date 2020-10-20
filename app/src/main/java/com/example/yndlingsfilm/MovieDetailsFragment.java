@@ -1,7 +1,6 @@
 package com.example.yndlingsfilm;
 
 import android.content.Intent;
-import android.media.Rating;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +18,22 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.yndlingsfilm.Data.Movie;
+import com.example.yndlingsfilm.requests.MovieApi;
+import com.example.yndlingsfilm.requests.ServiceGenerator;
+import com.example.yndlingsfilm.requests.responses.MovieResponse;
+import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
+import com.example.yndlingsfilm.util.Constants;
 
+import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MovieDetailsFragment extends Fragment {
+    private static final String TAG = "MovieDetailsFragment";
 
     Executor bgThread;
     Handler uiThread;
@@ -40,6 +51,8 @@ public class MovieDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
+
+        testRetrofitRequest();
 
         // hent rigtig movie parset fra det billede der har ført hertil.
         Movie movie = new Movie("tt0295297", "Harry Potter",
@@ -95,5 +108,34 @@ public class MovieDetailsFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void testRetrofitRequest(){
+        MovieApi movieApi = ServiceGenerator.getMovieApi();
+
+        Call<DiscoverMoviesResponse> responseCall =
+                movieApi.discoverMovies(Constants.API_KEY, "popularity.desc");
+
+        responseCall.enqueue(new Callback<DiscoverMoviesResponse>() {
+            @Override
+            public void onResponse(Call<DiscoverMoviesResponse> call, Response<DiscoverMoviesResponse> response) {
+                Log.d(TAG, "onResponse:" + response.toString());
+                if(response.code() == 200){
+                    Log.d(TAG, "onResponse: " + response.body().toString() );
+                    //gør noget med respons her
+                }else{
+                    try {
+                        Log.d(TAG, "onResponse: " + response.errorBody().string());
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DiscoverMoviesResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
