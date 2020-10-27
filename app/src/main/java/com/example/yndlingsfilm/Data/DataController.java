@@ -1,3 +1,4 @@
+/*
 package com.example.yndlingsfilm.Data;
 
 import com.example.yndlingsfilm.R;
@@ -9,7 +10,7 @@ public class DataController {
     //mockup data
     // lav singleton
     // skal watchedmovies ikke være under bruger?
-    ArrayList<Movie> watchedMovies = new ArrayList<Movie>();
+      ArrayList<Movie> watchedMovies = new ArrayList<Movie>();
     ArrayList<Review> reviews = new ArrayList<Review>();
     ArrayList<Movie> allMovies = new ArrayList<>();
     ArrayList<User> users = new ArrayList<>();
@@ -53,3 +54,4 @@ public class DataController {
         return user3;
     }
 }
+*/

@@ -21,7 +21,6 @@ public class DiscoverMoviesResponse {
     private int total_pages;
 
 
-
     @SerializedName("results")
     @Expose
     private List<Movie> movies;

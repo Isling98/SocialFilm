@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -23,6 +24,7 @@ import com.example.yndlingsfilm.requests.ServiceGenerator;
 import com.example.yndlingsfilm.requests.responses.MovieResponse;
 import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.util.Constants;
+import com.example.yndlingsfilm.viewModels.MovieViewModel;
 
 import java.io.IOException;
 import java.util.concurrent.Executor;
@@ -46,6 +48,8 @@ public class MovieDetailsFragment extends Fragment {
     RatingBar rating;
     Button writeReviewButton;
 
+    private MovieViewModel movieViewModel;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,13 +59,13 @@ public class MovieDetailsFragment extends Fragment {
         testRetrofitRequest();
 
         // hent rigtig movie parset fra det billede der har ført hertil.
-        Movie movie = new Movie("tt0295297", "Harry Potter",
+       /* Movie movie = new Movie("tt0295297", "Harry Potter",
                 "An orphaned boy enrolls in a school of wizardry," +
                         " where he learns the truth about himself," +
                         " his family and the terrible evil that haunts the magical world.",
-                                    "10-01-2001", R.drawable.movie_pic, 5);
+                                    "10-01-2001", R.drawable.movie_pic, 5, null);*/
 
-        imdbLink = view.findViewById(R.id.imdbLink);
+        /*imdbLink = view.findViewById(R.id.imdbLink);
         movieTitle = view.findViewById(R.id.movieTitle);
         moviePic = view.findViewById(R.id.moviePic);
         overview = view.findViewById(R.id.overview);
@@ -69,19 +73,18 @@ public class MovieDetailsFragment extends Fragment {
         rating = view.findViewById(R.id.rating);
         writeReviewButton = view.findViewById(R.id.writeReviewButton);
 
-        movieTitle.setText(movie.getMovieTitle());
+        movieTitle.setText(movie.getTitle());
         overview.setText(movie.getOverview());
-        releaseDate.setText(movie.getReleaseDate());
-        rating.setRating(movie.getRating());
-
-        moviePic.setImageResource(movie.getMoviePic());
+        releaseDate.setText(movie.getRelease_date());
+        rating.setRating(movie.getVote_average());
+        moviePic.setImageResource(movie.getPoster_path());
 
 
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment f = new WriteReviewFragment();
-                f.setArguments(new Intent().putExtra("movieTitle", movie.getMovieTitle()).getExtras());
+                f.setArguments(new Intent().putExtra("movieTitle", movie.getTitle()).getExtras());
 
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,
                         R.anim.slide_out_left).replace(R.id.fragment_nagivation, f)
@@ -97,18 +100,19 @@ public class MovieDetailsFragment extends Fragment {
             bgThread.execute(()->{
                 try{
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://www.imdb.com/title/" + movie.getMovieId()));
+                            Uri.parse("https://www.imdb.com/title/" + movie.getId()));
                     startActivity(browserIntent);
                 } catch (Exception e){
                     // behandl fejl. evt vis cashed svar.
                     e.printStackTrace();
                 }
             });
-        });
+        });*/
 
 
         return view;
     }
+
 
     private void testRetrofitRequest(){
         MovieApi movieApi = ServiceGenerator.getMovieApi();
@@ -123,6 +127,7 @@ public class MovieDetailsFragment extends Fragment {
                 if(response.code() == 200){
                     Log.d(TAG, "onResponse: " + response.body().toString() );
                     //gør noget med respons her
+
                 }else{
                     try {
                         Log.d(TAG, "onResponse: " + response.errorBody().string());
@@ -134,7 +139,7 @@ public class MovieDetailsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<DiscoverMoviesResponse> call, Throwable t) {
-
+                Log.d(TAG, "onFailure: " + "failed");
             }
         });
     }

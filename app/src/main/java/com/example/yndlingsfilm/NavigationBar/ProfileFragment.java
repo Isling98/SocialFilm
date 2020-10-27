@@ -9,14 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import androidx.savedstate.SavedStateRegistry;
-
-import com.example.yndlingsfilm.Data.User;
-import com.example.yndlingsfilm.Data.UserViewModel;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 import com.example.yndlingsfilm.FollowersFragment;
 import com.example.yndlingsfilm.FriendsListFragment;
 import com.example.yndlingsfilm.ProfileBioFragment;
@@ -24,8 +19,6 @@ import com.example.yndlingsfilm.ProfileLatestCommentsFragment;
 import com.example.yndlingsfilm.ProfileReviewsFragment;
 import com.example.yndlingsfilm.ProfileTopRatedFragment;
 import com.example.yndlingsfilm.R;
-
-import java.util.List;
 
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {

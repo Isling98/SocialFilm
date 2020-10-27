@@ -1,46 +1,65 @@
 package com.example.yndlingsfilm.Data;
 
+import java.util.Arrays;
+
 public class Movie{
-    private String movieId;
-    private String movieTitle;
+    private int id;
+    private String title;
     private String overview;
-    private String releaseDate;
-    private int moviePicResource;
-    private int rating;
+    private String release_date;
+    private String poster_path;
+    private float vote_average;
+    private int[] genre_ids;
 
-
-    public Movie(String movieId, String movieTitle, String overview,
-                 String releaseDate, int moviePicResource, int rating) {
-        this.movieId = movieId;
-        this.movieTitle = movieTitle;
+    public Movie(int id, String title, String overview, String release_date,
+                 String poster_path, float vote_average, int[] genre_ids) {
+        this.id = id;
+        this.title = title;
         this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.moviePicResource = moviePicResource;
-        this.rating = rating;
+        this.release_date = release_date;
+        this.poster_path = poster_path;
+        this.vote_average = vote_average;
+        this.genre_ids = genre_ids;
     }
 
-    public String getMovieId() {
-        return movieId;
+    public int getId() {
+        return id;
     }
 
-
-    public String getMovieTitle() {
-        return movieTitle;
+    public String getTitle() {
+        return title;
     }
 
     public String getOverview() {
         return overview;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public int getMoviePic() {
-        return moviePicResource;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public int getRating() {
-        return rating;
+    public float getVote_average() {
+        return vote_average;
+    }
+
+    public int[] getGenre_ids() {
+        return genre_ids;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", overview='" + overview + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", poster_path='" + poster_path + '\'' +
+                ", vote_average='" + vote_average + '\'' +
+                ", genre_ids=" + Arrays.toString(genre_ids) +
+                '}';
     }
 }

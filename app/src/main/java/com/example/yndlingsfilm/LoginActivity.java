@@ -1,7 +1,6 @@
 package com.example.yndlingsfilm;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.yndlingsfilm.Data.UserViewModel;
-import com.example.yndlingsfilm.Data.User;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity  implements View.OnClickListener {
     UserViewModel model;
