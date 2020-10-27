@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yndlingsfilm.HomeFeedAdapter;
 import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.R;
-import com.example.yndlingsfilm.Data.News;
+import com.example.yndlingsfilm.Model.News;
 
 import java.util.ArrayList;
 

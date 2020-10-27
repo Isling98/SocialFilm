@@ -1,21 +1,28 @@
 package com.example.yndlingsfilm.NavigationBar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.NavigationBar.Adapters.ModelHorizontal;
 import com.example.yndlingsfilm.NavigationBar.Adapters.ModelVertical;
 import com.example.yndlingsfilm.NavigationBar.Adapters.VerticalRecyclerViewAdapter;
 import com.example.yndlingsfilm.R;
+import com.example.yndlingsfilm.viewModels.MovieListViewModel;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
@@ -25,11 +32,17 @@ public class SearchFragment extends Fragment {
     RecyclerView verticalRecyclerView;
     VerticalRecyclerViewAdapter verticalRecyclerViewAdapter;
     ArrayList<ModelVertical> arrayList;
+    private MovieListViewModel movieListViewModel;
+
+    private static final String TAG = "SearchFragment";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+        subscribeObservers();
 
         verticalRecyclerView = view.findViewById(R.id.recyclerview1);
         verticalRecyclerView.setHasFixedSize(true); //Dette gør at alle children til recyclerviewet har en fixed størrelse.
@@ -41,6 +54,8 @@ public class SearchFragment extends Fragment {
         arrayList = new ArrayList<>();
         verticalRecyclerViewAdapter = new VerticalRecyclerViewAdapter(getContext(), arrayList);
         verticalRecyclerView.setAdapter(verticalRecyclerViewAdapter);
+
+        discoverMoviesApi("top_rated");
 
         return view;
     }
@@ -87,4 +102,22 @@ public class SearchFragment extends Fragment {
         arrayList.addAll(modelVerticalArrayList1);
         verticalRecyclerViewAdapter.notifyDataSetChanged();
     }
+
+    private void subscribeObservers(){
+        movieListViewModel.getMovies().observe(this, new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(List<Movie> movies) {
+                if(movies != null){
+                    for(Movie movie: movies){
+                        Log.d(TAG, "onChanged: " + movie.getTitle());
+                    }
+                }
+            }
+        });
+    }
+
+    private void discoverMoviesApi(String query){
+        movieListViewModel.discoverMoviesApi(query);
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.example.yndlingsfilm.requests.responses;
 
-import com.example.yndlingsfilm.Data.Movie;
+import com.example.yndlingsfilm.Model.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

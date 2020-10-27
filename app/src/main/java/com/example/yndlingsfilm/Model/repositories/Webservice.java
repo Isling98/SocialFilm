@@ -1,4 +1,4 @@
-package com.example.yndlingsfilm.Data.Fetch;
+package com.example.yndlingsfilm.Model.repositories;
 /*
 import retrofit2.http.GET;
 import retrofit2.http.Path;

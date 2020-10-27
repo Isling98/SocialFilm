@@ -1,11 +1,11 @@
 package com.example.yndlingsfilm.requests;
 
-import com.example.yndlingsfilm.Data.Movie;
 import com.example.yndlingsfilm.requests.responses.MovieResponse;
 import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MovieApi {
@@ -25,8 +25,9 @@ public interface MovieApi {
     );
 
     // get popular movies
-    @GET("/3/movie/popular")
-    Call<Movie> getPopularMovies(
+    @GET("/3/movie/{category}")
+    Call<DiscoverMoviesResponse> getMovies(
+            @Path("category") String category,
             @Query("api_key") String key,
             @Query("language") String language,
             @Query("page") int page

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.yndlingsfilm.Data.News;
+import com.example.yndlingsfilm.Model.News;
 
 import java.util.ArrayList;
 

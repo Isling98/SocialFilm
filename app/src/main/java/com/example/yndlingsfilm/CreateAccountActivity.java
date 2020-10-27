@@ -7,12 +7,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.yndlingsfilm.Data.User;
+import com.example.yndlingsfilm.Model.User;
 
 public class CreateAccountActivity extends AppCompatActivity {
 

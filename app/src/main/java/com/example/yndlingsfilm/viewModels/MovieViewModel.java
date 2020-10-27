@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.yndlingsfilm.Data.Movie;
+import com.example.yndlingsfilm.Model.Movie;
 
 public class MovieViewModel extends ViewModel {
 

@@ -2,13 +2,11 @@ package com.example.yndlingsfilm.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
-import com.example.yndlingsfilm.Data.Fetch.UserRepo;
-import com.example.yndlingsfilm.Data.User;
+import com.example.yndlingsfilm.Model.repositories.UserRepo;
+import com.example.yndlingsfilm.Model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserViewModel extends ViewModel {

@@ -1,14 +1,10 @@
 package com.example.yndlingsfilm;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,17 +14,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.yndlingsfilm.Data.Movie;
+import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.requests.MovieApi;
 import com.example.yndlingsfilm.requests.ServiceGenerator;
-import com.example.yndlingsfilm.requests.responses.MovieResponse;
 import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.util.Constants;
 import com.example.yndlingsfilm.viewModels.MovieViewModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -118,7 +114,7 @@ public class MovieDetailsFragment extends Fragment {
         MovieApi movieApi = ServiceGenerator.getMovieApi();
 
         Call<DiscoverMoviesResponse> responseCall =
-                movieApi.discoverMovies(Constants.API_KEY, "popularity.desc");
+                movieApi.getMovies("popular", Constants.API_KEY, Constants.LANGUAGE, 1);
 
         responseCall.enqueue(new Callback<DiscoverMoviesResponse>() {
             @Override
@@ -127,7 +123,10 @@ public class MovieDetailsFragment extends Fragment {
                 if(response.code() == 200){
                     Log.d(TAG, "onResponse: " + response.body().toString() );
                     //gør noget med respons her
-
+                    List<Movie> movies = new ArrayList<>(response.body().getMovies());
+                    for(Movie movie: movies){
+                        Log.d(TAG, "onResponse: " + movie.getTitle());
+                    }
                 }else{
                     try {
                         Log.d(TAG, "onResponse: " + response.errorBody().string());

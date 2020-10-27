@@ -1,11 +1,10 @@
 package com.example.yndlingsfilm.requests.responses;
 
-import com.example.yndlingsfilm.Data.Movie;
+import com.example.yndlingsfilm.Model.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-// kan nok være generel for alle "sort_by"
 public class DiscoverMoviesResponse {
 
     @SerializedName("page")
@@ -44,7 +43,7 @@ public class DiscoverMoviesResponse {
 
     @Override
     public String toString() {
-        return "PopularMoviesResponse{" +
+        return "DiscoverMoviesResponse{" +
                 "page=" + page +
                 ", total_results=" + total_results +
                 ", total_pages=" + total_pages +

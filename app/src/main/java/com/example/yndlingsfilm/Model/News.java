@@ -1,4 +1,4 @@
-package com.example.yndlingsfilm.Data;
+package com.example.yndlingsfilm.Model;
 
 public class News {
     private int profilePicResource;

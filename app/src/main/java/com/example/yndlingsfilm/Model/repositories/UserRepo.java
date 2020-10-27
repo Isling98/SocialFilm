@@ -1,13 +1,12 @@
-package com.example.yndlingsfilm.Data.Fetch;
+package com.example.yndlingsfilm.Model.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.yndlingsfilm.Data.User;
+import com.example.yndlingsfilm.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
