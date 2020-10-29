@@ -41,6 +41,11 @@ public class WriteReviewFragment extends Fragment {
              }
          });
 
+         /*
+         Der skal laves noget kode til at knappen 'submit review' gemmer dataen fra ratingbar og EditText til databasen.
+         Måske vi skal lave databasen/ideen om sådan at vi ikke har review og rating adskilt, men de foretages på samme side?
+          */
+
 
         return view;
     }
