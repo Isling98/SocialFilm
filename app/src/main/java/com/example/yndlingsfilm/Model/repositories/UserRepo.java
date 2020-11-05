@@ -34,4 +34,8 @@ public class UserRepo{
     public void login(String username, String password){
         userApiClient.login(username, password);
     }
+
+    public void getUser(String username, String token){
+        userApiClient.getUser(username, token);
+    }
 }
