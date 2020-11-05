@@ -91,8 +91,6 @@ public class MovieApiClient {
                 e.printStackTrace();
                 movies.postValue(null);
             }
-
-
         }
 
         private Call<DiscoverMoviesResponse> getMovies(String query) {

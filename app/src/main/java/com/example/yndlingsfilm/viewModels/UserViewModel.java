@@ -11,25 +11,17 @@ import java.util.List;
 
 public class UserViewModel extends ViewModel {
 
-    private MutableLiveData<List<User>> users;
     private UserRepo userRepo;
 
-    public void init(){
-        if(users!=null){
-            return;
-        }
+    public UserViewModel() {
         userRepo = UserRepo.getInstance();
-        users = userRepo.getUsers();
     }
 
-    public LiveData<List<User>> getUsers() {
-        if (users == null) {
-            users = new MutableLiveData<>();
-        }
-        return users;
+    public MutableLiveData<List<User>> getUsers(){
+        return userRepo.getUsers();
     }
 
-    public void addFriend(){
-
+    public void login(String username, String password){
+        userRepo.login(username, password);
     }
 }

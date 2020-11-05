@@ -3,6 +3,7 @@ package com.example.yndlingsfilm.Model.repositories;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.yndlingsfilm.Model.User;
+import com.example.yndlingsfilm.requests.UserApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +11,9 @@ import java.util.List;
 import javax.inject.Singleton;
 
 @Singleton
-public class UserRepo{ // implements Webservice. hardcoder det i første omgang mens jeg venter på databasen. bruger stadig singleton
-
+public class UserRepo{
     private static UserRepo instance;
-    private ArrayList<User> dataSet = new ArrayList<>();
-
+    private UserApiClient userApiClient;
 
     public static UserRepo getInstance(){
         if(instance == null){
@@ -23,20 +22,16 @@ public class UserRepo{ // implements Webservice. hardcoder det i første omgang 
         return instance;
     }
 
+    public UserRepo() {
+        userApiClient = UserApiClient.getInstance();
+    }
+
+    // skal nok ikke være mutable
     public MutableLiveData<List<User>> getUsers(){
-        //tilgå database her. er bare faket her
-        setUsers();
-
-        MutableLiveData<List<User>> data = new MutableLiveData<>();
-        data.setValue(dataSet);
-
-        return data;
+        return userApiClient.getUsers();
     }
 
-
-    private void setUsers(){
-        dataSet.add(new User(1,"Asger Åkanden", "ikkepassher", "asger@head.com"));
-        dataSet.add(new User(1,"Markus head", "ikkepassher", "markus@head.com"));
+    public void login(String username, String password){
+        userApiClient.login(username, password);
     }
-
 }
