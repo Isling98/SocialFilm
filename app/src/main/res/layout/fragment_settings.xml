@@ -1,12 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/cardview_light_background">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="setting Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+    android:background="#f2f2f2">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/editProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="11dp"
+                android:text="Change profile picture"
+                android:textColor="@color/theme1" />
+
+            <ImageView
+                android:id="@+id/editProfilePicIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@android:drawable/ic_menu_crop" />
+
+            <ImageButton
+                android:id="@+id/editProfilePicButton"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="330dp"
+                android:backgroundTint="#f2f2f2"
+                android:rotation="180"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Settings"
+            android:textColor="@color/theme1"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5">
+
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:text="Change password"
+                android:textColor="@color/theme1" />
+
+            <EditText
+                android:id="@+id/editPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Old password"/>
+
+            <EditText
+                android:id="@+id/editPass2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="New password"/>
+
+            <ImageButton
+                android:id="@+id/editPassConfirm"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="330dp"
+                android:layout_marginTop="90dp"
+                android:backgroundTint="#f2f2f2"
+                android:rotation="180"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+
+            <ImageView
+                android:id="@+id/changePassIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_view"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView6"
+            android:layout_marginTop="75dp">
+
+            <TextView
+                android:id="@+id/deleteUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete profile"
+                android:textColor="@color/theme1"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="11dp"/>
+
+            <ImageView
+                android:id="@+id/deleteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_delete"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <ImageButton
+                android:id="@+id/deleteConfirm"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="330dp"
+                android:backgroundTint="#f2f2f2"
+                android:rotation="180"
+                app:srcCompat="?attr/homeAsUpIndicator"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
