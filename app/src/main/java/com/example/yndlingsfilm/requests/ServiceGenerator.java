@@ -24,6 +24,7 @@ public class ServiceGenerator {
     // retrofitbuilder for own restApi
     private static Retrofit.Builder retrofitBuilder2 =
             new Retrofit.Builder().baseUrl(Constants.BASE_URL2).
+                    client(UnsafeOkHttpClient.getUnsafeOkHttpClient()).
                     addConverterFactory(GsonConverterFactory.create());
     private static Retrofit retrofit2 = retrofitBuilder2.build();
 
