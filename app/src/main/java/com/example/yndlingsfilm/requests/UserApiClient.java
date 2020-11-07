@@ -72,6 +72,7 @@ public class UserApiClient {
         public void run() {
             try{
                 Response response = login(username, password).execute();
+
                 if(cancelRequest){
                     return;
                 }
@@ -82,8 +83,12 @@ public class UserApiClient {
                     //getUser(username, token);
 
                     Log.d(TAG, "run: succes from code 200. user logged in");
-                }else{
-                    Log.d(TAG, "run: succes from else");
+
+                }else if (response.code() == 400){
+                    Log.d(TAG, "Wrong grant type ____________________");
+
+                } else{
+                    Log.d(TAG,"Somethign else than 400 or 200");
                 }
             } catch (IOException e){
                 e.printStackTrace();
@@ -92,7 +97,8 @@ public class UserApiClient {
         }
 
         private Call<LoginResponse> login(String username, String password){
-            return ServiceGenerator.getUserApi().login(username, password, "password");
+
+            return ServiceGenerator.getUserApi().login("application/x-www-form-urlencoded","password",username, password);
         }
 
 

@@ -16,11 +16,13 @@ import retrofit2.http.Query;
 public interface UserApi {
 
     @FormUrlEncoded
-    @GET("/token")
+    @POST("/token")
     Call<LoginResponse> login(
-            @Query("username") String username,
-            @Query("password") String password,
-            @Query("grant_type") String hardcodedPass
+            @Header("Content-type") String wwww,
+            @Field("grant_type") String hardcodedPass,
+            @Field("username") String username,
+            @Field("password") String password
+
     );
 
 
