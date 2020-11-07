@@ -20,6 +20,22 @@ public class MovieListViewModel extends ViewModel {
         return movieListRepo.getMovies();
     }
 
+    public MutableLiveData<List<Movie>> getTopratedMovies() {
+        return movieListRepo.getTopRatedMovies();
+    }
+
+    public MutableLiveData<List<Movie>> getPopularMovies() {
+        return movieListRepo.getPopularMovies();
+    }
+
+    public MutableLiveData<List<Movie>> getUpcomingMovies() {
+        return movieListRepo.getUpcomingMovies();
+    }
+
+    public MutableLiveData<List<Movie>> getLatestMovies() {
+        return movieListRepo.getLatestMovies();
+    }
+
     public void discoverMoviesApi(String query){
         movieListRepo.discoverMoviesApi(query);
     }

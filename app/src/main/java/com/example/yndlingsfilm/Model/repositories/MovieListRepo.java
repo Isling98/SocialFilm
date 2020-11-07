@@ -28,6 +28,18 @@ public class MovieListRepo {
     public MutableLiveData<List<Movie>> getMovies() {
         return movieApiClient.getMovies();
     }
+    public MutableLiveData<List<Movie>> getTopRatedMovies() {
+        return movieApiClient.getTopRatedMovies();
+    }
+    public MutableLiveData<List<Movie>> getPopularMovies() {
+        return movieApiClient.getPopularMovies();
+    }
+    public MutableLiveData<List<Movie>> getUpcomingMovies() {
+        return movieApiClient.getUpcomingMovies();
+    }
+    public MutableLiveData<List<Movie>> getLatestMovies() {
+        return movieApiClient.getLatestMovies();
+    }
 
     public void discoverMoviesApi(String query){
         movieApiClient.discoverMoviesApi(query);

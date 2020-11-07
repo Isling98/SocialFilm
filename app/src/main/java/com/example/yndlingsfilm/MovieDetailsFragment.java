@@ -114,7 +114,8 @@ public class MovieDetailsFragment extends Fragment {
         MovieApi movieApi = ServiceGenerator.getMovieApi();
 
         Call<DiscoverMoviesResponse> responseCall =
-                movieApi.getMovies("popular", Constants.API_KEY, Constants.LANGUAGE, 1);
+                movieApi.getMovies("" +
+                        "upcoming", Constants.API_KEY, Constants.LANGUAGE, 1);
 
         responseCall.enqueue(new Callback<DiscoverMoviesResponse>() {
             @Override

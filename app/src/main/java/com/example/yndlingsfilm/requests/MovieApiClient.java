@@ -24,6 +24,12 @@ public class MovieApiClient {
     // need data for the different categories. eg. popularmovies, trendingmovies, newMovies.
     // dont need class for each, just control of the query sent.
     private MutableLiveData<List<Movie>> movies;
+    private MutableLiveData<List<Movie>> topRatedMovies;
+    private MutableLiveData<List<Movie>> popularMovies;
+    private MutableLiveData<List<Movie>> upcomingMovies;
+    private MutableLiveData<List<Movie>> latestMovies;
+
+
     private static final String TAG = "MovieApiClient";
     private RetrieveMoviesRunnable retrieveMoviesRunnable;
 
@@ -37,10 +43,30 @@ public class MovieApiClient {
 
     public MovieApiClient() {
         movies = new MutableLiveData<>();
+        topRatedMovies = new MutableLiveData<>();
+        popularMovies = new MutableLiveData<>();
+        upcomingMovies = new MutableLiveData<>();
+        latestMovies = new MutableLiveData<>();
     }
 
     public MutableLiveData<List<Movie>> getMovies() {
         return movies;
+    }
+
+    public MutableLiveData<List<Movie>> getTopRatedMovies() {
+        return topRatedMovies;
+    }
+
+    public MutableLiveData<List<Movie>> getPopularMovies() {
+        return popularMovies;
+    }
+
+    public MutableLiveData<List<Movie>> getUpcomingMovies() {
+        return upcomingMovies;
+    }
+
+    public MutableLiveData<List<Movie>> getLatestMovies() {
+        return latestMovies;
     }
 
     public void discoverMoviesApi(String query){
@@ -80,9 +106,24 @@ public class MovieApiClient {
                     return;
                 }
                 if(response.code() == 200){
+                    //kontrol af query
                     List<Movie> movieList =
                             new ArrayList<>(((DiscoverMoviesResponse)response.body()).getMovies());
-                    movies.postValue(movieList);
+                    switch(query){
+                        // add evt til allMovies også
+                        case "top_rated":
+                            topRatedMovies.postValue(movieList);
+                            break;
+                        case "popular":
+                            popularMovies.postValue(movieList);
+                            break;
+                        case "upcoming":
+                            upcomingMovies.postValue(movieList);
+                            break;
+                        case "latest":
+                            latestMovies.postValue(movieList);
+                            break;
+                    }
                 } else {
                     Log.e(TAG, "run: " + response.errorBody().string() );
                     movies.postValue(null);

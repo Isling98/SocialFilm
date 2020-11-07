@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
+import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
 import com.example.yndlingsfilm.util.Constants;
@@ -76,8 +77,10 @@ public class UserApiClient {
                 }
                 if (response.code() == 200){
                     //returner en true her og giv brugeren det givne token
-                    // find ud af hvordan token returneres i vores post kald? spørg Åkanden
-                    //getUser(username, token)
+                    String token = ((LoginResponse)response.body()).getAccess_token();
+                    Log.d(TAG, "run: " + token);
+                    //getUser(username, token);
+
                     Log.d(TAG, "run: succes from code 200. user logged in");
                 }else{
                     Log.d(TAG, "run: succes from else");
