@@ -32,8 +32,8 @@ public class MovieListViewModel extends ViewModel {
         return movieListRepo.getUpcomingMovies();
     }
 
-    public MutableLiveData<List<Movie>> getLatestMovies() {
-        return movieListRepo.getLatestMovies();
+    public MutableLiveData<List<Movie>> getNowPlayingMovies() {
+        return movieListRepo.getNowPlayingMovies();
     }
 
     public void discoverMoviesApi(String query){

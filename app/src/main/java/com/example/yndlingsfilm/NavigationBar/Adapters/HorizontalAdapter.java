@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.R;
+import com.example.yndlingsfilm.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
         Glide.with(holder.itemView.getContext())
                 .setDefaultRequestOptions(requestOptions)
-                .load(movies.get(position).getPoster_path())
+                .load(Constants.BASE_URL_IMG + movies.get(position).getPoster_path())
                 .into((holder).moviePoster);
     }
 

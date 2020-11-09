@@ -29,8 +29,6 @@ public class SearchFragment extends Fragment implements OnMovieListener {
     private RecyclerView verticalRecyclerView;
     private VerticalAdapter verticalAdapter;
     private MovieListViewModel movieListViewModel;
-    private List<List<Movie>> categoryList;
-
     private static final String TAG = "SearchFragment";
 
     @Nullable
@@ -41,15 +39,12 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         verticalRecyclerView = view.findViewById(R.id.recyclerview1);
         verticalRecyclerView.setHasFixedSize(true);
 
-
         subscribeObservers();
         initRecyclerView();
-        discoverMoviesApi("top_rated");
         discoverMoviesApi("popular");
+        discoverMoviesApi("top_rated");
         discoverMoviesApi("upcoming");
-
-
-
+        discoverMoviesApi("now_playing");
 
         return view;
     }
@@ -66,8 +61,6 @@ public class SearchFragment extends Fragment implements OnMovieListener {
 
     }
 
-
-
     private void subscribeObservers(){
         movieListViewModel.getPopularMovies().observe(this, new Observer<List<Movie>>() {
             @Override
@@ -82,15 +75,15 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getLatestMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getNowPlayingMovies().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 if(movies != null){
-                    Log.d(TAG, "onChanged: -------------latest" );
+                    Log.d(TAG, "onChanged: -------------now playing" );
                     for(Movie movie: movies){
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
-                    verticalAdapter.setCategoryList(movies, "latest");
+                    verticalAdapter.setCategoryList(movies, "nowPlaying");
                 }
             }
         });
@@ -122,15 +115,9 @@ public class SearchFragment extends Fragment implements OnMovieListener {
 
     private void discoverMoviesApi(String query){
         movieListViewModel.discoverMoviesApi(query);
-//        switch (query) {
-//            case "popular":
-//                verticalAdapter.setCategoryList(movieListViewModel.getPopularMovies().getValue(), "popular");
-//                break;
-//        }
     }
 
     @Override
     public void onMovieClick(int position) {
-
     }
 }

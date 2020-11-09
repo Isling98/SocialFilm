@@ -27,7 +27,7 @@ public class MovieApiClient {
     private MutableLiveData<List<Movie>> topRatedMovies;
     private MutableLiveData<List<Movie>> popularMovies;
     private MutableLiveData<List<Movie>> upcomingMovies;
-    private MutableLiveData<List<Movie>> latestMovies;
+    private MutableLiveData<List<Movie>> nowPlayingMovies;
 
 
     private static final String TAG = "MovieApiClient";
@@ -46,7 +46,7 @@ public class MovieApiClient {
         topRatedMovies = new MutableLiveData<>();
         popularMovies = new MutableLiveData<>();
         upcomingMovies = new MutableLiveData<>();
-        latestMovies = new MutableLiveData<>();
+        nowPlayingMovies = new MutableLiveData<>();
     }
 
     public MutableLiveData<List<Movie>> getMovies() {
@@ -65,8 +65,8 @@ public class MovieApiClient {
         return upcomingMovies;
     }
 
-    public MutableLiveData<List<Movie>> getLatestMovies() {
-        return latestMovies;
+    public MutableLiveData<List<Movie>> getNowPlayingMovies() {
+        return nowPlayingMovies;
     }
 
 
@@ -122,7 +122,7 @@ public class MovieApiClient {
                             upcomingMovies.postValue(movieList);
                             break;
                         case "latest":
-                            latestMovies.postValue(movieList);
+                            nowPlayingMovies.postValue(movieList);
                             break;
                     }
                 } else {

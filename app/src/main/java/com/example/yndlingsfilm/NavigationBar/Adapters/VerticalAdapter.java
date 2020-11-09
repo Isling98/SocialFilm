@@ -38,7 +38,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private List<Movie> popularMovies;
     private List<Movie> topRatedMovies;
     private List<Movie> upcomingMovies;
-    private List<Movie> latestMovies;
+    private List<Movie> nowPlayingMovies;
 
 
     public VerticalAdapter(Context context, OnMovieListener onMovieListener) {
@@ -57,14 +57,30 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-
         HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, categoryList.get(position), onMovieListener);
         ((VerticalViewHolder)holder).recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         ((VerticalViewHolder)holder).recyclerView.setHasFixedSize(true);
         ((VerticalViewHolder)holder).recyclerView.setAdapter(horizontalAdapter);
 
         // kontrol af category
-        ((VerticalViewHolder)holder).category.setText("category");
+        String category;
+        switch(position){
+            case 0:
+                category = "Popular";
+                break;
+            case 1:
+                category = "Top Rated";
+                break;
+            case 2:
+                category = "Upcoming";
+                break;
+            case 3:
+                category = "In theatres";
+                break;
+            default:
+                category = "Category";
+        }
+        ((VerticalViewHolder)holder).category.setText(category);
 
     }
 
@@ -92,9 +108,9 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 this.upcomingMovies = movies;
                 categoryList.add(upcomingMovies);
                 break;
-            case "latest":
-                this.latestMovies = movies;
-                categoryList.add(latestMovies);
+            case "nowPlaying":
+                this.nowPlayingMovies = movies;
+                categoryList.add(nowPlayingMovies);
         }
         notifyDataSetChanged();
     }

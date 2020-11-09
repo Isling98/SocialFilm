@@ -37,8 +37,8 @@ public class MovieListRepo {
     public MutableLiveData<List<Movie>> getUpcomingMovies() {
         return movieApiClient.getUpcomingMovies();
     }
-    public MutableLiveData<List<Movie>> getLatestMovies() {
-        return movieApiClient.getLatestMovies();
+    public MutableLiveData<List<Movie>> getNowPlayingMovies() {
+        return movieApiClient.getNowPlayingMovies();
     }
 
     public void discoverMoviesApi(String query){
