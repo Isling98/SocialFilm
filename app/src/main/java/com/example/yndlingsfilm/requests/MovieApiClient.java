@@ -21,8 +21,6 @@ import retrofit2.Response;
 public class MovieApiClient {
 
     private static MovieApiClient instance;
-    // need data for the different categories. eg. popularmovies, trendingmovies, newMovies.
-    // dont need class for each, just control of the query sent.
     private MutableLiveData<List<Movie>> movies;
     private MutableLiveData<List<Movie>> topRatedMovies;
     private MutableLiveData<List<Movie>> popularMovies;
@@ -121,7 +119,7 @@ public class MovieApiClient {
                         case "upcoming":
                             upcomingMovies.postValue(movieList);
                             break;
-                        case "latest":
+                        case "now_playing":
                             nowPlayingMovies.postValue(movieList);
                             break;
                     }

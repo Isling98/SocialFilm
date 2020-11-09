@@ -21,7 +21,6 @@ import java.util.List;
 
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder> {
 
-
     Context context;
     private List<Movie> movies;
     private OnMovieListener onMovieListener;
