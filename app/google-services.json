@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "61998511494",
+    "firebase_url": "https://cinemano-de73c.firebaseio.com",
+    "project_id": "cinemano-de73c",
+    "storage_bucket": "cinemano-de73c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61998511494:android:f63a37fa476a4dfe7d6807",
+        "android_client_info": {
+          "package_name": "com.example.yndlingsfilm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61998511494-42ml3j49hahdf4hqnvr3mu3d1q7va3hb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCruy9LdX5z8pGNeieApAIBdwG1fjVZDH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61998511494-42ml3j49hahdf4hqnvr3mu3d1q7va3hb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
