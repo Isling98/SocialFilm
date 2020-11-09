@@ -43,10 +43,11 @@ public class SearchFragment extends Fragment implements OnMovieListener {
 
 
         subscribeObservers();
+        initRecyclerView();
         discoverMoviesApi("top_rated");
         discoverMoviesApi("popular");
         discoverMoviesApi("upcoming");
-        initRecyclerView();
+
 
 
 
@@ -77,9 +78,9 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                     for(Movie movie: movies){
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
+                    verticalAdapter.setCategoryList(movies, "popular");
                 }
-                verticalAdapter.setCategoryList(movies, "popular");
-        }
+            }
         });
         movieListViewModel.getLatestMovies().observe(this, new Observer<List<Movie>>() {
             @Override
@@ -89,8 +90,8 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                     for(Movie movie: movies){
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
+                    verticalAdapter.setCategoryList(movies, "latest");
                 }
-                verticalAdapter.setCategoryList(movies, "latest");
             }
         });
         movieListViewModel.getTopratedMovies().observe(this, new Observer<List<Movie>>() {
@@ -101,8 +102,8 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                     for(Movie movie: movies){
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
+                    verticalAdapter.setCategoryList(movies, "topRated");
                 }
-                verticalAdapter.setCategoryList(movies, "topRated");
             }
         });
         movieListViewModel.getUpcomingMovies().observe(this, new Observer<List<Movie>>() {
@@ -113,14 +114,19 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                     for (Movie movie : movies) {
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
+                    verticalAdapter.setCategoryList(movies, "upcoming");
                 }
-                verticalAdapter.setCategoryList(movies, "upcoming");
             }
         });
     }
 
     private void discoverMoviesApi(String query){
         movieListViewModel.discoverMoviesApi(query);
+//        switch (query) {
+//            case "popular":
+//                verticalAdapter.setCategoryList(movieListViewModel.getPopularMovies().getValue(), "popular");
+//                break;
+//        }
     }
 
     @Override

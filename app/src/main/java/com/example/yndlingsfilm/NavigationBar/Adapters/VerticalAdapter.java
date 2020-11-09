@@ -32,13 +32,13 @@ Denne klasse skal styre det vertikale recyclerview, dvs det skal indeholde alle 
 
 public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    List<List<Movie>> categoryList;
+    List<List<Movie>> categoryList = new ArrayList<>();
     Context context;
     OnMovieListener onMovieListener;
-    List<Movie> popularMovies;
-    List<Movie> topRatedMovies;
-    List<Movie> upcomingMovies;
-    List<Movie> latestMovies;
+    private List<Movie> popularMovies;
+    private List<Movie> topRatedMovies;
+    private List<Movie> upcomingMovies;
+    private List<Movie> latestMovies;
 
 
     public VerticalAdapter(Context context, OnMovieListener onMovieListener) {
@@ -56,17 +56,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        categoryList = new ArrayList<>(4);
-        categoryList.add(popularMovies);
-        if(categoryList.get(0)==null){
-            Log.d(TAG, "onBindViewHolder: den er tom");
-        } else{
-            Log.d(TAG, "onBindViewHolder: " + categoryList.get(0));
-        }
 
-        categoryList.add(topRatedMovies);
-        categoryList.add(upcomingMovies);
-        categoryList.add(latestMovies);
 
         HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, categoryList.get(position), onMovieListener);
         ((VerticalViewHolder)holder).recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -91,16 +81,20 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         switch (category){
             case "popular":
                 this.popularMovies = movies;
+                categoryList.add(popularMovies);
                 Log.d(TAG, "setCategoryList:_______________ " + popularMovies.get(0));
                 break;
             case "topRated":
                 this.topRatedMovies = movies;
+                categoryList.add(topRatedMovies);
                 break;
             case "upcoming":
                 this.upcomingMovies = movies;
+                categoryList.add(upcomingMovies);
                 break;
             case "latest":
                 this.latestMovies = movies;
+                categoryList.add(latestMovies);
         }
         notifyDataSetChanged();
     }

@@ -69,6 +69,7 @@ public class MovieApiClient {
         return latestMovies;
     }
 
+
     public void discoverMoviesApi(String query){
         if(retrieveMoviesRunnable != null){
             retrieveMoviesRunnable = null;
