@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 
@@ -41,10 +42,15 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if(view.getId()== R.id.button_login) {
-            userViewModel.login(mail.getText().toString(), password.getText().toString());
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            this.finish();
+            if(userViewModel.login(mail.getText().toString(), password.getText().toString())){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                this.finish();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "wrong pass", Toast.LENGTH_LONG);
+                toast.show();
+            }
+
         } else if(view.getId() == R.id.new_account) {
             Intent intent = new Intent(this, CreateAccountActivity.class);
             startActivity(intent);

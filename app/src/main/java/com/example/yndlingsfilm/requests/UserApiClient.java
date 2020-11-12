@@ -26,6 +26,8 @@ public class UserApiClient {
     private MutableLiveData<List<User>> users;
     private LoginRunnable loginRunnable;
     private GetUserRunnable getUserRunnable;
+    private boolean isUserLoggedIn;
+
 
     public static UserApiClient getInstance() {
         if(instance == null){
@@ -38,13 +40,14 @@ public class UserApiClient {
         return users;
     }
 
-    public void login(String username, String password){
+    public boolean login(String username, String password){
         if(loginRunnable != null){
             loginRunnable = null;
         }
         loginRunnable = new LoginRunnable(username, password);
 
         final Future handler = AppExecutors.getInstance().getExecutorService().submit(loginRunnable);
+
         // drops the request if not done in 5 seconds to allow cached callbacks instead later.
         AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
             @Override
@@ -53,6 +56,8 @@ public class UserApiClient {
                 handler.cancel(true);
             }
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+
+        return isUserLoggedIn;
     }
 
 
@@ -78,6 +83,7 @@ public class UserApiClient {
                 }
                 if (response.code() == 200){
                     //returner en true her og giv brugeren det givne token
+                    isUserLoggedIn = true;
                     String token = ((LoginResponse)response.body()).getAccess_token();
                     Log.d(TAG, "run: " + token);
                     //getUser(username, token);
