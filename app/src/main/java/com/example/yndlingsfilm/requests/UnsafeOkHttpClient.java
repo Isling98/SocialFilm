@@ -11,6 +11,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 public class UnsafeOkHttpClient {
@@ -40,9 +41,16 @@ public class UnsafeOkHttpClient {
 
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            //logging http call
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0]);
+            //add log
+            builder.addInterceptor(logging);
             builder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
