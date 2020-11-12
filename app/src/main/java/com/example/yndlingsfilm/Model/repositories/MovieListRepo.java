@@ -44,4 +44,7 @@ public class MovieListRepo {
     public void discoverMoviesApi(String query){
         movieApiClient.discoverMoviesApi(query);
     }
+    public void searchMovies(String searchWord){
+        movieApiClient.searchMovies(searchWord);
+    }
 }

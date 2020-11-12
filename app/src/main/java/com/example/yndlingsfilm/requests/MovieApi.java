@@ -33,4 +33,11 @@ public interface MovieApi {
             @Query("page") int page
 
     );
+    @GET("/3/search/movie")
+    Call<DiscoverMoviesResponse> searchMovies(
+            @Query("query") String searchWord,
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int page
+    );
 }

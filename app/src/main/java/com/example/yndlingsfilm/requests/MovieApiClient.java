@@ -1,6 +1,7 @@
 package com.example.yndlingsfilm.requests;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -30,10 +31,11 @@ public class MovieApiClient {
 
     private static final String TAG = "MovieApiClient";
     private RetrieveMoviesRunnable retrieveMoviesRunnable;
+    private SearchMoviesRunnable searchMoviesRunnable;
 
 
     public static MovieApiClient getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new MovieApiClient();
         }
         return instance;
@@ -68,8 +70,8 @@ public class MovieApiClient {
     }
 
 
-    public void discoverMoviesApi(String query){
-        if(retrieveMoviesRunnable != null){
+    public void discoverMoviesApi(String query) {
+        if (retrieveMoviesRunnable != null) {
             retrieveMoviesRunnable = null;
         }
         retrieveMoviesRunnable = new RetrieveMoviesRunnable(query);
@@ -86,8 +88,7 @@ public class MovieApiClient {
     }
 
 
-
-    private class RetrieveMoviesRunnable implements Runnable{
+    private class RetrieveMoviesRunnable implements Runnable {
 
         private String query;
         private Boolean cancelRequest;
@@ -101,14 +102,14 @@ public class MovieApiClient {
         public void run() {
             try {
                 Response response = getMovies(query).execute();
-                if(cancelRequest){
+                if (cancelRequest) {
                     return;
                 }
-                if(response.code() == 200){
+                if (response.code() == 200) {
                     //kontrol af query
                     List<Movie> movieList =
-                            new ArrayList<>(((DiscoverMoviesResponse)response.body()).getMovies());
-                    switch(query){
+                            new ArrayList<>(((DiscoverMoviesResponse) response.body()).getMovies());
+                    switch (query) {
                         // add evt til allMovies også
                         case "top_rated":
                             topRatedMovies.postValue(movieList);
@@ -124,7 +125,7 @@ public class MovieApiClient {
                             break;
                     }
                 } else {
-                    Log.e(TAG, "run: " + response.errorBody().string() );
+                    Log.e(TAG, "run: " + response.errorBody().string());
                     movies.postValue(null);
                 }
             } catch (IOException e) {
@@ -139,7 +140,66 @@ public class MovieApiClient {
 
         }
 
-        private void setCancelRequest(){
+        private void setCancelRequest() {
+            Log.d(TAG, "setCancelRequest: cancelled request");
+            cancelRequest = true;
+        }
+    }
+
+    // search movies
+    public void searchMovies(String searchWord) {
+        if (searchMoviesRunnable != null) {
+            searchMoviesRunnable = null;
+        }
+        searchMoviesRunnable = new SearchMoviesRunnable(searchWord);
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(searchMoviesRunnable);
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+    }
+
+    private class SearchMoviesRunnable implements Runnable {
+
+        private String searchWord;
+        private Boolean cancelRequest;
+
+        public SearchMoviesRunnable(String searchWord) {
+            this.searchWord = searchWord;
+            cancelRequest = false;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Response response = searchMovies(searchWord).execute();
+                if (cancelRequest) {
+                    return;
+                }
+                if (response.code() == 200) {
+                    List<Movie> movieList =
+                            new ArrayList<>(((DiscoverMoviesResponse) response.body()).getMovies());
+                    movies.postValue(movieList);
+                } else {
+                    movies.postValue(null);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                movies.postValue(null);
+            }
+        }
+
+        private Call<DiscoverMoviesResponse> searchMovies(String searchWord) {
+            return ServiceGenerator.getMovieApi().searchMovies(
+                    searchWord, Constants.API_KEY, Constants.LANGUAGE, 1);
+
+        }
+
+        private void setCancelRequest() {
             Log.d(TAG, "setCancelRequest: cancelled request");
             cancelRequest = true;
         }

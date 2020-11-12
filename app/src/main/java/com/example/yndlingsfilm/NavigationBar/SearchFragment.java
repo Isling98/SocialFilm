@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,13 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yndlingsfilm.Model.Movie;
-import com.example.yndlingsfilm.NavigationBar.Adapters.ModelVertical;
 import com.example.yndlingsfilm.NavigationBar.Adapters.OnMovieListener;
 import com.example.yndlingsfilm.NavigationBar.Adapters.VerticalAdapter;
 import com.example.yndlingsfilm.R;
 import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchFragment extends Fragment implements OnMovieListener {
@@ -39,6 +38,21 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         verticalRecyclerView = view.findViewById(R.id.recyclerview1);
         verticalRecyclerView.setHasFixedSize(true);
 
+        // init searchview:
+        SearchView searchView = view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                movieListViewModel.searchMovies(s);
+                return false;
+            }
+            // vil vi ikke bruge
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
         subscribeObservers();
         initRecyclerView();
         discoverMoviesApi("popular");
@@ -54,7 +68,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public void initRecyclerView(){
+    private void initRecyclerView(){
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         verticalAdapter = new VerticalAdapter(getContext(), this);
         verticalRecyclerView.setAdapter(verticalAdapter);

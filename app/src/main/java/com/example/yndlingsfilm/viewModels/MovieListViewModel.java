@@ -39,4 +39,8 @@ public class MovieListViewModel extends ViewModel {
     public void discoverMoviesApi(String query){
         movieListRepo.discoverMoviesApi(query);
     }
+
+    public void searchMovies(String searchWord){
+        movieListRepo.searchMovies(searchWord);
+    }
 }
