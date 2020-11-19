@@ -126,11 +126,9 @@ public class MovieApiClient {
                     }
                 } else {
                     Log.e(TAG, "run: " + response.errorBody().string());
-                    movies.postValue(null);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                movies.postValue(null);
             }
         }
 

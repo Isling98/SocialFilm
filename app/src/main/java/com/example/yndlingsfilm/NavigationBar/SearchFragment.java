@@ -125,6 +125,17 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
+        movieListViewModel.getMovies().observe(this, new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(List<Movie> movies) {
+                if (movies != null) {
+                    for (Movie movie : movies) {
+                        Log.d(TAG, "onChanged: " + movie.getTitle());
+                    }
+                    verticalAdapter.setCategoryList(movies, "searchMovies");
+                }
+            }
+        });
     }
 
     private void discoverMoviesApi(String query){
