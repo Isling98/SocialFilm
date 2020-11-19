@@ -14,6 +14,8 @@ import com.example.yndlingsfilm.util.Constants;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +26,7 @@ public class UserApiClient {
     private static final String TAG = "UserApiClient";
     private static UserApiClient instance;
     private MutableLiveData<List<User>> users;
-    private LoginRunnable loginRunnable;
+    private LoginCallable loginCallable;
     private GetUserRunnable getUserRunnable;
     private boolean isUserLoggedIn;
 
@@ -40,13 +42,17 @@ public class UserApiClient {
         return users;
     }
 
-    public boolean login(String username, String password){
-        if(loginRunnable != null){
-            loginRunnable = null;
-        }
-        loginRunnable = new LoginRunnable(username, password);
 
-        final Future handler = AppExecutors.getInstance().getExecutorService().submit(loginRunnable);
+    public boolean login(String username, String password) throws ExecutionException, InterruptedException {
+        if(loginCallable != null){
+            loginCallable = null;
+        }
+        loginCallable = new LoginCallable(username, password);
+
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(loginCallable);
+        isUserLoggedIn = (boolean) handler.get();
+
+
 
         // drops the request if not done in 5 seconds to allow cached callbacks instead later.
         AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
@@ -61,25 +67,25 @@ public class UserApiClient {
     }
 
 
-    private class LoginRunnable implements Runnable{
+    private class LoginCallable implements Callable {
 
         private String username;
         private String password;
         private Boolean cancelRequest;
 
-        public LoginRunnable(String username, String password) {
+        public LoginCallable(String username, String password) {
             this.username = username;
             this.password = password;
             cancelRequest = false;
         }
 
         @Override
-        public void run() {
+        public Boolean call() {
             try{
                 Response response = login(username, password).execute();
 
                 if(cancelRequest){
-                    return;
+                    return false;
                 }
                 if (response.code() == 200){
                     //returner en true her og giv brugeren det givne token
@@ -89,16 +95,20 @@ public class UserApiClient {
                     //getUser(username, token);
 
                     Log.d(TAG, "run: succes from code 200. user logged in");
+                    return true;
 
                 }else if (response.code() == 400){
                     Log.d(TAG, "Wrong grant type ____________________");
+                    return false;
 
                 } else{
                     Log.d(TAG,"Somethign else than 400 or 200");
+                    return false;
                 }
             } catch (IOException e){
                 e.printStackTrace();
                 Log.d(TAG, "run: error line____________ from login()");
+                return false;
             }
         }
 

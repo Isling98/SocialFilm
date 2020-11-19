@@ -32,7 +32,12 @@ public class UserRepo{
     }
 
     public boolean login(String username, String password){
-        return userApiClient.login(username, password);
+        try{
+            return userApiClient.login(username, password);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void getUser(String username, String token){
