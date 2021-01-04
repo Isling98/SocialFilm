@@ -25,6 +25,8 @@ public class GetUserResponse {
     @Expose()
     private String role;
 
+    // add friends, bio, follower etc her
+
     public int getUserId() {
         return UserId;
     }

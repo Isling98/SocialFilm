@@ -1,6 +1,5 @@
 package com.example.yndlingsfilm.viewModels;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -19,6 +18,10 @@ public class UserViewModel extends ViewModel {
 
     public MutableLiveData<List<User>> getUsers(){
         return userRepo.getUsers();
+    }
+
+    public MutableLiveData<User> getLoggedInUser(){
+        return userRepo.getLoggedInUser();
     }
 
     public boolean login(String username, String password){

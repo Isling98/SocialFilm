@@ -31,6 +31,10 @@ public class UserRepo{
         return userApiClient.getUsers();
     }
 
+    public MutableLiveData<User> getLoggedInUser(){
+        return userApiClient.getLoggedInUser();
+    }
+
     public boolean login(String username, String password){
         try{
             return userApiClient.login(username, password);

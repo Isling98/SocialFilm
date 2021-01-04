@@ -26,10 +26,10 @@ public interface UserApi {
     );
 
 
-    @GET("/cinemano/user/{username}")
+    @GET("/cinemano/user/username/{username}")
     Call<GetUserResponse> getUser(
-            @Path("username") String username,
-            @Header("Authorization") String token
+            @Path("username") String username
+            //@Header("Authorization") String token
 
     );
 }

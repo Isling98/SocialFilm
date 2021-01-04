@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 import com.example.yndlingsfilm.FollowersFragment;
 import com.example.yndlingsfilm.FriendsListFragment;
@@ -30,11 +31,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView friends;
     TextView followers;
     TextView profileName;
+    private UserViewModel userViewModel;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         addFriend = view.findViewById(R.id.add_friend);
         bio = view.findViewById(R.id.profile_bio);
@@ -45,10 +49,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         followers = view.findViewById(R.id.profile_followers);
         profileName = view.findViewById(R.id.profileName);
 
-        //profileName.setText((viewModel.getUsers().getValue().get(0)).getUsername());
-       // friends.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFriends())));
-       // followers.setText((Integer.toString(viewModel.getUsers().getValue().get(0).getFollowers())));
+        profileName.setText((userViewModel.getLoggedInUser().getValue().getUsername()));
 
+        //profileName.setText(userViewModel.getUsers().getValue().get(0).getUsername());
+        //friends.setText((Integer.toString(userViewModel.getLoggedInUser().getValue().getFriends())));
+        //followers.setText((Integer.toString(userViewModel.getLoggedInUser().getValue().getFollowers())));
 
         addFriend.setOnClickListener(this);
         bio.setOnClickListener(this);

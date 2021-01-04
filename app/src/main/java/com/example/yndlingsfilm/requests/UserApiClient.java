@@ -26,6 +26,7 @@ public class UserApiClient {
     private static final String TAG = "UserApiClient";
     private static UserApiClient instance;
     private MutableLiveData<List<User>> users;
+    private MutableLiveData<User> loggedInUser;
     private LoginCallable loginCallable;
     private GetUserRunnable getUserRunnable;
     private boolean isUserLoggedIn;
@@ -34,14 +35,23 @@ public class UserApiClient {
     public static UserApiClient getInstance() {
         if(instance == null){
             instance = new UserApiClient();
+
         }
         return instance;
+    }
+
+    public UserApiClient() {
+        loggedInUser = new MutableLiveData<>();
+        users = new MutableLiveData<>();
     }
 
     public MutableLiveData<List<User>> getUsers() {
         return users;
     }
 
+    public MutableLiveData<User> getLoggedInUser() {
+        return loggedInUser;
+    }
 
     public boolean login(String username, String password) throws ExecutionException, InterruptedException {
         if(loginCallable != null){
@@ -51,9 +61,6 @@ public class UserApiClient {
 
         final Future handler = AppExecutors.getInstance().getExecutorService().submit(loginCallable);
         isUserLoggedIn = (boolean) handler.get();
-
-
-
         // drops the request if not done in 5 seconds to allow cached callbacks instead later.
         AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
             @Override
@@ -62,10 +69,8 @@ public class UserApiClient {
                 handler.cancel(true);
             }
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
-
         return isUserLoggedIn;
     }
-
 
     private class LoginCallable implements Callable {
 
@@ -92,7 +97,7 @@ public class UserApiClient {
                     isUserLoggedIn = true;
                     String token = ((LoginResponse)response.body()).getAccess_token();
                     Log.d(TAG, "run: " + token);
-                    //getUser(username, token);
+                    getUser(username, token);
 
                     Log.d(TAG, "run: succes from code 200. user logged in");
                     return true;
@@ -116,7 +121,6 @@ public class UserApiClient {
 
             return ServiceGenerator.getUserApi().login("application/x-www-form-urlencoded","password",username, password);
         }
-
 
         private void setCancelRequest(){
             Log.d(TAG, "setCancelRequest: cancelled request");
@@ -157,25 +161,33 @@ public class UserApiClient {
         @Override
         public void run() {
             try{
-                Response response = getUser(username, token).execute();
+                Response response = getUser(username).execute();
                 if(cancelRequest){
                     return;
                 }
                 if (response.code() == 200){
-                    // sæt livedata og loggedInUser her
-                    // nedenstående må kunne gøres bedre
 
                     int userId = ((GetUserResponse)response.body()).getUserId();
                     String username = ((GetUserResponse)response.body()).getUserName();
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
                     User user = new User(userId, username, password, email);
+                    Log.d(TAG, "run: ____________________________");
+                    Log.d(TAG, "run: " + user.getUsername());
                     //må kunne optimeres. laver templiste med alle users i lviedata og adder derefter
                     //den nye user. alle disse users addes så på ny i livedata.
+
+                    /* herfra skal stå når man laver en bruger første gang og ikke her
                     List<User> tempUsers = new ArrayList<>();
                     tempUsers.addAll(users.getValue());
                     tempUsers.add(user);
+                    // nødvendigt?
+                    users.setValue(null);
                     users.postValue(tempUsers);
+                     hertil*/
+
+                    loggedInUser.postValue(user);
+                    Log.d(TAG, "run: " + loggedInUser.getValue().getUsername());
                     Log.d(TAG, "run: username = " + users.getValue().get(0).getUsername());
                     Log.d(TAG, "run: succes from code 200");
                 }else{
@@ -187,8 +199,8 @@ public class UserApiClient {
             }
         }
 
-        private Call<GetUserResponse> getUser(String username, String token){
-            return ServiceGenerator.getUserApi().getUser(username, token);
+        private Call<GetUserResponse> getUser(String username){
+            return ServiceGenerator.getUserApi().getUser(username);
         }
 
         private void setCancelRequest(){
