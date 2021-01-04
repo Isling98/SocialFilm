@@ -27,7 +27,7 @@
         android:id="@+id/voresLogo"
         android:text="Cinemano"
         android:textSize="42dp"
-        android:textColor="@color/theme1"
+        android:textColor="@color/colorPrimary"
         android:fontFamily="cursive"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
