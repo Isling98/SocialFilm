@@ -161,6 +161,13 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    public Movie getClickedMovie(int position){
+        if(popularMovies != null){
+            return popularMovies.get(position);
+        }
+        return null;
+    }
+
     public class VerticalViewHolder extends RecyclerView.ViewHolder{
 
         RecyclerView recyclerView;

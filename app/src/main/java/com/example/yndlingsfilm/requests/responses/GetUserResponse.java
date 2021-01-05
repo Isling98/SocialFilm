@@ -25,7 +25,11 @@ public class GetUserResponse {
     @Expose()
     private String role;
 
-    // add friends, bio, follower etc her
+    @SerializedName("Bio")
+    @Expose()
+    private String bio;
+
+
 
     public int getUserId() {
         return UserId;
@@ -45,6 +49,10 @@ public class GetUserResponse {
 
     public String getRole() {
         return role;
+    }
+
+    public String getBio() {
+        return bio;
     }
 
     @Override

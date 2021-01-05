@@ -1,10 +1,9 @@
 package com.example.yndlingsfilm;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,38 +12,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.yndlingsfilm.Model.Movie;
-import com.example.yndlingsfilm.requests.MovieApi;
-import com.example.yndlingsfilm.requests.ServiceGenerator;
-import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.util.Constants;
-import com.example.yndlingsfilm.viewModels.MovieViewModel;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executor;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.android.material.textview.MaterialTextView;
 
 public class MovieDetailsFragment extends Fragment {
     private static final String TAG = "MovieDetailsFragment";
-
-    Executor bgThread;
-    Handler uiThread;
-
     ImageView imdbLink;
     TextView movieTitle;
     ImageView moviePic;
     TextView overview;
     TextView releaseDate;
+    TextView runTime;
     RatingBar rating;
     Button writeReviewButton;
-
-    private MovieViewModel movieViewModel;
+    Movie movie;
 
 
     @Override
@@ -52,30 +38,34 @@ public class MovieDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
 
-        testRetrofitRequest();
-
-        // hent rigtig movie parset fra det billede der har ført hertil.
-       /* Movie movie = new Movie("tt0295297", "Harry Potter",
-                "An orphaned boy enrolls in a school of wizardry," +
-                        " where he learns the truth about himself," +
-                        " his family and the terrible evil that haunts the magical world.",
-                                    "10-01-2001", R.drawable.movie_pic, 5, null);*/
-
-        /*imdbLink = view.findViewById(R.id.imdbLink);
+        imdbLink = view.findViewById(R.id.imdbLink);
         movieTitle = view.findViewById(R.id.movieTitle);
         moviePic = view.findViewById(R.id.moviePic);
         overview = view.findViewById(R.id.overview);
         releaseDate = view.findViewById(R.id.releaseDate);
         rating = view.findViewById(R.id.rating);
         writeReviewButton = view.findViewById(R.id.writeReviewButton);
+        runTime = view.findViewById(R.id.runTime);
+
+
+
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            movie = bundle.getParcelable("movie");
+            Log.d(TAG, "onCreateView: bundle igennem");
+        } else{
+            Log.d(TAG, "onCreateView: bundle fejl");
+        }
 
         movieTitle.setText(movie.getTitle());
         overview.setText(movie.getOverview());
         releaseDate.setText(movie.getRelease_date());
         rating.setRating(movie.getVote_average());
-        moviePic.setImageResource(movie.getPoster_path());
+        //runTime.setText(movie.getRuneTime());
+        Glide.with(this).load(Constants.BASE_URL_IMG + movie.getPoster_path())
+                .into(moviePic);
 
-
+/*
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,40 +97,5 @@ public class MovieDetailsFragment extends Fragment {
 
 
         return view;
-    }
-
-
-    private void testRetrofitRequest(){
-        MovieApi movieApi = ServiceGenerator.getMovieApi();
-
-        Call<DiscoverMoviesResponse> responseCall =
-                movieApi.getMovies("" +
-                        "upcoming", Constants.API_KEY, Constants.LANGUAGE, 1);
-
-        responseCall.enqueue(new Callback<DiscoverMoviesResponse>() {
-            @Override
-            public void onResponse(Call<DiscoverMoviesResponse> call, Response<DiscoverMoviesResponse> response) {
-                Log.d(TAG, "onResponse:" + response.toString());
-                if(response.code() == 200){
-                    Log.d(TAG, "onResponse: " + response.body().toString() );
-                    //gør noget med respons her
-                    List<Movie> movies = new ArrayList<>(response.body().getMovies());
-                    for(Movie movie: movies){
-                        Log.d(TAG, "onResponse: " + movie.getTitle());
-                    }
-                }else{
-                    try {
-                        Log.d(TAG, "onResponse: " + response.errorBody().string());
-                    } catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DiscoverMoviesResponse> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + "failed");
-            }
-        });
     }
 }

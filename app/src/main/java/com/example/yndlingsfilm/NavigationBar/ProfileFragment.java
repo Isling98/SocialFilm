@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView friends;
     TextView followers;
     TextView profileName;
+    TextView bioShort;
     private UserViewModel userViewModel;
 
     @Nullable
@@ -48,8 +49,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         friends = view.findViewById(R.id.profile_friends);
         followers = view.findViewById(R.id.profile_followers);
         profileName = view.findViewById(R.id.profileName);
+        bioShort = view.findViewById(R.id.bioShort);
 
-        profileName.setText((userViewModel.getLoggedInUser().getValue().getUsername()));
+        profileName.setText(userViewModel.getLoggedInUser().getValue().getUsername());
+
+        String bioShortDescprition;
+        try {
+            bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio().substring(0, 40) + "...";
+        } catch (IndexOutOfBoundsException e){
+            bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio() + "...";
+        }
+        bioShort.setText(bioShortDescprition);
 
         //profileName.setText(userViewModel.getUsers().getValue().get(0).getUsername());
         //friends.setText((Integer.toString(userViewModel.getLoggedInUser().getValue().getFriends())));

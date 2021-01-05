@@ -171,7 +171,8 @@ public class UserApiClient {
                     String username = ((GetUserResponse)response.body()).getUserName();
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
-                    User user = new User(userId, username, password, email);
+                    String bio = ((GetUserResponse)response.body()).getBio();
+                    User user = new User(userId, username, password, email, bio);
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
                     //må kunne optimeres. laver templiste med alle users i lviedata og adder derefter

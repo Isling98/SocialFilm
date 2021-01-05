@@ -13,16 +13,26 @@ public class User {
     private ArrayList<Rated> rated;
     private int friends; // antallet kan vi hente direkte fra listen af venner, men for nu har vi ikke listen
     private int followers; //same
+    private String bio;
 
 
-    public User(int userId, String username, String password, String email) {
+    public User(int userId, String username, String password, String email, String bio) {
         reviews = new ArrayList<>();
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.bio = bio;
         friends = 0;
         followers = 0;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public int getFriends() {

@@ -1,6 +1,8 @@
 package com.example.yndlingsfilm.NavigationBar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yndlingsfilm.Model.Movie;
+import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.NavigationBar.Adapters.OnMovieListener;
 import com.example.yndlingsfilm.NavigationBar.Adapters.VerticalAdapter;
 import com.example.yndlingsfilm.R;
@@ -144,5 +147,14 @@ public class SearchFragment extends Fragment implements OnMovieListener {
 
     @Override
     public void onMovieClick(int position) {
+
+        Fragment fragment = new MovieDetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position));
+        fragment.setArguments(bundle);
+        Log.d(TAG, "onMovieClick: " +bundle.getParcelable("movie").toString());
+        getFragmentManager().beginTransaction().replace
+                (R.id.fragment_nagivation, fragment).addToBackStack(null).commit();
+
     }
 }
