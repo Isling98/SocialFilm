@@ -35,6 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Harry Potter"
+                    android:textSize="26dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                 <com.google.android.material.textview.MaterialTextView
@@ -51,14 +52,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/runTime"
+                    <TextView
+                        android:id="@+id/ratingInText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/time"
                         android:drawablePadding="4dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp"
+                        android:drawableStart="@drawable/starfull"
                         android:gravity="center_vertical"
                         android:text="120 min"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
@@ -136,16 +137,17 @@
             android:layout_height="wrap_content"
             android:text="Your friends had this to say:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:layout_margin="10dp"/>
+            android:layout_margin="12dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
             <TextView
+                android:padding="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="venners kommentarer står her"/>
+                android:text="No friends have reviewed this movie"/>
         </LinearLayout>
 
 

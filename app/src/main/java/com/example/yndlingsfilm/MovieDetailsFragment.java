@@ -27,9 +27,10 @@ public class MovieDetailsFragment extends Fragment {
     ImageView moviePic;
     TextView overview;
     TextView releaseDate;
-    TextView runTime;
+    TextView ratingInText;
     RatingBar rating;
     Button writeReviewButton;
+    TextView movieGenres;
     Movie movie;
 
 
@@ -45,7 +46,9 @@ public class MovieDetailsFragment extends Fragment {
         releaseDate = view.findViewById(R.id.releaseDate);
         rating = view.findViewById(R.id.rating);
         writeReviewButton = view.findViewById(R.id.writeReviewButton);
-        runTime = view.findViewById(R.id.runTime);
+        // runtime findes ikke i api, skal den bare slettes så?
+        ratingInText = view.findViewById(R.id.ratingInText);
+        movieGenres = view.findViewById(R.id.movieGenres);
 
 
 
@@ -57,28 +60,35 @@ public class MovieDetailsFragment extends Fragment {
             Log.d(TAG, "onCreateView: bundle fejl");
         }
 
+        // sets all
         movieTitle.setText(movie.getTitle());
         overview.setText(movie.getOverview());
         releaseDate.setText(movie.getRelease_date());
         rating.setRating(movie.getVote_average());
-        //runTime.setText(movie.getRuneTime());
+        ratingInText.setText(String.valueOf(movie.getVote_average()));
+        movieGenres.setText(getAllGenres());
+        // sets moviePoster
         Glide.with(this).load(Constants.BASE_URL_IMG + movie.getPoster_path())
                 .into(moviePic);
 
-/*
+
+
+
+
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment f = new WriteReviewFragment();
-                f.setArguments(new Intent().putExtra("movieTitle", movie.getTitle()).getExtras());
-
+                Fragment fragment = new WriteReviewFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("movie", movie);
+                fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,
-                        R.anim.slide_out_left).replace(R.id.fragment_nagivation, f)
+                        R.anim.slide_out_left).replace(R.id.fragment_nagivation, fragment)
                         .addToBackStack(null).commit();
             }
         });
 
-        imdbLink.setOnClickListener(view1 -> {
+       /* imdbLink.setOnClickListener(view1 -> {
             //åben imdb-link.
             bgThread = Executors.newSingleThreadExecutor(); // håndtag til baggrundstråd
             uiThread = new Handler(Looper.getMainLooper()); // håndtag til forgrundstråd
@@ -97,5 +107,62 @@ public class MovieDetailsFragment extends Fragment {
 
 
         return view;
+    }
+
+    private String getAllGenres(){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < movie.getGenre_ids().length; i++){
+            String genre = getGenre(movie.getGenre_ids()[i]);
+            if(i == 0){
+                sb.append(genre);
+            } else{
+                sb.append(" | " + genre );
+            }
+        }
+        return sb.toString();
+    }
+
+    private String getGenre(int id){
+        switch (id){
+            case 28:
+                return "Action";
+            case 12:
+                return "Adventure";
+            case 16:
+                return "Animation";
+            case 35:
+                return "Comedy";
+            case 80:
+                return "Crime";
+                case 99:
+                return "Documentary";
+            case 18:
+                return "Drama";
+            case 10751:
+                return "Family";
+            case 14:
+                return "Fantasy";
+            case 36:
+                return "History";
+            case 27:
+                return "Horro";
+            case 10402:
+                return "Music";
+            case 9648:
+                return "Mystery";
+            case 10749:
+                return "Romance";
+            case 878:
+                return "Science Fiction";
+            case 10770:
+                return "Tv Movie";
+            case 53:
+                return "Thriller";
+            case 10752:
+                return "War";
+            case 37:
+                return "Western";
+            default: return "error loading genre...";
+        }
     }
 }

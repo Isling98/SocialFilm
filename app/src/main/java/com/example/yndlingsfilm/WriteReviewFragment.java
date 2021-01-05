@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,18 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.yndlingsfilm.Model.Movie;
+import com.example.yndlingsfilm.util.Constants;
+
 public class WriteReviewFragment extends Fragment {
 
     ImageView moviePic;
     TextView movieTitle;
     RatingBar ratingBar;
+    Movie movie;
+
+    private static final String TAG = "WriteReviewFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,14 +32,21 @@ public class WriteReviewFragment extends Fragment {
          View view = inflater.inflate(R.layout.fragment_write_review, container, false);
 
 
+        moviePic = view.findViewById(R.id.moviePic);
+        movieTitle = view.findViewById(R.id.movieTitle);
+        ratingBar = view.findViewById(R.id.rating);
 
-         moviePic = view.findViewById(R.id.moviePic);
-         movieTitle = view.findViewById(R.id.movieTitle);
-         ratingBar = view.findViewById(R.id.rating);
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            movie = bundle.getParcelable("movie");
+            Log.d(TAG, "onCreateView: bundle igennem");
+        } else{
+            Log.d(TAG, "onCreateView: bundle fejl");
+        }
 
-         movieTitle.setText(getArguments().getString("movieTitle"));
-         //moviePic.setImageResource(getArguments().getParcelable("moviePic"));
-         moviePic.setImageResource(R.drawable.movie_pic);
+         movieTitle.setText(movie.getTitle());
+        Glide.with(this).load(Constants.BASE_URL_IMG + movie.getPoster_path())
+                .into(moviePic);
 
 
          ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
