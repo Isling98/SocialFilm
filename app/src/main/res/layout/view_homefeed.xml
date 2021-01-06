@@ -19,7 +19,8 @@
             android:id="@+id/profilePic"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:padding="4dp" />
+            android:padding="4dp"
+            android:layout_marginLeft="4dp"/>
 
 
         <TextView
@@ -27,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="-1dp"
-            android:layout_marginTop="-1dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/profilePic"
             tools:text="Asger Åkanden"
             android:textSize="12sp"
@@ -40,9 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/headline"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="1dp"
-            android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             android:layout_toEndOf="@+id/profilePic"
             tools:text="2hrs"
@@ -53,8 +53,7 @@
             android:id="@+id/moviePic"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_below="@+id/profilePic"
-            android:padding="4dp" />
+            android:layout_below="@+id/profilePic" />
 
         <TextView
             android:id="@+id/movieTitle"
@@ -63,7 +62,7 @@
             android:layout_below="@+id/text"
             android:layout_alignParentTop="true"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="81dp"
+            android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/moviePic"
             android:text="Harry Potter (2001):"
             android:textSize="22sp"
@@ -72,27 +71,33 @@
 
         <RatingBar
             android:id="@+id/rating"
-            android:numStars="6"
+            android:numStars="10"
             style="?android:attr/ratingBarStyleSmall"
             android:theme="@style/RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="true"
-            android:layout_below="@+id/headline"
+            android:layout_below="@+id/movieTitle"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="103dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="24dp"
             android:layout_toEndOf="@+id/profilePic" />
+
 
         <TextView
             android:id="@+id/likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/headline"
-            android:layout_toRightOf="@id/headline"
-            android:text="Likes:"
-            android:layout_margin="20dp"/>
+            android:layout_below="@+id/rating"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toRightOf="@id/profilePic"
+            android:text="Likes:" />
+
         <View
             android:id="@+id/bottomLine"
             android:layout_width="match_parent"
@@ -165,5 +170,17 @@
                </LinearLayout>
            </RelativeLayout>
        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginTop="4dp"
+            android:layout_width="240dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/headline"
+            android:text="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+            tools:text="@tools:sample/lorem/random" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
