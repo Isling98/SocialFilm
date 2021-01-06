@@ -16,7 +16,6 @@ import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.R;
 import com.example.yndlingsfilm.util.Constants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder> {
@@ -69,7 +68,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
         public HorizontalViewHolder(View itemView, OnMovieListener onMovieListener){
             super(itemView);
-            moviePoster = itemView.findViewById(R.id.filmPlakat);
+            moviePoster = itemView.findViewById(R.id.moviePoster);
             title = itemView.findViewById(R.id.titel);
             this.onMovieListener = onMovieListener;
 

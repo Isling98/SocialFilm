@@ -83,9 +83,11 @@ public class MovieDetailsFragment extends Fragment {
 
 
 
+
         writeReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: " + movie.getOverview());
                 Fragment fragment = new WriteReviewFragment();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("movie", movie);
@@ -96,6 +98,7 @@ public class MovieDetailsFragment extends Fragment {
             }
         });
 
+        // blot for start. vi kontrollerer for alle vennr der har kommenteret på filmen og adder dem i stedet.
         final ArrayList<News> aNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
             aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,

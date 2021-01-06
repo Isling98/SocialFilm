@@ -1,6 +1,5 @@
 package com.example.yndlingsfilm.NavigationBar.Adapters;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,13 +17,13 @@ public class SearchViewHolder extends RecyclerView.ViewHolder implements View.On
     public SearchViewHolder(@NonNull View itemView, OnMovieListener onMovieListener) {
         super(itemView);
         this.onMovieListener = onMovieListener;
-        moviePoster = itemView.findViewById(R.id.filmPlakat);
+        moviePoster = itemView.findViewById(R.id.moviePoster);
 
         itemView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        onMovieListener.onMovieClick(getBindingAdapterPosition());
+        onMovieListener.onMovieClick( getBindingAdapterPosition());
     }
 }

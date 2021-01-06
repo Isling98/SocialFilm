@@ -81,11 +81,9 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int viewType = getItemViewType(position);
 
         if(viewType == SEARCH_MOVIES_TYPE){
-            RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(R.drawable.poster_harry_potter_1);
+
 
             Glide.with(holder.itemView.getContext())
-                    .setDefaultRequestOptions(requestOptions)
                     .load(Constants.BASE_URL_IMG + searchMovies.get(position).getPoster_path())
                     .into(((SearchViewHolder)holder).moviePoster);
 
