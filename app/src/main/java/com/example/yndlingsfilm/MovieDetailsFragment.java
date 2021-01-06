@@ -1,6 +1,5 @@
 package com.example.yndlingsfilm;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,13 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.util.Constants;
-import com.google.android.material.textview.MaterialTextView;
 
 public class MovieDetailsFragment extends Fragment {
     private static final String TAG = "MovieDetailsFragment";
@@ -32,6 +28,7 @@ public class MovieDetailsFragment extends Fragment {
     Button writeReviewButton;
     TextView movieGenres;
     Movie movie;
+
 
 
     @Override

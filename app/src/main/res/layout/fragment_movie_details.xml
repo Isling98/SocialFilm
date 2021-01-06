@@ -143,11 +143,13 @@
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
-            <TextView
-                android:padding="12dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/friendsComments"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No friends have reviewed this movie"/>
+                android:layout_height="match_parent"
+                android:layout_below="@+id/top"
+                android:background="@android:color/darker_gray">
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
 
 
