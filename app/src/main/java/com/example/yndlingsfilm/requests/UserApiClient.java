@@ -15,6 +15,7 @@ import com.example.yndlingsfilm.requests.responses.ReviewResponse;
 import com.example.yndlingsfilm.util.Constants;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -194,6 +195,7 @@ public class UserApiClient {
 
 
                     Log.d(TAG, "run: ____________________________");
+                    Log.d(TAG, "run: ____________________________" + reviewList.get(1).getReviewId());
                     Log.d(TAG, "run: " + user.getUsername());
                     Log.d(TAG, "call: " + user.getUserId());
                     return user;
