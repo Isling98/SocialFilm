@@ -2,6 +2,7 @@ package com.example.yndlingsfilm.Model.repositories;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.requests.UserApiClient;
 
@@ -31,9 +32,7 @@ public class UserRepo{
         return userApiClient.getUsers();
     }
 
-    public MutableLiveData<User> getLoggedInUser(){
-        return userApiClient.getLoggedInUser();
-    }
+
 
     public boolean login(String username, String password){
         try{
@@ -46,5 +45,18 @@ public class UserRepo{
 
     public void getUser(String username, String token){
         userApiClient.getUser(username, token);
+    }
+
+    //reviews
+    public MutableLiveData<User> getLoggedInUser(){
+        return userApiClient.getLoggedInUser();
+    }
+
+    public void getUserReviews(int userId){
+        userApiClient.getUserReviews(userId);
+    }
+
+    public MutableLiveData<List<Review>> getUserReviews(){
+        return userApiClient.getUserReviewss();
     }
 }

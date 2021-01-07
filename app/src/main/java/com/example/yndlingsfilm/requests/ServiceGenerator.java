@@ -31,6 +31,7 @@ public class ServiceGenerator {
     private static UserApi userApi = retrofit2.create(UserApi.class);
 
 
+
     public static UserApi getUserApi() {
         return userApi;
     }

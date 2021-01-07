@@ -2,6 +2,9 @@ package com.example.yndlingsfilm.requests;
 
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
+import com.example.yndlingsfilm.requests.responses.ReviewResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -31,5 +34,10 @@ public interface UserApi {
             @Path("username") String username
             //@Header("Authorization") String token
 
+    );
+
+    @GET("/cinemano/reviews/{id}")
+    Call<List<ReviewResponse>> getUserReview(
+            @Path("id") int userId
     );
 }

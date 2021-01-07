@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class GetUserResponse {
 
-    @SerializedName("userId")
+    @SerializedName("UserId")
     @Expose()
     private int UserId;
 

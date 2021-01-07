@@ -4,11 +4,14 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.yndlingsfilm.Model.Movie;
+import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
 import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
+import com.example.yndlingsfilm.requests.responses.ReviewResponse;
 import com.example.yndlingsfilm.util.Constants;
 
 import java.io.IOException;
@@ -26,9 +29,11 @@ public class UserApiClient {
     private static final String TAG = "UserApiClient";
     private static UserApiClient instance;
     private MutableLiveData<List<User>> users;
+    private MutableLiveData<List<Review>> userReview;
     private MutableLiveData<User> loggedInUser;
     private LoginCallable loginCallable;
     private GetUserRunnable getUserRunnable;
+    private GetUserReviewRunnable getUserReviewRunnable;
     private boolean isUserLoggedIn;
 
 
@@ -43,6 +48,7 @@ public class UserApiClient {
     public UserApiClient() {
         loggedInUser = new MutableLiveData<>();
         users = new MutableLiveData<>();
+        userReview = new MutableLiveData<>();
     }
 
     public MutableLiveData<List<User>> getUsers() {
@@ -70,6 +76,10 @@ public class UserApiClient {
             }
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
         return isUserLoggedIn;
+    }
+//review
+    public MutableLiveData<List<Review>> getUserReviewss() {
+        return userReview;
     }
 
     private class LoginCallable implements Callable {
@@ -209,4 +219,75 @@ public class UserApiClient {
             cancelRequest = true;
         }
     }
+
+
+    public void getUserReviews(int userId){
+        if(getUserReviewRunnable != null){
+            getUserReviewRunnable = null;
+        }
+        getUserReviewRunnable = new GetUserReviewRunnable(userId);
+
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(getUserReviewRunnable);
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+    }
+
+    private class GetUserReviewRunnable implements Runnable{
+
+        private int userId;
+        private Boolean cancelRequest;
+
+        public GetUserReviewRunnable(int userId) {
+            this.userId = userId;
+            cancelRequest = false;
+        }
+
+        @Override
+        public void run() {
+
+            try{
+                Response response = getUserReview(userId).execute();
+                if(cancelRequest){
+                    return;
+                }
+
+                if (response.code() == 200){
+
+                 String hello = ((Review) response.body()).getReviewText();
+
+
+
+
+
+                 Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + hello);
+
+                }else{
+
+                    Log.d(TAG, "run: succes from else");
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+                Log.d(TAG, "run: error line____________ from getUser()");
+            }
+        }
+
+        private Call<List<ReviewResponse>> getUserReview(int userId){
+
+            return ServiceGenerator.getUserApi().getUserReview(userId);
+        }
+
+        private void setCancelRequest(){
+            Log.d(TAG, "setCancelRequest: cancelled request");
+            cancelRequest = true;
+        }}
+
+
+
+
 }

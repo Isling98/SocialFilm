@@ -1,25 +1,32 @@
 package com.example.yndlingsfilm.Model;
 
 public class Review {
-    private int rating;
-    private Movie movie;
-    private String reviewInText;
+    private int reviewId;
+    private String reviewText;
+    private int movieId;
+    private int userId;
 
-    public Review(int rating, Movie movie, String reviewInText) {
-        this.rating = rating;
-        this.movie = movie;
-        this.reviewInText = reviewInText;
+    public Review(int reviewId, String reviewText, int movieId, int userId) {
+        this.reviewId = reviewId;
+        this.reviewText = reviewText;
+        this.movieId = movieId;
+        this.userId = userId;
     }
 
-    public int getRating() {
-        return rating;
+
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public String getReviewText() {
+        return reviewText;
     }
 
-    public String getReviewInText() {
-        return reviewInText;
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,7 @@ import com.example.yndlingsfilm.HomeFeedAdapter;
 import com.example.yndlingsfilm.MovieDetailsFragment;
 import com.example.yndlingsfilm.R;
 import com.example.yndlingsfilm.Model.News;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView homeFeed;
     private HomeFeedAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
 
     @Nullable
     @Override

@@ -3,6 +3,7 @@ package com.example.yndlingsfilm.viewModels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.repositories.UserRepo;
 import com.example.yndlingsfilm.Model.User;
 
@@ -30,5 +31,12 @@ public class UserViewModel extends ViewModel {
 
     public void getUser(String username, String token){
         userRepo.getUser(username, token);
+    }
+    //review
+    public MutableLiveData<List<Review>> getUserReviews(){
+        return userRepo.getUserReviews();
+    }
+    public void getUserReviewsss(int userId){
+        userRepo.getUserReviews(userId);
     }
 }

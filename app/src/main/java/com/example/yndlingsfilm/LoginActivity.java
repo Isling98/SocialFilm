@@ -42,6 +42,9 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if(view.getId()== R.id.button_login) {
+
+
+
             if(userViewModel.login(mail.getText().toString(), password.getText().toString())){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
