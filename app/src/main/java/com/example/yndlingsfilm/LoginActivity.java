@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     EditText password;
     TextView forgotPassword;
     TextView newAccount;
+
+    private static final String TAG = "LoginActivity";
 
 
     @Override
@@ -46,6 +49,8 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
 
             if(userViewModel.login(mail.getText().toString(), password.getText().toString())){
+                userViewModel.getLoggedInUser().setValue(userViewModel.getUser(mail.getText().toString(), "token"));
+                Log.d(TAG, "onClick: " + userViewModel.getLoggedInUser().getValue().getUsername());
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 this.finish();

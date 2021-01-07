@@ -2,11 +2,13 @@ package com.example.yndlingsfilm.requests;
 
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
+import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 import com.example.yndlingsfilm.requests.responses.ReviewResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -40,4 +42,9 @@ public interface UserApi {
     Call<List<ReviewResponse>> getUserReview(
             @Path("id") int userId
     );
+
+
+    @POST("cinemano/relationship")
+    Call<RelationshipResponse> addFriend(@Body RelationshipResponse relationshipResponse);
+
 }

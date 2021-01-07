@@ -35,6 +35,7 @@ public class UserApiClient {
     private GetUserRunnable getUserRunnable;
     private GetUserReviewRunnable getUserReviewRunnable;
     private boolean isUserLoggedIn;
+    User user;
 
 
     public static UserApiClient getInstance() {
@@ -107,8 +108,6 @@ public class UserApiClient {
                     isUserLoggedIn = true;
                     String token = ((LoginResponse)response.body()).getAccess_token();
                     Log.d(TAG, "run: " + token);
-                    getUser(username, token);
-
                     Log.d(TAG, "run: succes from code 200. user logged in");
                     return true;
 
@@ -128,7 +127,6 @@ public class UserApiClient {
         }
 
         private Call<LoginResponse> login(String username, String password){
-
             return ServiceGenerator.getUserApi().login("application/x-www-form-urlencoded","password",username, password);
         }
 
@@ -139,13 +137,14 @@ public class UserApiClient {
     }
 
 
-    public void getUser(String username, String token){
+    public User getUser(String username, String token) throws ExecutionException, InterruptedException {
         if(getUserRunnable != null){
             getUserRunnable = null;
         }
         getUserRunnable = new GetUserRunnable(username, token);
 
         final Future handler = AppExecutors.getInstance().getExecutorService().submit(getUserRunnable);
+        user = (User) handler.get();
         // drops the request if not done in 5 seconds to allow cached callbacks instead later.
         AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
             @Override
@@ -154,9 +153,10 @@ public class UserApiClient {
                 handler.cancel(true);
             }
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+        return user;
     }
 
-    private class GetUserRunnable implements Runnable{
+    private class GetUserRunnable implements Callable{
 
         private String username;
         private String token;
@@ -169,14 +169,13 @@ public class UserApiClient {
         }
 
         @Override
-        public void run() {
+        public User call() {
             try{
                 Response response = getUser(username).execute();
                 if(cancelRequest){
-                    return;
+                    return null;
                 }
                 if (response.code() == 200){
-
                     int userId = ((GetUserResponse)response.body()).getUserId();
                     String username = ((GetUserResponse)response.body()).getUserName();
                     String password = ((GetUserResponse)response.body()).getPassword();
@@ -185,6 +184,7 @@ public class UserApiClient {
                     User user = new User(userId, username, password, email, bio);
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
+                    return user;
                     //må kunne optimeres. laver templiste med alle users i lviedata og adder derefter
                     //den nye user. alle disse users addes så på ny i livedata.
 
@@ -196,17 +196,14 @@ public class UserApiClient {
                     users.setValue(null);
                     users.postValue(tempUsers);
                      hertil*/
-
-                    loggedInUser.postValue(user);
-                    Log.d(TAG, "run: " + loggedInUser.getValue().getUsername());
-                    Log.d(TAG, "run: username = " + users.getValue().get(0).getUsername());
-                    Log.d(TAG, "run: succes from code 200");
                 }else{
                     Log.d(TAG, "run: succes from else");
+                    return null;
                 }
             } catch (IOException e){
                 e.printStackTrace();
                 Log.d(TAG, "run: error line____________ from getUser()");
+                return null;
             }
         }
 
