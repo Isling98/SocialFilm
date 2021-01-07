@@ -1,9 +1,15 @@
 package com.example.yndlingsfilm.NavigationBar;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +17,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.yndlingsfilm.ProfileAddFriendFragment;
+import com.example.yndlingsfilm.requests.ServiceGenerator;
+import com.example.yndlingsfilm.requests.UserApi;
+import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 import com.example.yndlingsfilm.FollowersFragment;
@@ -21,8 +31,17 @@ import com.example.yndlingsfilm.ProfileReviewsFragment;
 import com.example.yndlingsfilm.ProfileTopRatedFragment;
 import com.example.yndlingsfilm.R;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
+
+    private static final String TAG = "ProfileFragment";
+
     ImageView addFriend;
     View bio;
     View topRated;
@@ -83,9 +102,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         if (view.getId() == R.id.add_friend) {
             // send friend request and update
-            addFriend.setImageResource(R.drawable.ic_friend_added);
+            //addFriend.setImageResource(R.drawable.ic_friend_added);
             // få fat i rigtig bruger. dette blot test
             //viewModel.getUsers().getValue().get(0).addFriend();
+
+            Fragment selectedFragment = new ProfileAddFriendFragment();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+                    .replace(R.id.fragment_nagivation, selectedFragment)
+                    .addToBackStack(null)
+                    .commit();
+
         } else {
             Fragment selectedFragment = null;
             switch (view.getId()) {
@@ -113,5 +140,4 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         }
     }
-
 }

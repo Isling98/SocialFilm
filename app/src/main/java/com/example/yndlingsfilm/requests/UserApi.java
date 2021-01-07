@@ -2,8 +2,10 @@ package com.example.yndlingsfilm.requests;
 
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
+import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -32,4 +34,9 @@ public interface UserApi {
             //@Header("Authorization") String token
 
     );
+
+
+    @POST("cinemano/relationship")
+    Call<RelationshipResponse> addFriend(@Body RelationshipResponse relationshipResponse);
+
 }

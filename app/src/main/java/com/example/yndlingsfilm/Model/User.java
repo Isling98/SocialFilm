@@ -47,6 +47,9 @@ public class User {
         return username;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
     public ArrayList<Movie> getWatchedMovies() {
         return watchedMovies;
