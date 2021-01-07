@@ -74,11 +74,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         String bioShortDescprition;
         try {
-            bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio().substring(0, 40) + "...";
+            if(userViewModel.getLoggedInUser().getValue().getBio() != null){
+                bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio().substring(0, 40) + "...";
+            } else {
+                bioShortDescprition = "User has no bio...";
+            }
         } catch (IndexOutOfBoundsException e){
             bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio() + "...";
         }
-        bioShort.setText(bioShortDescprition);
+            bioShort.setText(bioShortDescprition);
+
 
         //profileName.setText(userViewModel.getUsers().getValue().get(0).getUsername());
         //friends.setText((Integer.toString(userViewModel.getLoggedInUser().getValue().getFriends())));
