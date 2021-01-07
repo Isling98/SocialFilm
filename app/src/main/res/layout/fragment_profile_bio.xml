@@ -26,7 +26,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/card_background"
         android:visibility="visible"
         android:layout_below="@id/top"
@@ -35,7 +35,7 @@
         android:id="@+id/profile_bio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:fontFamily="sans-serif-light"
         android:padding="10dp"
         tools:text="@tools:sample/lorem/random">

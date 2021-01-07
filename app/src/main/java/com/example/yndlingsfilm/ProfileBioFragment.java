@@ -26,7 +26,6 @@ public class ProfileBioFragment extends Fragment {
         profileBio = view.findViewById(R.id.profile_bio);
 
         String bioFull = userViewModel.getLoggedInUser().getValue().getBio();
-
         profileBio.setText(bioFull);
 
         return view;
