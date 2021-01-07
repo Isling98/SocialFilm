@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.repositories.UserRepo;
 import com.example.yndlingsfilm.Model.User;
+import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class UserViewModel extends ViewModel {
 
     public User getUser(String username, String token){
         return userRepo.getUser(username, token);
+    }
+
+    public Object addFriend(RelationshipResponse relationshipResponse){
+        return userRepo.addFriend(relationshipResponse);
     }
     //review
     public MutableLiveData<List<Review>> getUserReviews(){

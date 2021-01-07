@@ -73,7 +73,14 @@ public class ProfileAddFriendFragment extends Fragment implements View.OnClickLi
         else if (v.getId() == R.id.addFriendConfirm){
             boolean digitsOnly = TextUtils.isDigitsOnly(addFriendUsername.getText());
             if (digitsOnly){
-                addFriend();
+                //addFriend();
+
+                String addFriendValue = addFriendUsername.getText().toString();
+                int value = Integer.parseInt(addFriendValue);
+
+                Log.d(TAG, "onClick: " + userViewModel.getLoggedInUser().getValue().getUserId());
+                RelationshipResponse relationshipResponse = new RelationshipResponse(2,value);
+                userViewModel.addFriend(relationshipResponse);
 
                 CharSequence toastText = "Friend added!";
                 int duration = Toast.LENGTH_LONG;
@@ -107,34 +114,4 @@ public class ProfileAddFriendFragment extends Fragment implements View.OnClickLi
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-    private void addFriend(){
-
-        String addFriendValue = addFriendUsername.getText().toString();
-        int value = Integer.parseInt(addFriendValue);
-
-        RelationshipResponse relationshipResponse = new RelationshipResponse(userViewModel.getLoggedInUser().getValue().getUserId(), value);
-
-        Call<RelationshipResponse> call = ServiceGenerator.getUserApi().addFriend(relationshipResponse);
-
-        call.enqueue(new Callback<RelationshipResponse>() {
-            @Override
-            public void onResponse(Call<RelationshipResponse> call, Response<RelationshipResponse> response) {
-                Log.d(TAG, "onResponse: server response: " + response.toString());
-                if (response.isSuccessful()){
-                    Log.d(TAG, "onResponse: " + response.body().toString());
-                }
-                else{
-                    Log.d(TAG, "onResponse: " + response.errorBody().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RelationshipResponse> call, Throwable t) {
-                System.out.println(t);
-            }
-        });
-    }
-
-
 }

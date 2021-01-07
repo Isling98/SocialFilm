@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.requests.UserApiClient;
+import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,15 @@ public class UserRepo{
         try{
             return userApiClient.getUser(username, token);
         } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Object addFriend(RelationshipResponse relationshipResponse){
+        try{
+            return userApiClient.addFriend(relationshipResponse);
+        }catch (Exception e){
             e.printStackTrace();
         }
         return null;
