@@ -147,18 +147,21 @@
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="10dp">
 
+            <ScrollView
+                android:layout_width="380dp"
+                android:layout_height="320dp">
             <EditText
                 android:id="@+id/textBox"
-                android:layout_width="380dp"
-                android:layout_height="320dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:gravity="top|start"
                 android:hint="Write your review here..."
                 android:overScrollMode="always"
                 android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"
-                android:inputType="text" />
+                android:scrollbars="vertical" />
+            </ScrollView>
 
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>

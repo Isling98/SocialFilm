@@ -28,7 +28,7 @@ public class UserViewModel extends ViewModel {
         return userRepo.login(username, password);
     }
 
-    public void getUser(String username, String token){
-        userRepo.getUser(username, token);
+    public User getUser(String username, String token){
+        return userRepo.getUser(username, token);
     }
 }

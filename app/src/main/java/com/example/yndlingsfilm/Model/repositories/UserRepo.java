@@ -44,7 +44,12 @@ public class UserRepo{
         return false;
     }
 
-    public void getUser(String username, String token){
-        userApiClient.getUser(username, token);
+    public User getUser(String username, String token){
+        try{
+            return userApiClient.getUser(username, token);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
