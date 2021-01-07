@@ -1,7 +1,10 @@
 package com.example.yndlingsfilm.requests.responses;
 
+import com.example.yndlingsfilm.Model.Review;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class GetUserResponse {
 
@@ -29,6 +32,10 @@ public class GetUserResponse {
     @Expose()
     private String bio;
 
+    @SerializedName("Review")
+    @Expose()
+    private List<Review> review;
+
 
 
     public int getUserId() {
@@ -53,6 +60,10 @@ public class GetUserResponse {
 
     public String getBio() {
         return bio;
+    }
+
+    public List<Review> getReviews(){
+        return review;
     }
 
     @Override

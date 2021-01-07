@@ -60,6 +60,10 @@ public class UserApiClient {
         return loggedInUser;
     }
 
+    public MutableLiveData<List<Review>> getUserReview() {
+        return userReview;
+    }
+
     public boolean login(String username, String password) throws ExecutionException, InterruptedException {
         if(loginCallable != null){
             loginCallable = null;
@@ -181,7 +185,13 @@ public class UserApiClient {
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
                     String bio = ((GetUserResponse)response.body()).getBio();
+                    List<Review> reviewList =
+                            new ArrayList<>(((GetUserResponse) response.body()).getReviews());
+                    userReview.postValue(reviewList);
+
                     User user = new User(userId, username, password, email, bio);
+
+
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
                     return user;
@@ -257,12 +267,9 @@ public class UserApiClient {
                 if (response.code() == 200){
 
                  String hello = ((Review) response.body()).getReviewText();
+                 List<Review> fuckof = ((List<Review>) response.body());
 
-
-
-
-
-                 Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + hello);
+                 Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + fuckof.toString());
 
                 }else{
 
