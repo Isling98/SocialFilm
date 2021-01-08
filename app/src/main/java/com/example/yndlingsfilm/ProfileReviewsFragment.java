@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.yndlingsfilm.Model.News;
+import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
 
@@ -24,16 +27,28 @@ public class ProfileReviewsFragment extends Fragment {
     private RecyclerView homeFeed;
     private HomeFeedAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private UserViewModel userViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_reviews, container, false);
 
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         // go through each review the user has
+
+        // time skal måske slettes. er den svær at holde styr på?
+        // vi skal have lavet både movieID og userID om til navme i stedet
         final ArrayList<News> aNews = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (Review review: userViewModel.getLoggedInUser().getValue().getReviews()) {
+
+            String userName = userViewModel.getLoggedInUser().getValue().getUsername();
+            String movieName = String.valueOf(review.getMovieId());
+            int rating = review.getRating();
+            String reviewInText = review.getReviewText();
+
             aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Asger Åkanden:", "2hrs", "Harry Potter", 4));
+                    userName, "2hrs", movieName, rating, reviewInText));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);

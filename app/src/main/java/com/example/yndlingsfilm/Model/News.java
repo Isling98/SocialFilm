@@ -8,11 +8,12 @@ public class News {
     private String movieName;
     private int rating;
     private boolean liked;
-//    private User user; så vi kan komme ind på useren profil direkte.
+    private String reviewInText;
+
 
     // tag hellere kun et enkelt objekt i konstruktøren og brug dets getmetoder til at initialisere.
     public News(int profilePicResource, int moviePicResource,
-                String headLine, String time, String movieName, int rating) {
+                String headLine, String time, String movieName, int rating, String reviewInText) {
         this.profilePicResource = profilePicResource;
         this.moviePicResource = moviePicResource;
         this.headLine = headLine;
@@ -20,6 +21,7 @@ public class News {
         this.movieName = movieName;
         this.rating = rating;
         liked = false;
+        this.reviewInText = reviewInText;
     }
     // åben detail fragment her
     public void openDetails(){
@@ -53,5 +55,9 @@ public class News {
 
     public boolean isLiked() {
         return liked;
+    }
+
+    public String getReviewInText() {
+        return reviewInText;
     }
 }

@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
         final ArrayList<News> aNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
             aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Asger Åkanden:", "2hrs", "Harry Potter", 4));
+                    "Asger Åkanden:", "2hrs", "Harry Potter", 4, "allertiders film"));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);

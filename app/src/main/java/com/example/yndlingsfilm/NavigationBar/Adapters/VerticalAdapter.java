@@ -81,8 +81,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int viewType = getItemViewType(position);
 
         if(viewType == SEARCH_MOVIES_TYPE){
-
-
+            // lav en searchadapter hertil.
             Glide.with(holder.itemView.getContext())
                     .load(Constants.BASE_URL_IMG + searchMovies.get(position).getPoster_path())
                     .into(((SearchViewHolder)holder).moviePoster);

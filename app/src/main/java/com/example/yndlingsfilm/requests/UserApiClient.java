@@ -195,7 +195,6 @@ public class UserApiClient {
 
 
                     Log.d(TAG, "run: ____________________________");
-                    Log.d(TAG, "run: ____________________________" + reviewList.get(1).getReviewId());
                     Log.d(TAG, "run: " + user.getUsername());
                     Log.d(TAG, "call: " + user.getUserId());
                     return user;

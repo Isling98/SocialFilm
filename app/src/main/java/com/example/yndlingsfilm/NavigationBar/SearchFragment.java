@@ -79,7 +79,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
     }
 
     private void subscribeObservers(){
-        movieListViewModel.getPopularMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getPopularMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 // sæt filmene her
@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getNowPlayingMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getNowPlayingMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 if(movies != null){
@@ -104,7 +104,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getTopratedMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getTopratedMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 if(movies != null){
@@ -116,7 +116,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getUpcomingMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getUpcomingMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 Log.d(TAG, "onChanged: -------------upcoming" );
@@ -128,7 +128,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getMovies().observe(this, new Observer<List<Movie>>() {
+        movieListViewModel.getMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 if (movies != null) {
