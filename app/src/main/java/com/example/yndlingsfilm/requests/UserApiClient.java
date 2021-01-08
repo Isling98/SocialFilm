@@ -2,6 +2,7 @@ package com.example.yndlingsfilm.requests;
 
 import android.util.Log;
 
+import androidx.annotation.LongDef;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.yndlingsfilm.Model.Movie;
@@ -35,6 +36,7 @@ public class UserApiClient {
     private GetUserRunnable getUserRunnable;
     private GetUserReviewRunnable getUserReviewRunnable;
     private boolean isUserLoggedIn;
+    private List<Review> tempReviewList = new ArrayList<>();
     User user;
 
     private AddFriendCallable addFriendCallable;
@@ -187,9 +189,17 @@ public class UserApiClient {
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
                     String bio = ((GetUserResponse)response.body()).getBio();
-                    List<Review> reviewList =
+                    String fuckoff = ((((GetUserResponse)response.body()).getReviews().toString()));
+              //List of reviews. Since they are in ReviewResponse type, they will be convertet to review
+              //type in the for each loop
+                    List<ReviewResponse> reviewList =
                             new ArrayList<>(((GetUserResponse) response.body()).getReviews());
-                    userReview.postValue(reviewList);
+                    for(ReviewResponse s : reviewList){
+                        Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId());
+                        tempReviewList.add(review);
+                    }
+                    Log.d(TAG,tempReviewList.get(1).toString());
+                    userReview.postValue(tempReviewList);
 
                     User user = new User(userId, username, password, email, bio);
 

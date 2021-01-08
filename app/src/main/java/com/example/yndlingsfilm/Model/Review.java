@@ -7,12 +7,11 @@ public class Review {
     private int userId;
     private int rating;
 
-    public Review(int reviewId, String reviewText, int movieId, int userId, int rating) {
+    public Review(int reviewId, String reviewText, int movieId, int userId) {
         this.reviewId = reviewId;
         this.reviewText = reviewText;
         this.movieId = movieId;
         this.userId = userId;
-        this.rating = rating;
     }
 
 
@@ -26,6 +25,17 @@ public class Review {
 
     public int getMovieId() {
         return movieId;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", reviewText='" + reviewText + '\'' +
+                ", movieId=" + movieId +
+                ", userId=" + userId +
+                ", rating=" + rating +
+                '}';
     }
 
     public int getUserId() {

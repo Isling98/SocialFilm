@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GetUserResponse {
 
-    @SerializedName("UserId")
+    @SerializedName("user_id")
     @Expose()
     private int UserId;
 
@@ -34,7 +34,7 @@ public class GetUserResponse {
 
     @SerializedName("Review")
     @Expose()
-    private List<Review> review;
+    private List<ReviewResponse> review;
 
 
 
@@ -62,7 +62,7 @@ public class GetUserResponse {
         return bio;
     }
 
-    public List<Review> getReviews(){
+    public List<ReviewResponse> getReviews(){
         return review;
     }
 
@@ -74,6 +74,8 @@ public class GetUserResponse {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", bio='" + bio + '\'' +
+                ", review=" + review +
                 '}';
     }
 }
