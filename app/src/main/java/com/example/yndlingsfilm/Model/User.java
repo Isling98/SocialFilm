@@ -16,15 +16,16 @@ public class User {
     private String bio;
 
 
-    public User(int userId, String username, String password, String email, String bio) {
-        reviews = new ArrayList<>();
+    public User(int userId, String username, String password, String email, String bio, ArrayList<Review> reviews) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.bio = bio;
+        this.reviews = reviews;
         friends = 0;
         followers = 0;
+
     }
 
     public String getBio() {

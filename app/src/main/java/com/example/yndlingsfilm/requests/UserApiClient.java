@@ -36,7 +36,7 @@ public class UserApiClient {
     private GetUserRunnable getUserRunnable;
     private GetUserReviewRunnable getUserReviewRunnable;
     private boolean isUserLoggedIn;
-    private List<Review> tempReviewList = new ArrayList<>();
+    private ArrayList<Review> tempReviewList = new ArrayList<>();
     User user;
 
     private AddFriendCallable addFriendCallable;
@@ -201,8 +201,10 @@ public class UserApiClient {
                     Log.d(TAG,tempReviewList.get(1).toString());
                     userReview.postValue(tempReviewList);
 
-                    User user = new User(userId, username, password, email, bio);
 
+                    User user = new User(userId, username, password, email, bio, tempReviewList);
+
+                    Log.d(TAG, "call: " + user.getReviews().get(1).getReviewText());
 
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());

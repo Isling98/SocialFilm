@@ -52,7 +52,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     addRedBorder(mail);
                 } else{
                     User user = new User(1, username.getText().toString(),
-                            password.getText().toString(), mail.getText().toString(), null
+                            password.getText().toString(), mail.getText().toString(), null, null
                             );
                 }
             }

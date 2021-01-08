@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class ProfileReviewsFragment extends Fragment {
     private RecyclerView homeFeed;
@@ -40,8 +43,9 @@ public class ProfileReviewsFragment extends Fragment {
         // time skal måske slettes. er den svær at holde styr på?
         // vi skal have lavet både movieID og userID om til navme i stedet
         final ArrayList<News> aNews = new ArrayList<>();
+        Log.d(TAG, "onCreateView: " + userViewModel.getLoggedInUser().getValue().getReviews().get(0).getReviewText());
         for (Review review: userViewModel.getLoggedInUser().getValue().getReviews()) {
-
+            Log.d(TAG, "onCreateView: " + review.getReviewText());
             String userName = userViewModel.getLoggedInUser().getValue().getUsername();
             String movieName = String.valueOf(review.getMovieId());
             int rating = review.getRating();
