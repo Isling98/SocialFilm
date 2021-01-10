@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,9 +42,6 @@ public class WriteReviewFragment extends Fragment {
          View view = inflater.inflate(R.layout.fragment_write_review, container, false);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-
-
-
         moviePic = view.findViewById(R.id.moviePic);
         movieTitle = view.findViewById(R.id.movieTitle);
         ratingBar = view.findViewById(R.id.rating);

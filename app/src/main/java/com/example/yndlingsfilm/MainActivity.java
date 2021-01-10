@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.example.yndlingsfilm.NavigationBar.ChatFragment;
 import com.example.yndlingsfilm.NavigationBar.HomeFragment;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //lav transition
         setContentView(R.layout.activity_main);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
         BottomNavigationView bottomNavn = findViewById(R.id.bottom_navigation);
