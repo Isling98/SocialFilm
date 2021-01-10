@@ -74,4 +74,8 @@ public class UserRepo{
     public MutableLiveData<List<Review>> getUserReviews(){
         return userApiClient.getUserReviewss();
     }
+
+    public void saveReview(int movieID, int rating, String review){
+        userApiClient.saveReview(movieID, rating, review);
+    }
 }

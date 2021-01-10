@@ -14,8 +14,8 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 
 public interface UserApi {
@@ -47,4 +47,11 @@ public interface UserApi {
     @POST("cinemano/relationship")
     Call<RelationshipResponse> addFriend(@Body RelationshipResponse relationshipResponse);
 
+    @POST("cinemano/user/reviews")
+    @FormUrlEncoded
+    Call<ReviewResponse> saveReview(
+            @Field("review_text") String review,
+            @Field("movie_id") int movieID,
+            @Field("rating") int rating
+    );
 }

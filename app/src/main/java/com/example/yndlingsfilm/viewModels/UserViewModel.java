@@ -44,4 +44,8 @@ public class UserViewModel extends ViewModel {
     public void getUserReviewsss(int userId){
         userRepo.getUserReviews(userId);
     }
+
+    public void saveReview(int movieID, int rating, String review){
+        userRepo.saveReview(movieID, rating, review);
+    }
 }

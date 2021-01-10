@@ -35,6 +35,7 @@ public class UserApiClient {
     private LoginCallable loginCallable;
     private GetUserRunnable getUserRunnable;
     private GetUserReviewRunnable getUserReviewRunnable;
+    private saveReviewRunnable saveReviewRunnable;
     private boolean isUserLoggedIn;
     private ArrayList<Review> tempReviewList = new ArrayList<>();
     User user;
@@ -365,9 +366,62 @@ public class UserApiClient {
         private void setCancelRequest(){
             Log.d(TAG, "setCancelRequest: cancelled request");
             cancelRequest = true;
-        }}
+        }
+    }
 
+    public void saveReview(int movieID, int rating, String review){
+        if(saveReviewRunnable != null){
+            saveReviewRunnable = null;
+        }
+        saveReviewRunnable = new saveReviewRunnable(movieID, rating, review);
 
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(saveReviewRunnable);
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+    }
 
+    private class saveReviewRunnable implements Runnable{
 
+        private int movieID;
+        private int rating;
+        private String review;
+
+        public saveReviewRunnable(int movieID, int rating, String review) {
+            this.movieID = movieID;
+            this.rating = rating;
+            this.review = review;
+        }
+
+        @Override
+        public void run() {
+
+            try{
+                Response response = saveUserReview(movieID, rating, review).execute();
+                if (response.code() == 200){
+
+                    String hello = ((Review) response.body()).getReviewText();
+                    List<Review> fuckof = ((List<Review>) response.body());
+
+                    Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
+
+                }else{
+
+                    Log.d(TAG, "run: succes from else");
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+                Log.d(TAG, "run: error line____________ from getUser()");
+            }
+        }
+
+        private Call<ReviewResponse> saveUserReview(int movieID, int rating, String review){
+            return ServiceGenerator.getUserApi().saveReview(review, movieID, rating);
+        }
+    }
 }
