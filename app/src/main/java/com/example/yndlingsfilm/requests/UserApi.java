@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -46,6 +47,10 @@ public interface UserApi {
 
     @POST("cinemano/relationship")
     Call<RelationshipResponse> addFriend(@Body RelationshipResponse relationshipResponse);
+
+
+    @DELETE("cinemano/user/{user_id}")
+    Call<Void> deleteUser(@Path("user_id") int id);
 
     @POST("cinemano/user/reviews")
     @FormUrlEncoded

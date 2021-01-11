@@ -2,10 +2,8 @@ package com.example.yndlingsfilm.requests;
 
 import android.util.Log;
 
-import androidx.annotation.LongDef;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
@@ -41,6 +39,7 @@ public class UserApiClient {
     User user;
 
     private AddFriendCallable addFriendCallable;
+    private DeleteUserRunnable deleteUserRunnable;
 
 
     public static UserApiClient getInstance() {
@@ -300,6 +299,57 @@ public class UserApiClient {
 
         private Call<RelationshipResponse> addFriend(RelationshipResponse relationshipResponse){
             return ServiceGenerator.getUserApi().addFriend(relationshipResponse);
+        }
+    }
+
+    public void deleteUser(int userId){
+
+        if (deleteUserRunnable != null){
+            deleteUserRunnable = null;
+        }
+
+        deleteUserRunnable = new DeleteUserRunnable(userId);
+
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(deleteUserRunnable);
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+    }
+
+    private class DeleteUserRunnable implements Runnable{
+
+        private int userId;
+
+        public DeleteUserRunnable(int userId) {
+            this.userId = userId;
+        }
+
+        @Override
+        public void run() {
+
+            try {
+
+                Response response = deleteUser(userId).execute();
+
+                if (response.code() == 200){
+                    Log.d(TAG, "run: User deleted");
+                }
+                else {
+                    Log.d(TAG, "run: succes from else");
+                }
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        private Call<Void> deleteUser(int userId){
+            return ServiceGenerator.getUserApi().deleteUser(userId);
         }
     }
 

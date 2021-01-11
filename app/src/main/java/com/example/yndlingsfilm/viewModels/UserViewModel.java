@@ -37,6 +37,11 @@ public class UserViewModel extends ViewModel {
     public Object addFriend(RelationshipResponse relationshipResponse){
         return userRepo.addFriend(relationshipResponse);
     }
+
+    public void deleteUser(int userId){
+        userRepo.deleteUser(userId);
+    }
+
     //review
     public MutableLiveData<List<Review>> getUserReviews(){
         return userRepo.getUserReviews();

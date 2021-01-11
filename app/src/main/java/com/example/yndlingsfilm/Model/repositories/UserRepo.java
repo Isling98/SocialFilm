@@ -7,7 +7,6 @@ import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.requests.UserApiClient;
 import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -60,6 +59,10 @@ public class UserRepo{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void deleteUser(int userId){
+        userApiClient.deleteUser(userId);
     }
 
     //reviews

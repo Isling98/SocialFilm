@@ -79,7 +79,7 @@ public class ProfileAddFriendFragment extends Fragment implements View.OnClickLi
                 int value = Integer.parseInt(addFriendValue);
 
                 Log.d(TAG, "onClick: " + userViewModel.getLoggedInUser().getValue().getUserId());
-                RelationshipResponse relationshipResponse = new RelationshipResponse(2,value);
+                RelationshipResponse relationshipResponse = new RelationshipResponse(userViewModel.getLoggedInUser().getValue().getUserId(), value);
                 userViewModel.addFriend(relationshipResponse);
 
                 CharSequence toastText = "Friend added!";
