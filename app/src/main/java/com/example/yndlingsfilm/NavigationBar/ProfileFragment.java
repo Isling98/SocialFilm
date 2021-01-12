@@ -134,7 +134,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     selectedFragment = new ProfileLatestCommentsFragment();
                     break;
                 case R.id.profile_friends:
-                    selectedFragment = new FriendsListFragment();
+                    selectedFragment = new FriendsFragment();
                     break;
                 case R.id.profile_followers:
                     selectedFragment = new FollowersFragment();

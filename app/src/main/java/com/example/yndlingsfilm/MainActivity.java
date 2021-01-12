@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
-import com.example.yndlingsfilm.NavigationBar.ChatFragment;
+import com.example.yndlingsfilm.NavigationBar.FriendsFragment;
 import com.example.yndlingsfilm.NavigationBar.HomeFragment;
 import com.example.yndlingsfilm.NavigationBar.ProfileFragment;
 import com.example.yndlingsfilm.NavigationBar.SearchFragment;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_chat:
                             newPosition = 4;
-                            selectedFragment = new ChatFragment();
+                            selectedFragment = new FriendsFragment();
                             break;
                         case R.id.nav_settings:
                             newPosition = 5;

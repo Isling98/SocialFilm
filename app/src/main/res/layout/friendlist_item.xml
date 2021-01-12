@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+        
+        <ImageView
+            android:id="@+id/friendListCardPic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="2dp"
+            android:src="@drawable/profile_pic"/>
+
+        <TextView
+            android:id="@+id/friendListCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Midlertidigt navn---"
+            android:textColor="@color/theme1"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/friendListCardReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Antal reviews her---"
+            android:textColor="@color/theme1"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp"
+            android:layout_marginTop="33dp"
+            android:layout_marginStart="80dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
