@@ -1,5 +1,6 @@
 package com.example.yndlingsfilm.requests;
 
+import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.HomePageResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
@@ -55,9 +56,10 @@ public interface UserApi {
 
     @POST("cinemano/user/reviews")
     @FormUrlEncoded
-    Call<ReviewResponse> saveReview(
+    Call<Review> saveReview(
             @Field("review_text") String review,
             @Field("movie_id") int movieID,
+            @Field("user_id") int userID,
             @Field("rating") int rating
     );
 

@@ -3,8 +3,10 @@ package com.example.yndlingsfilm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
@@ -18,7 +20,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     private int currentPosition = 3;
     private int newPosition;
+    String tag = "";
 
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,40 +43,65 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.nav_search:
                             newPosition = 1;
-                            selectedFragment = new SearchFragment();
+                            Fragment searchFragment = fragmentManager.findFragmentByTag("search");
+                            if(searchFragment == null){
+                                Log.d(TAG, "onNavigationItemSelected: ikke lavet endnu");
+                                searchFragment = new SearchFragment();
+                            }
+                            selectedFragment = searchFragment;
+                            tag = "search";
                             break;
                         case R.id.nav_profile:
                             newPosition = 2;
-                            selectedFragment = new ProfileFragment();
+                            Fragment profileFragment = fragmentManager.findFragmentByTag("profile");
+                            if(profileFragment == null){
+                                profileFragment = new ProfileFragment();
+                            }
+                            selectedFragment = profileFragment;
+                            tag = "profile";
                             break;
                         case R.id.nav_home:
                             newPosition = 3;
-                            selectedFragment = new HomeFragment();
+                            Fragment homeFragment = fragmentManager.findFragmentByTag("home");
+                            if(homeFragment == null){
+                                homeFragment = new HomeFragment();
+                            }
+                            selectedFragment = homeFragment;
+                            tag = "home";
                             break;
                         case R.id.nav_chat:
                             newPosition = 4;
-                            selectedFragment = new FriendsFragment();
+                            Fragment friendsFragment = fragmentManager.findFragmentByTag("friends");
+                            if(friendsFragment == null){
+                                friendsFragment = new FriendsFragment();
+                            }
+                            selectedFragment = friendsFragment;
+                            tag = "friends";
                             break;
                         case R.id.nav_settings:
                             newPosition = 5;
-                            selectedFragment = new SettingFragment();
+                            Fragment settingsFragment = fragmentManager.findFragmentByTag("settings");
+                            if(settingsFragment == null){
+                                settingsFragment = new SettingFragment();
+                            }
+                            selectedFragment = settingsFragment;
+                            tag = "settings";
                             break;
                     }
 
                     if (newPosition > currentPosition) {
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,
                                 R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                                .replace(R.id.fragment_nagivation, selectedFragment).addToBackStack(null).commit();
+                                .replace(R.id.fragment_nagivation, selectedFragment, tag).addToBackStack(tag).commit();
                     } else if (newPosition < currentPosition) {
-
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left,
                                 R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-                                .replace(R.id.fragment_nagivation, selectedFragment).addToBackStack(null).commit();
-
+                                .replace(R.id.fragment_nagivation, selectedFragment, tag).addToBackStack(tag).commit();
                     }
                     currentPosition = newPosition;
                     return true;

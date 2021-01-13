@@ -33,6 +33,7 @@ public class WriteReviewFragment extends Fragment {
     Button submitReview;
     Movie movie;
     UserViewModel userViewModel;
+    int mRating;
 
     private static final String TAG = "WriteReviewFragment";
 
@@ -65,14 +66,24 @@ public class WriteReviewFragment extends Fragment {
              @Override
              public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                  Toast.makeText(getActivity(), String.valueOf(rating), Toast.LENGTH_LONG).show();
+                 mRating = (int)rating;
              }
          });
 
          submitReview.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 // gem review her
-                 userViewModel.saveReview(movie.getId(), ratingBar.getNumStars(), String.valueOf(textBox.getText()));
+                 // saves review
+                 if(mRating >= 1){
+                     if(String.valueOf(textBox.getText()).equals("")){
+                         textBox.getText().append("No comments...");
+                     }
+                     Log.d(TAG, "onClick: " + mRating);
+                     userViewModel.saveReview(movie.getId(), mRating, String.valueOf(textBox.getText()));
+                     Toast.makeText(getActivity(), "Review submitted", Toast.LENGTH_LONG).show();
+                 } else {
+                     Toast.makeText(getActivity(), "Please enter rating and review", Toast.LENGTH_LONG).show();
+                 }
              }
          });
         return view;

@@ -1,6 +1,5 @@
 package com.example.yndlingsfilm.requests;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -202,15 +201,17 @@ public class UserApiClient {
                     List<ReviewResponse> reviewList =
                             new ArrayList<>(((GetUserResponse) response.body()).getReviews());
                     for(ReviewResponse s : reviewList){
-                        Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId(),s.getRating());
+                        Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId(), s.getRating());
                         tempReviewList.add(review);
                     }
-
+                    Log.d(TAG,tempReviewList.get(1).toString());
                     userReview.postValue(tempReviewList);
 
 
-
                     User user = new User(userId, username, password, email, bio, tempReviewList);
+
+                    Log.d(TAG, "call: " + user.getReviews().get(1).getReviewText());
+
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
                     Log.d(TAG, "call: " + user.getUserId());
@@ -441,16 +442,18 @@ public class UserApiClient {
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
     }
 
-    private class saveReviewRunnable implements Runnable {
+    private class saveReviewRunnable implements Runnable{
 
         private int movieID;
         private int rating;
         private String review;
+        private int userID;
 
         public saveReviewRunnable(int movieID, int rating, String review) {
             this.movieID = movieID;
             this.rating = rating;
             this.review = review;
+            this.userID = userID;
         }
 
         @Override
@@ -460,23 +463,24 @@ public class UserApiClient {
                 Response response = saveUserReview(movieID, rating, review).execute();
                 if (response.code() == 200) {
 
+                    //Review review = new Review(1, review.toString())
                     String hello = ((Review) response.body()).getReviewText();
                     List<Review> fuckof = ((List<Review>) response.body());
 
-                    Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
+                    Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
 
-                } else {
+                }else{
 
                     Log.d(TAG, "run: succes from else");
                 }
-            } catch (IOException e) {
+            } catch (IOException e){
                 e.printStackTrace();
                 Log.d(TAG, "run: error line____________ from getUser()");
             }
         }
 
-        private Call<ReviewResponse> saveUserReview(int movieID, int rating, String review) {
-            return ServiceGenerator.getUserApi().saveReview(review, movieID, rating);
+        private Call<Review> saveUserReview(int movieID, int rating, String review) {
+            return ServiceGenerator.getUserApi().saveReview(review, movieID,getLoggedInUser().getValue().getUserId(), rating);
         }
 
 

@@ -32,6 +32,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
     private VerticalAdapter verticalAdapter;
     private MovieListViewModel movieListViewModel;
     private static final String TAG = "SearchFragment";
+    private boolean isCreated;
 
     @Nullable
     @Override
@@ -58,10 +59,13 @@ public class SearchFragment extends Fragment implements OnMovieListener {
 
         subscribeObservers();
         initRecyclerView();
-        discoverMoviesApi("popular");
-        discoverMoviesApi("top_rated");
-        discoverMoviesApi("upcoming");
-        discoverMoviesApi("now_playing");
+        if(!isCreated){
+            discoverMoviesApi("popular");
+            discoverMoviesApi("top_rated");
+            discoverMoviesApi("upcoming");
+            discoverMoviesApi("now_playing");
+            isCreated = true;
+        }
 
         return view;
     }
@@ -75,7 +79,6 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         verticalAdapter = new VerticalAdapter(getContext(), this);
         verticalRecyclerView.setAdapter(verticalAdapter);
-
     }
 
     private void subscribeObservers(){

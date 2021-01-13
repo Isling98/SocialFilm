@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/profilePicView"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_marginTop="15sp"
             android:text="Markus Hoved"
             android:fontFamily="sans-serif-light"
