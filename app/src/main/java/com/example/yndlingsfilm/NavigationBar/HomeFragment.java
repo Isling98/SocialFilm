@@ -48,6 +48,8 @@ public class HomeFragment extends Fragment {
     private UserViewModel userViewModel;
     private MovieListViewModel movieListViewModel;
     private List<User> tempReviewListHomePage = new ArrayList<>();
+    private ArrayList<News> aNews = new ArrayList<>();
+    private boolean beenCreated;
 
     @Nullable
     @Override
@@ -57,19 +59,16 @@ public class HomeFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
+        if(!beenCreated) {
+            tempReviewListHomePage = userViewModel.getHomePage(userViewModel.getLoggedInUser().getValue().getUserId());
 
-        tempReviewListHomePage = userViewModel.getHomePage(userViewModel.getLoggedInUser().getValue().getUserId());
-        userViewModel.getUsers().setValue(tempReviewListHomePage);
+            userViewModel.getUsers().setValue(tempReviewListHomePage);
+            //metoden til at få hentet user objekterne med de reviews som skal vises på homepage
+            Log.d(TAG, "@@@@@ind homepagefragment" + beenCreated);
 
-        Log.d(TAG, "@@@@@ind homepagefragment" + tempReviewListHomePage.size());
-        final ArrayList<News> aNews = new ArrayList<>();
-        //metoden til at få hentet user objekterne med de reviews som skal vises på homepage
-
-
-            for (User user: tempReviewListHomePage ) {
-                Log.d(TAG, "IDNE I FOREACH" + user.getReviews().size() );
+            for (User user : tempReviewListHomePage) {
                 for (Review review : user.getReviews()) {
-                    Movie movie = movieListViewModel.searchMovieForSearch(review.getMovieId(),API_KEY);
+                    Movie movie = movieListViewModel.searchMovieForSearch(review.getMovieId(), API_KEY);
 
                     String userName = user.getUsername();
 
@@ -81,10 +80,12 @@ public class HomeFragment extends Fragment {
                     String url = Constants.BASE_URL_IMG + movie.getPoster_path();
                     String urlProfile = "https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png";
                     aNews.add(new News(urlProfile, url,
-                            userName,movieTitle, rating, reviewInText));
+                            userName, movieTitle, rating, reviewInText));
                 }
-            }
 
+            }
+            beenCreated = true;
+        }
 
             homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
             homeFeed.setHasFixedSize(true);
@@ -94,6 +95,10 @@ public class HomeFragment extends Fragment {
 
             mAdapter = new HomeFeedAdapter(aNews);
             homeFeed.setAdapter(mAdapter);
+
+            Log.d(TAG, "onCreateView:@@@@@@" + beenCreated);
+
+
 
 
 
