@@ -33,6 +33,9 @@ public class UserViewModel extends ViewModel {
     public User getUser(String username, String token){
         return userRepo.getUser(username, token);
     }
+    public List<User> getHomePage(int id){
+        return userRepo.getHomePage(id);
+    }
 
     public Object addFriend(RelationshipResponse relationshipResponse){
         return userRepo.addFriend(relationshipResponse);
@@ -53,4 +56,5 @@ public class UserViewModel extends ViewModel {
     public void saveReview(int movieID, int rating, String review){
         userRepo.saveReview(movieID, rating, review);
     }
+
 }

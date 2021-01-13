@@ -18,26 +18,31 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yndlingsfilm.Model.News;
 import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
+import static com.example.yndlingsfilm.util.Constants.API_KEY;
 
 public class ProfileReviewsFragment extends Fragment {
     private RecyclerView homeFeed;
     private HomeFeedAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private UserViewModel userViewModel;
+    private MovieListViewModel movieListViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_reviews, container, false);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         // go through each review the user has
 
         // time skal måske slettes. er den svær at holde styr på?
@@ -51,8 +56,8 @@ public class ProfileReviewsFragment extends Fragment {
             int rating = review.getRating();
             String reviewInText = review.getReviewText();
 
-            aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,
-                    userName, "2hrs", movieName, rating, reviewInText));
+            aNews.add(new News("https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png",movieListViewModel.searchMovieForSearch(review.getMovieId(),API_KEY).getPoster_path() ,
+                    userName, movieName, rating, reviewInText));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -81,8 +86,8 @@ public class ProfileReviewsFragment extends Fragment {
             RatingBar rating = dialog.findViewById(R.id.rating);
             ImageView closeButton = dialog.findViewById(R.id.closeButton);
 
-            moviePic.setImageResource(aNews.get(position).getMoviePicResource());
-            text.setText(aNews.get(position).getTime());
+
+            Glide.with(this).load(aNews.get(position).getMovieUrl()).into(moviePic);
             rating.setRating(aNews.get(position).getRating());
 
             closeButton.setOnClickListener(view1 -> dialog.dismiss());

@@ -6,13 +6,19 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.yndlingsfilm.Model.Movie;
+import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
 import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
+import com.example.yndlingsfilm.requests.responses.MovieResponse;
+import com.example.yndlingsfilm.requests.responses.ReviewResponse;
 import com.example.yndlingsfilm.util.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
@@ -27,11 +33,13 @@ public class MovieApiClient {
     private MutableLiveData<List<Movie>> popularMovies;
     private MutableLiveData<List<Movie>> upcomingMovies;
     private MutableLiveData<List<Movie>> nowPlayingMovies;
-
+    private MutableLiveData<Movie> movieForSearch;
 
     private static final String TAG = "MovieApiClient";
     private RetrieveMoviesRunnable retrieveMoviesRunnable;
     private SearchMoviesRunnable searchMoviesRunnable;
+    private GetMovieForSearchCallable getMovieForSearchCallable;
+    private Movie movie;
 
 
     public static MovieApiClient getInstance() {
@@ -47,6 +55,11 @@ public class MovieApiClient {
         popularMovies = new MutableLiveData<>();
         upcomingMovies = new MutableLiveData<>();
         nowPlayingMovies = new MutableLiveData<>();
+        movieForSearch = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<Movie> getMovieForSearch() {
+        return movieForSearch;
     }
 
     public MutableLiveData<List<Movie>> getMovies() {
@@ -198,6 +211,87 @@ public class MovieApiClient {
         }
 
         private void setCancelRequest() {
+            Log.d(TAG, "setCancelRequest: cancelled request");
+            cancelRequest = true;
+        }
+    }
+
+
+
+
+
+
+    public Movie SearchMovieForSearch(int movieId, String key) throws ExecutionException, InterruptedException {
+        if(getMovieForSearchCallable != null){
+            getMovieForSearchCallable = null;
+        }
+        getMovieForSearchCallable = new GetMovieForSearchCallable(movieId,key);
+
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(getMovieForSearchCallable);
+        movie = (Movie) handler.get();
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+        return movie;
+    }
+
+    private class GetMovieForSearchCallable implements Callable {
+
+        private int movieId;
+        private String key;
+        private Boolean cancelRequest;
+
+        public GetMovieForSearchCallable(int movieId, String key) {
+            this.movieId = movieId;
+            this.key = key;
+            cancelRequest = false;
+        }
+
+        @Override
+        public Movie call() {
+
+            try{
+                Response response = getMovie(movieId,key).execute();
+                if(cancelRequest){
+                    return null;
+                }
+                Log.d(TAG, "@@" + movieId);
+
+                if (response.code() == 200){
+                String movieTitle = ((MovieResponse) response.body()).getMovieTitle();
+                String overview = ((MovieResponse) response.body()).getOverview();
+                String release_date = ((MovieResponse) response.body()).getRelease_date();
+                int movieId =  ((MovieResponse) response.body()).getMovieId();
+                String posterPath = ((MovieResponse) response.body()).getPoster_path();
+                float vote = ((MovieResponse) response.body()).getVote_average();
+                int[] genre_ids = ((MovieResponse) response.body()).getGenre_ids();
+
+
+                Log.d(TAG,"Movietitle " + movieTitle);
+                Movie movie = new Movie(movieId,movieTitle,overview,release_date,posterPath,vote,genre_ids);
+
+                    return movie;
+                }else{
+
+                    Log.d(TAG, "run: succes from else" + response.code());
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+                Log.d(TAG, "run: error line____________ from getUser()");
+            } return null;
+        }
+
+        private Call<MovieResponse> getMovie(int movieId, String key){
+
+            return ServiceGenerator.getMovieApi().movie(movieId,key);
+        }
+
+        private void setCancelRequest(){
             Log.d(TAG, "setCancelRequest: cancelled request");
             cancelRequest = true;
         }

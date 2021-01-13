@@ -30,8 +30,8 @@ public class UserRepo{
     // skal nok ikke være mutable
     public MutableLiveData<List<User>> getUsers(){
         return userApiClient.getUsers();
-    }
 
+}
 
 
     public boolean login(String username, String password){
@@ -46,6 +46,15 @@ public class UserRepo{
     public User getUser(String username, String token){
         try{
             return userApiClient.getUser(username, token);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<User> getHomePage (int id){
+        try{
+            return userApiClient.getHomePage(id);
         } catch (Exception e){
             e.printStackTrace();
         }

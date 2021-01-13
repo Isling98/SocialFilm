@@ -1,6 +1,7 @@
 package com.example.yndlingsfilm.requests;
 
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
+import com.example.yndlingsfilm.requests.responses.HomePageResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
 import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 import com.example.yndlingsfilm.requests.responses.ReviewResponse;
@@ -58,5 +59,10 @@ public interface UserApi {
             @Field("review_text") String review,
             @Field("movie_id") int movieID,
             @Field("rating") int rating
+    );
+
+    @GET("/cinemano/user/homereview/{id}")
+    Call<HomePageResponse> getHomePage(
+            @Path("id") int userid
     );
 }

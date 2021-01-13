@@ -1,5 +1,6 @@
 package com.example.yndlingsfilm.requests;
 
+import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -8,6 +9,7 @@ import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
+import com.example.yndlingsfilm.requests.responses.HomePageResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
 import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
 import com.example.yndlingsfilm.requests.responses.ReviewResponse;
@@ -32,10 +34,15 @@ public class UserApiClient {
     private MutableLiveData<User> loggedInUser;
     private LoginCallable loginCallable;
     private GetUserRunnable getUserRunnable;
+    private GetHomePageUserRunnable getHomePageUserRunnable;
     private GetUserReviewRunnable getUserReviewRunnable;
     private saveReviewRunnable saveReviewRunnable;
     private boolean isUserLoggedIn;
+    private boolean isHomePageLoaded;
     private ArrayList<Review> tempReviewList = new ArrayList<>();
+    private ArrayList<Review> tempReviewListHomePage = new ArrayList<>();
+    private List<User> tempUserListHomePage = new ArrayList<>();
+
     User user;
 
     private AddFriendCallable addFriendCallable;
@@ -195,17 +202,15 @@ public class UserApiClient {
                     List<ReviewResponse> reviewList =
                             new ArrayList<>(((GetUserResponse) response.body()).getReviews());
                     for(ReviewResponse s : reviewList){
-                        Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId());
+                        Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId(),s.getRating());
                         tempReviewList.add(review);
                     }
-                    Log.d(TAG,tempReviewList.get(1).toString());
+
                     userReview.postValue(tempReviewList);
 
 
+
                     User user = new User(userId, username, password, email, bio, tempReviewList);
-
-                    Log.d(TAG, "call: " + user.getReviews().get(1).getReviewText());
-
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
                     Log.d(TAG, "call: " + user.getUserId());
@@ -436,7 +441,7 @@ public class UserApiClient {
         }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
     }
 
-    private class saveReviewRunnable implements Runnable{
+    private class saveReviewRunnable implements Runnable {
 
         private int movieID;
         private int rating;
@@ -451,27 +456,118 @@ public class UserApiClient {
         @Override
         public void run() {
 
-            try{
+            try {
                 Response response = saveUserReview(movieID, rating, review).execute();
-                if (response.code() == 200){
+                if (response.code() == 200) {
 
                     String hello = ((Review) response.body()).getReviewText();
                     List<Review> fuckof = ((List<Review>) response.body());
 
-                    Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
+                    Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
 
-                }else{
+                } else {
 
                     Log.d(TAG, "run: succes from else");
                 }
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 Log.d(TAG, "run: error line____________ from getUser()");
             }
         }
 
-        private Call<ReviewResponse> saveUserReview(int movieID, int rating, String review){
+        private Call<ReviewResponse> saveUserReview(int movieID, int rating, String review) {
             return ServiceGenerator.getUserApi().saveReview(review, movieID, rating);
+        }
+
+
+
+
+
+    }
+    public List<User> getHomePage(int id) throws ExecutionException, InterruptedException {
+        if(getHomePageUserRunnable != null){
+            getHomePageUserRunnable = null;
+        }
+        getHomePageUserRunnable = new GetHomePageUserRunnable(id);
+
+        final Future handler = AppExecutors.getInstance().getExecutorService().submit(getHomePageUserRunnable);
+        List<User> users = (List<User>) handler.get();
+        // drops the request if not done in 5 seconds to allow cached callbacks instead later.
+        AppExecutors.getInstance().getExecutorService().schedule(new Runnable() {
+            @Override
+            public void run() {
+                // let user know of the network error
+                handler.cancel(true);
+            }
+        }, Constants.NETWORK_TIME_LIMIT, TimeUnit.MILLISECONDS);
+        return users;
+    }
+
+    private class GetHomePageUserRunnable implements Callable {
+
+        private int id;
+        private Boolean cancelRequest;
+
+        public GetHomePageUserRunnable(int id) {
+            this.id = id;
+            cancelRequest = false;
+        }
+
+        @Override
+        public List<User> call() {
+            try{
+                Response response = getHomePage(id).execute();
+                if(cancelRequest){
+                    return null;
+                }
+                if (response.code() == 200){
+
+                    List<GetUserResponse> userList =
+                            new ArrayList<>(((HomePageResponse) response.body()).getResponses());
+
+
+                    for(GetUserResponse s : userList){
+                        ArrayList<Review> tempReviewListHomePage = new ArrayList<Review>();
+                        for(ReviewResponse t : s.getReviews()){
+
+                            Review review = new Review(t.getReviewId(),t.getReviewText(),t.getMovieId(),t.getUserId(),t.getRating());
+                            Log.d(TAG, "REVIEW EZAMPLE" +review.getReviewText());
+
+                            tempReviewListHomePage.add(review);
+                        }
+
+                        User user = new User(s.getUserId(),s.getUserName(),s.getPassword(),s.getEmail(),s.getBio(),tempReviewListHomePage);
+
+
+                        tempUserListHomePage.add(user);
+                    }
+
+
+                    users.postValue(tempUserListHomePage);
+
+
+
+                    return tempUserListHomePage;
+
+
+                }else{
+                    Log.d(TAG, "run: succes from else");
+                    return null;
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+                Log.d(TAG, "run: error line____________ from getUser()");
+                return null;
+            }
+        }
+
+        private Call<HomePageResponse> getHomePage(int id){
+            return ServiceGenerator.getUserApi().getHomePage(id);
+        }
+
+        private void setCancelRequest(){
+            Log.d(TAG, "setCancelRequest: cancelled request");
+            cancelRequest = true;
         }
     }
 }

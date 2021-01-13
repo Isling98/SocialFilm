@@ -21,6 +21,10 @@ public class ReviewResponse {
     @Expose()
     private int movieId;
 
+    @SerializedName("rating")
+    @Expose()
+    private int rating;
+
     @SerializedName("user_id")
     @Expose()
     private int userId;
@@ -41,6 +45,10 @@ public class ReviewResponse {
         return userId;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
 
     @Override
     public String toString() {
@@ -48,6 +56,7 @@ public class ReviewResponse {
                 "reviewId=" + reviewId +
                 ", reviewText='" + reviewText + '\'' +
                 ", movieId=" + movieId +
+                ", rating=" + rating +
                 ", userId=" + userId +
                 '}';
     }

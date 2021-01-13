@@ -11,9 +11,9 @@ import retrofit2.http.Query;
 public interface MovieApi {
 
     // get movie from id
-    @GET("/3/movie")
+    @GET("/3/movie/{movie_id}")
     Call<MovieResponse> movie(
-            @Query("movie_id") String id,
+            @Path("movie_id") int movieId,
             @Query("api_key") String key
     );
 

@@ -9,7 +9,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yndlingsfilm.Model.News;
+import com.example.yndlingsfilm.NavigationBar.Adapters.SearchViewHolder;
+import com.example.yndlingsfilm.util.Constants;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
         public View comment;
         public ImageView thumbsUp;
         public TextView likes;
+        public TextView reviewtext;
 
         private boolean liked = false;
         
@@ -45,13 +49,13 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
             profilePic = itemView.findViewById(R.id.profilePic);
             moviePic = itemView.findViewById(R.id.moviePic);
             headLine = itemView.findViewById(R.id.headline);
-            time = itemView.findViewById(R.id.time);
             movieTitle = itemView.findViewById(R.id.movieTitle);
             rating = itemView.findViewById(R.id.rating);
             like = itemView.findViewById(R.id.like);
             comment = itemView.findViewById(R.id.comment);
             thumbsUp = itemView.findViewById(R.id.thumbsUp);
             likes = itemView.findViewById(R.id.likes);
+            reviewtext = itemView.findViewById(R.id.textView3);
 
 
             like.setOnClickListener(view -> {
@@ -103,12 +107,14 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
 
         News news = mNewsList.get(position);
 
-        holder.profilePic.setImageResource(news.getProfilePicResource());
-        holder.moviePic.setImageResource(news.getMoviePicResource());
+
+        Glide.with(holder.itemView.getContext()).load(news.getMovieUrl()).into(holder.moviePic);
+        Glide.with(holder.itemView.getContext()).load(news.getProfileUrl()).into(holder.profilePic);
+
         holder.headLine.setText(news.getHeadLine());
-        holder.time.setText(news.getTime());
         holder.movieTitle.setText(news.getMovieName());
         holder.rating.setRating(news.getRating());
+        holder.reviewtext.setText(news.getReviewInText());
 
 
     }

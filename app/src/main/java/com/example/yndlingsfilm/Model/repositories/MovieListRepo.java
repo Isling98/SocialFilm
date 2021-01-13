@@ -24,6 +24,9 @@ public class MovieListRepo {
         movieApiClient = MovieApiClient.getInstance();
 
     }
+    public MutableLiveData<Movie> getMovieForSearch() {
+        return movieApiClient.getMovieForSearch();
+    }
 
     public MutableLiveData<List<Movie>> getMovies() {
         return movieApiClient.getMovies();
@@ -46,5 +49,14 @@ public class MovieListRepo {
     }
     public void searchMovies(String searchWord){
         movieApiClient.searchMovies(searchWord);
+    }
+
+    public Movie searchMovieForSearch(int movieId, String key){
+        try{
+            return movieApiClient.SearchMovieForSearch(movieId,key);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -7,11 +7,12 @@ public class Review {
     private int userId;
     private int rating;
 
-    public Review(int reviewId, String reviewText, int movieId, int userId) {
+    public Review(int reviewId, String reviewText, int movieId, int userId, int rating) {
         this.reviewId = reviewId;
         this.reviewText = reviewText;
         this.movieId = movieId;
         this.userId = userId;
+        this.rating = rating;
     }
 
 

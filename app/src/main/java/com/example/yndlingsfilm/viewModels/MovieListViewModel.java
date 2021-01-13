@@ -43,4 +43,13 @@ public class MovieListViewModel extends ViewModel {
     public void searchMovies(String searchWord){
         movieListRepo.searchMovies(searchWord);
     }
+
+    public Movie searchMovieForSearch(int movieId, String key){
+        try{
+            return movieListRepo.searchMovieForSearch(movieId,key);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

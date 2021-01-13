@@ -99,8 +99,8 @@ public class MovieDetailsFragment extends Fragment {
         // blot for start. vi kontrollerer for alle vennr der har kommenteret på filmen og adder dem i stedet.
         final ArrayList<News> aNews = new ArrayList<>();
         for(int i=0; i<10; i++) {
-            aNews.add(new News(R.drawable.profile_pic, R.drawable.movie_pic,
-                    "Asger Åkanden:", "2hrs", "Harry Potter", 4, "a"));
+            aNews.add(new News("https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png", "https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png",
+                    "Asger Åkanden:", "2hrs", 10, "asd"));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.friendsComments);
@@ -129,8 +129,8 @@ public class MovieDetailsFragment extends Fragment {
             RatingBar rating = dialog.findViewById(R.id.rating);
             ImageView closeButton = dialog.findViewById(R.id.closeButton);
 
-            moviePic.setImageResource(aNews.get(position).getMoviePicResource());
-            text.setText(aNews.get(position).getTime());
+
+            Glide.with(this).load(aNews.get(position).getMovieUrl()).into(moviePic);
             rating.setRating(aNews.get(position).getRating());
 
             closeButton.setOnClickListener(view1 -> dialog.dismiss());

@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
             if(userViewModel.login(mail.getText().toString(), password.getText().toString())){
                 userViewModel.getLoggedInUser().setValue(userViewModel.getUser(mail.getText().toString(), "token"));
                 Log.d(TAG, "onClick: " + userViewModel.getLoggedInUser().getValue().getUsername());
+
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 this.finish();
