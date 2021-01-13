@@ -191,7 +191,7 @@ public class UserApiClient {
                 }
                 if (response.code() == 200){
                     int userId = ((GetUserResponse)response.body()).getUserId();
-                    String username = ((GetUserResponse)response.body()).getUserName();
+                    String username = ((GetUserResponse)response.body()).getUserName().trim();
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
                     String bio = ((GetUserResponse)response.body()).getBio();
