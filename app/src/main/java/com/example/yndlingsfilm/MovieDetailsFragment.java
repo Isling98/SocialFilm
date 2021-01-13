@@ -52,7 +52,6 @@ public class MovieDetailsFragment extends Fragment {
         moviePic = view.findViewById(R.id.moviePic);
         overview = view.findViewById(R.id.overview);
         releaseDate = view.findViewById(R.id.releaseDate);
-        rating = view.findViewById(R.id.rating);
         writeReviewButton = view.findViewById(R.id.writeReviewButton);
         // runtime findes ikke i api, skal den bare slettes så?
         ratingInText = view.findViewById(R.id.ratingInText);
@@ -72,7 +71,6 @@ public class MovieDetailsFragment extends Fragment {
         movieTitle.setText(movie.getTitle());
         overview.setText(movie.getOverview());
         releaseDate.setText(movie.getRelease_date());
-        rating.setRating(movie.getVote_average());
         ratingInText.setText(String.valueOf(movie.getVote_average()));
         movieGenres.setText(getAllGenres());
         // sets moviePoster
