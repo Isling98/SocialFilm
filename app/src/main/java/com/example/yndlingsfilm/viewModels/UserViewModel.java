@@ -1,5 +1,6 @@
 package com.example.yndlingsfilm.viewModels;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,7 +18,6 @@ public class UserViewModel extends ViewModel {
     public UserViewModel() {
         userRepo = UserRepo.getInstance();
     }
-
     public MutableLiveData<List<User>> getUsers(){
         return userRepo.getUsers();
     }

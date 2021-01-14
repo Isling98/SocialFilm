@@ -2,11 +2,14 @@ package com.example.yndlingsfilm.requests;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.executors.AppExecutors;
+import com.example.yndlingsfilm.requests.responses.DiscoverMoviesResponse;
 import com.example.yndlingsfilm.requests.responses.GetUserResponse;
 import com.example.yndlingsfilm.requests.responses.HomePageResponse;
 import com.example.yndlingsfilm.requests.responses.LoginResponse;
@@ -15,7 +18,9 @@ import com.example.yndlingsfilm.requests.responses.ReviewResponse;
 import com.example.yndlingsfilm.util.Constants;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -530,6 +535,8 @@ public class UserApiClient {
                             new ArrayList<>(((HomePageResponse) response.body()).getResponses());
 
 
+                    Log.d(TAG, "call: " + ((HomePageResponse) response.body()).getResponses().size());
+
                     for(GetUserResponse s : userList){
                         ArrayList<Review> tempReviewListHomePage = new ArrayList<Review>();
                         for(ReviewResponse t : s.getReviews()){
@@ -545,7 +552,6 @@ public class UserApiClient {
 
                         tempUserListHomePage.add(user);
                     }
-
 
                     users.postValue(tempUserListHomePage);
 

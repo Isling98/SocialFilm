@@ -32,7 +32,7 @@ public class FriendlistAdapter extends RecyclerView.Adapter<FriendlistAdapter.Fr
 
         holder.friendlistPic.setImageResource(currentFriend.getImageResource());
         holder.friendlistName.setText(currentFriend.getFriendListName());
-        holder.friendlistReviews.setText(currentFriend.getFriendListReviews());
+        holder.friendlistReviews.setText(Integer.toString(currentFriend.getFriendListReviews()));
 
     }
 

@@ -4,9 +4,9 @@ public class Friendlist {
 
     private int imageResource;
     private String friendListName;
-    private String friendListReviews;
+    private int friendListReviews;
 
-    public Friendlist(int imageResource, String friendListName, String friendListReviews) {
+    public Friendlist(int imageResource, String friendListName, int friendListReviews) {
         this.imageResource = imageResource;
         this.friendListName = friendListName;
         this.friendListReviews = friendListReviews;
@@ -20,7 +20,7 @@ public class Friendlist {
         return friendListName;
     }
 
-    public String getFriendListReviews() {
+    public int getFriendListReviews() {
         return friendListReviews;
     }
 }
