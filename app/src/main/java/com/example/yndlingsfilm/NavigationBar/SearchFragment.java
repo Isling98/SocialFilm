@@ -1,4 +1,4 @@
-package com.example.yndlingsfilm.NavigationBar;
+ package com.example.yndlingsfilm.NavigationBar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -33,16 +34,47 @@ public class SearchFragment extends Fragment implements OnMovieListener {
     private MovieListViewModel movieListViewModel;
     private static final String TAG = "SearchFragment";
     private boolean isCreated;
+    OnMovieListener onMovieListener;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        onMovieListener = new OnMovieListener() {
+            @Override
+            public void onMovieClick(int position) {
+                Fragment fragment = new MovieDetailsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position));
+                fragment.setArguments(bundle);
+                Log.d(TAG, "onMovieClick: " + bundle.getParcelable("movie").toString());
+                getFragmentManager().beginTransaction().replace
+                        (R.id.fragment_nagivation, fragment).addToBackStack(null).commit();
+            }
+        };
+
+        getActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if(movieListViewModel.isSearching()){
+                    Log.d(TAG, "handleOnBackPressed: _______________");
+                    movieListViewModel.getMovies().setValue(null);
+                    verticalAdapter = new VerticalAdapter(getContext(), onMovieListener);
+                    verticalRecyclerView.setAdapter(verticalAdapter);
+                    subscribeObservers();
+                    if(!isCreated){
+                        discoverMoviesApi("popular");
+                        discoverMoviesApi("top_rated");
+                        discoverMoviesApi("upcoming");
+                        discoverMoviesApi("now_playing");
+                        isCreated = true;
+                    }
+                }
+            }
+        });
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         verticalRecyclerView = view.findViewById(R.id.recyclerview1);
-        verticalRecyclerView.setHasFixedSize(true);
-
-        // init searchview:
         SearchView searchView = view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -66,10 +98,9 @@ public class SearchFragment extends Fragment implements OnMovieListener {
             discoverMoviesApi("now_playing");
             isCreated = true;
         }
-
         return view;
     }
-
+    
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -155,9 +186,8 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         Bundle bundle = new Bundle();
         bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position));
         fragment.setArguments(bundle);
-        Log.d(TAG, "onMovieClick: " +bundle.getParcelable("movie").toString());
+        Log.d(TAG, "onMovieClick: " + bundle.getParcelable("movie").toString());
         getFragmentManager().beginTransaction().replace
                 (R.id.fragment_nagivation, fragment).addToBackStack(null).commit();
-
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +16,13 @@ import com.example.yndlingsfilm.NavigationBar.HomeFragment;
 import com.example.yndlingsfilm.NavigationBar.ProfileFragment;
 import com.example.yndlingsfilm.NavigationBar.SearchFragment;
 import com.example.yndlingsfilm.NavigationBar.SettingFragment;
+import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private int currentPosition = 3;
     private int newPosition;
+    MovieListViewModel movieListViewModel;
     String tag = "";
 
     private static final String TAG = "MainActivity";
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //lav transition
         setContentView(R.layout.activity_main);
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -107,4 +111,5 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
 }

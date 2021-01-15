@@ -45,6 +45,14 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.onMovieListener = onMovieListener;
     }
 
+    public List<Movie> getSearchMovies() {
+        return searchMovies;
+    }
+
+    public void setSearchMovies(List<Movie> searchMovies) {
+        this.searchMovies = searchMovies;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -156,6 +164,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
+
     public class VerticalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         RecyclerView recyclerView;
@@ -169,6 +178,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         @Override
         public void onClick(View view) {
+            onMovieListener.onMovieClick(getBindingAdapterPosition());
             Log.d(TAG, "onClick: _______________________________");
             switch (getBindingAdapterPosition()){
                 case 0:

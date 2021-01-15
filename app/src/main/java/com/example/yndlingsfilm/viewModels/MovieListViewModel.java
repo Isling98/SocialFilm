@@ -11,6 +11,11 @@ import java.util.List;
 public class MovieListViewModel extends ViewModel {
 
     private MovieListRepo movieListRepo;
+    private boolean isSearching;
+
+    public boolean isSearching() {
+        return isSearching;
+    }
 
     public MovieListViewModel() {
         movieListRepo = MovieListRepo.getInstance();
@@ -41,6 +46,7 @@ public class MovieListViewModel extends ViewModel {
     }
 
     public void searchMovies(String searchWord){
+        isSearching = true;
         movieListRepo.searchMovies(searchWord);
     }
 
@@ -51,5 +57,12 @@ public class MovieListViewModel extends ViewModel {
             e.printStackTrace();
         }
         return null;
+    }
+    public boolean backNav(){
+        if(isSearching){
+            isSearching = false;
+            return false;
+        }
+        return true;
     }
 }

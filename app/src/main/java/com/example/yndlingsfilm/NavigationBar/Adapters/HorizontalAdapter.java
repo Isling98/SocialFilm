@@ -43,11 +43,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
         holder.title.setText(movies.get(position).getTitle());
 
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.poster_harry_potter_1);
-
         Glide.with(holder.itemView.getContext())
-                .setDefaultRequestOptions(requestOptions)
                 .load(Constants.BASE_URL_IMG + movies.get(position).getPoster_path())
                 .into((holder).moviePoster);
     }
