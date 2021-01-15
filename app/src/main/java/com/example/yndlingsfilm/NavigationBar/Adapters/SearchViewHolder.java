@@ -24,6 +24,6 @@ public class SearchViewHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View view) {
-        onMovieListener.onMovieClick( getBindingAdapterPosition());
+        onMovieListener.onMovieClick( getBindingAdapterPosition(), 4);
     }
 }

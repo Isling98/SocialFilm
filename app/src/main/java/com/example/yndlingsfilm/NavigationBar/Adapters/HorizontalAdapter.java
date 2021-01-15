@@ -1,6 +1,7 @@
 package com.example.yndlingsfilm.NavigationBar.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +19,24 @@ import com.example.yndlingsfilm.util.Constants;
 
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder> {
 
     Context context;
     private List<Movie> movies;
     private OnMovieListener onMovieListener;
+    private int verticalPosition;
 
-    public HorizontalAdapter(Context context, List<Movie> movies, OnMovieListener onMovieListener) {
+    public int getVerticalPosition() {
+        return verticalPosition;
+    }
+
+    public HorizontalAdapter(Context context, List<Movie> movies, OnMovieListener onMovieListener, int verticalPosition) {
         this.context = context;
         this.movies = movies;
         this.onMovieListener = onMovieListener;
+        this.verticalPosition = verticalPosition;
     }
 
     @NonNull
@@ -73,7 +82,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
 
         @Override
         public void onClick(View v) {
-            onMovieListener.onMovieClick(getBindingAdapterPosition());
+            Log.d(TAG, "onClick: " + verticalPosition);
+            onMovieListener.onMovieClick(getBindingAdapterPosition(), verticalPosition);
         }
     }
 }

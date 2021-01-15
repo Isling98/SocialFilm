@@ -42,10 +42,10 @@ public class SearchFragment extends Fragment implements OnMovieListener {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         onMovieListener = new OnMovieListener() {
             @Override
-            public void onMovieClick(int position) {
+            public void onMovieClick(int position, int category) {
                 Fragment fragment = new MovieDetailsFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position));
+                bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position, category));
                 fragment.setArguments(bundle);
                 Log.d(TAG, "onMovieClick: " + bundle.getParcelable("movie").toString());
                 getFragmentManager().beginTransaction().replace
@@ -180,11 +180,11 @@ public class SearchFragment extends Fragment implements OnMovieListener {
     }
 
     @Override
-    public void onMovieClick(int position) {
+    public void onMovieClick(int position, int category) {
 
         Fragment fragment = new MovieDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position));
+        bundle.putParcelable("movie", verticalAdapter.getClickedMovie(position, category));
         fragment.setArguments(bundle);
         Log.d(TAG, "onMovieClick: " + bundle.getParcelable("movie").toString());
         getFragmentManager().beginTransaction().replace

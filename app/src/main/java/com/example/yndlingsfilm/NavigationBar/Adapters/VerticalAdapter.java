@@ -86,7 +86,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .into(((SearchViewHolder)holder).moviePoster);
 
         } else if(viewType == BROWSE_MOVIES_TYPE) {
-            HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, categoryList.get(position), onMovieListener);
+            HorizontalAdapter horizontalAdapter = new HorizontalAdapter(context, categoryList.get(position), onMovieListener, position);
             ((VerticalViewHolder)holder).recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             ((VerticalViewHolder)holder).recyclerView.setHasFixedSize(true);
             ((VerticalViewHolder)holder).recyclerView.setAdapter(horizontalAdapter);
@@ -157,10 +157,30 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public Movie getClickedMovie(int position){
-        if(popularMovies != null){
-            return popularMovies.get(position);
+    public Movie getClickedMovie(int position, int category){
+        switch (category){
+            case 0:
+                if(popularMovies != null){
+                    return popularMovies.get(position);
+                }
+            case 1:
+                if(topRatedMovies != null){
+                    return topRatedMovies.get(position);
+                }
+            case 2:
+                if(upcomingMovies != null){
+                    return upcomingMovies.get(position);
+                }
+            case 3:
+                if(nowPlayingMovies != null){
+                    return nowPlayingMovies.get(position);
+                }
+            case 4:
+                if(searchMovies != null){
+                    return searchMovies.get(position);
+                }
         }
+
         return null;
     }
 
@@ -178,7 +198,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         @Override
         public void onClick(View view) {
-            onMovieListener.onMovieClick(getBindingAdapterPosition());
+            onMovieListener.onMovieClick(getBindingAdapterPosition(), 1);
             Log.d(TAG, "onClick: _______________________________");
             switch (getBindingAdapterPosition()){
                 case 0:

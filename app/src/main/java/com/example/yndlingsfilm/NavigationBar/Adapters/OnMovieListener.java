@@ -1,5 +1,5 @@
 package com.example.yndlingsfilm.NavigationBar.Adapters;
 
 public interface OnMovieListener {
-    void onMovieClick(int position);
+    void onMovieClick(int position, int category);
 }
