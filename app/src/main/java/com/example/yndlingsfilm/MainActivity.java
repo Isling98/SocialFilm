@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     MovieListViewModel movieListViewModel;
     String tag = "";
 
+
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

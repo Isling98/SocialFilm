@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/profile_circle_border">
-            
+
             <ImageView
                 android:id="@+id/profilePic"
                 android:layout_width="120dp"
@@ -29,7 +29,7 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/profile_circle"
                 />
-            
+
         </RelativeLayout>
 
         <ImageView
@@ -194,7 +194,7 @@
                     android:textColor="@color/theme1"
                     android:text="If you love LOTR, i love you..."
                     android:fontFamily="sans-serif-light" />
-                
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

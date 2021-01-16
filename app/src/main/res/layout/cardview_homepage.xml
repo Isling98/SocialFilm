@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/login_background"
+    android:scrollbarThumbHorizontal="@drawable/ic_outline_add_comment_24"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="6dp"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:layout_constraintTop_toTopOf="parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="264dp"
+        android:background="#2E2E2E">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hGuideButtom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintGuide_percent="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vGuideLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="0.34" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vGuideRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card_view:layout_constraintGuide_percent="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/hGuideTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintGuide_percent="0.0" />
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="61dp"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            card_view:layout_constraintStart_toStartOf="@+id/vGuideLeft"
+            card_view:layout_constraintTop_toTopOf="@+id/hGuideTop" />
+
+        <ImageView
+            android:id="@+id/moviePic"
+            android:layout_width="113dp"
+            android:layout_height="124dp"
+            android:layout_below="@+id/profilePic"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            card_view:layout_constraintStart_toStartOf="@+id/vGuideLeft"
+            card_view:layout_constraintTop_toBottomOf="@+id/profilePic" />
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/profilePic"
+            android:textColor="@color/light"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toStartOf="@+id/middle"
+            card_view:layout_constraintTop_toTopOf="@+id/hGuideTop"
+            tools:text="Asger Åkanden" />
+
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="230dp"
+            android:layout_height="52dp"
+            android:layout_below="@+id/text"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/moviePic"
+            android:text="Harry Potter (2001):asdasdad"
+            android:textColor="@color/light"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toStartOf="@+id/middle"
+            card_view:layout_constraintTop_toBottomOf="@+id/headline" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movieTitle"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/profilePic"
+            android:isIndicator="true"
+            android:numStars="10"
+            android:theme="@style/RatingBar"
+            card_view:layout_constraintStart_toStartOf="@+id/middle"
+            card_view:layout_constraintTop_toBottomOf="@+id/movieTitle" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="212dp"
+            android:layout_height="43dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            card_view:layout_constraintStart_toStartOf="@+id/middle"
+            card_view:layout_constraintTop_toBottomOf="@+id/rating" />
+
+        <ImageView
+            android:id="@+id/thumbsUp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="13dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_thumb_up_24_light"
+            card_view:layout_constraintEnd_toStartOf="@+id/middle2"
+            card_view:layout_constraintHorizontal_bias="0.256"
+            card_view:layout_constraintStart_toStartOf="@+id/vGuideLeft"
+            card_view:layout_constraintTop_toBottomOf="@+id/bottomLine" />
+
+        <TextView
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Like"
+            android:textColor="@color/light"
+            android:textSize="14sp"
+            card_view:layout_constraintStart_toEndOf="@+id/thumbsUp"
+            card_view:layout_constraintTop_toBottomOf="@+id/bottomLine" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="4dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_outline_add_comment_24"
+            card_view:layout_constraintEnd_toStartOf="@+id/comment"
+            card_view:layout_constraintTop_toBottomOf="@+id/bottomLine" />
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Comment"
+            android:textColor="@color/light"
+            android:textSize="14sp"
+            card_view:layout_constraintStart_toStartOf="@+id/middle2"
+            card_view:layout_constraintTop_toBottomOf="@+id/bottomLine" />
+
+        <View
+            android:id="@+id/bottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rating"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="33dp"
+            android:layout_marginEnd="33dp"
+            android:background="@color/light"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/vGuideRight"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="0.84" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

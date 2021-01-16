@@ -4,7 +4,7 @@
         <shape>
             <stroke android:color="@color/theme2"
                 android:width="2dp"/>
-            <corners android:radius="2dp"/>
+            <corners android:radius="4dp"/>
         </shape>
     </item>
 
@@ -12,7 +12,7 @@
         <shape>
             <stroke android:color="@color/transparent_color_light"
                 android:width="2dp"/>
-            <corners android:radius="2dp"/>
+            <corners android:radius="4dp"/>
         </shape>
     </item>
 </selector>

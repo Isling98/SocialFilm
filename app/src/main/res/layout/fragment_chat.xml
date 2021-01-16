@@ -4,37 +4,32 @@
     android:background="@color/cardview_light_background">
 
     <LinearLayout
-        android:id="@+id/profile_bio"
+        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="51dp"
+        android:background="#2E2E2E"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/friendListTitel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Friends"
-            android:textSize="35sp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/theme2"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/theme3"/>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:fontFamily="serif"
+        android:text="Friends"
+        android:textColor="@color/light"
+        android:textSize="25sp"
+        android:paddingTop="7dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friendListRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:padding="4dp"
-        android:scrollbars="vertical"/>
+        android:layout_below="@+id/top"
+        android:background="@drawable/login_background"
+        />
 
 
 </RelativeLayout>

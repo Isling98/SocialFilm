@@ -46,9 +46,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View bio;
     View topRated;
     View reviews;
-    View latestComments;
     TextView friends;
-    TextView followers;
     TextView profileName;
     TextView bioShort;
     private UserViewModel userViewModel;
@@ -56,7 +54,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.profile_fragment_try, container, false);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
@@ -64,9 +62,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         bio = view.findViewById(R.id.profile_bio);
         topRated = view.findViewById(R.id.profile_top_rated);
         reviews = view.findViewById(R.id.profile_reviews);
-        latestComments = view.findViewById(R.id.profile_latest_comments);
         friends = view.findViewById(R.id.profile_friends);
-        followers = view.findViewById(R.id.profile_followers);
         profileName = view.findViewById(R.id.profileName);
         bioShort = view.findViewById(R.id.bioShort);
 
@@ -93,9 +89,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         bio.setOnClickListener(this);
         topRated.setOnClickListener(this);
         reviews.setOnClickListener(this);
-        latestComments.setOnClickListener(this);
         friends.setOnClickListener(this);
-        followers.setOnClickListener(this);
+
 
 
         return view;

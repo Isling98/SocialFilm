@@ -56,7 +56,7 @@ public class ProfileReviewsFragment extends Fragment {
             int rating = review.getRating();
             String reviewInText = review.getReviewText();
 
-            aNews.add(new News("https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png",movieListViewModel.searchMovieForSearch(review.getMovieId(),API_KEY).getPoster_path() ,
+            aNews.add(new News("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",movieListViewModel.searchMovieForSearch(review.getMovieId(),API_KEY).getPoster_path() ,
                     userName, movieName, rating, reviewInText));
         }
 

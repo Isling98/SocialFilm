@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@color/colorPrimaryDark"
     tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -12,92 +12,151 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
+        app:layout_constraintGuide_percent="0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_end="24dp" />
+        app:layout_constraintGuide_begin="411dp"
+        app:layout_constraintGuide_percent="1"/>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="636dp"
+        android:layout_height="776dp"
+        android:alpha="0.11
+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511"
+        app:srcCompat="@drawable/cinema_backround"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/voresLogo"
-        android:text="Cinemano"
-        android:textSize="42dp"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="cursive"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="serif"
         android:src="@drawable/ic_android"
+        android:text="Cinemano"
+        android:textColor="@color/colorPrimary"
+        android:textSize="35sp"
+        android:paddingTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/mail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/login_edittext_background"
-        android:hint="Email address"
-        android:textColorHint="@color/transparent_color_medium"
-        android:padding="16dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline_right"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/voresLogo" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:inputType="textPassword"
-        android:background="@drawable/login_edittext_background"
-        android:hint="password"
-        android:textColorHint="@color/transparent_color_medium"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/round_edit_text"
         android:drawableRight="@drawable/ic_eye_light"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:padding="16dp"
+        android:textColorHint="#CACDCD"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/mail" />
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_login_background"
+        android:layout_marginTop="32dp"
+        android:text="Forgot password?"
+        android:textColor="@color/light"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        android:text="Login"
-        android:textColor="@color/transparent_color_medium"
-        android:textAllCaps="false"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
-    <TextView
-    android:id="@+id/forgot_password"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Forgot password?"
-    app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-    app:layout_constraintStart_toStartOf="@+id/guideline_left"
-    app:layout_constraintTop_toBottomOf="@+id/button_login"
-    android:textColor="@color/theme1"
-    android:layout_marginTop="16dp"/>
+
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/round_edit_text"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:padding="16dp"
+        android:textColorHint="#CACDCD"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/voresLogo" />
 
     <TextView
         android:id="@+id/new_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="New Account"
+        android:textColor="@color/light"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password"
-        android:textColor="@color/theme1"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/round_edit_text"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/light"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="41dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toEndOf="@+id/voresLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_login" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="127dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/voresLogo" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

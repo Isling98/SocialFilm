@@ -9,17 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="vertical"
-        android:background="@drawable/login_background">
+        android:background="#2E2E2E">
 
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Cinemano"
-        android:textSize="32dp"
-        android:textColor="@color/theme1"
-        android:fontFamily="cursive"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:fontFamily="serif"
+        android:text="Homefeed"
+        android:textColor="@color/light"
+        android:textSize="25sp"
+        android:paddingTop="7dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,7 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/top"
-        android:background="@android:color/darker_gray">
+        android:background="@drawable/login_background"
+        >
+
+
 
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

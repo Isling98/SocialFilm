@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation"
-        android:background="@drawable/login_background"
-        />
+        android:background="#2E2E2E"
+        android:theme="@style/BottomNavigationTheme"
+        app:menu="@menu/bottom_navigation" />
 </RelativeLayout>

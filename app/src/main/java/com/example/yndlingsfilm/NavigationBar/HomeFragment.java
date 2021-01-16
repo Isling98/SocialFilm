@@ -61,8 +61,9 @@ public class HomeFragment extends Fragment {
 
         if(!beenCreated) {
             tempReviewListHomePage = userViewModel.getHomePage(userViewModel.getLoggedInUser().getValue().getUserId());
-
             userViewModel.getUsers().setValue(tempReviewListHomePage);
+            Log.d(TAG, "onCreateView: @@@2 efter"+  userViewModel.getUsers().getValue().size());
+
             //metoden til at få hentet user objekterne med de reviews som skal vises på homepage
             Log.d(TAG, "@@@@@ind homepagefragment" + beenCreated);
 
@@ -78,7 +79,7 @@ public class HomeFragment extends Fragment {
 
 
                     String url = Constants.BASE_URL_IMG + movie.getPoster_path();
-                    String urlProfile = "https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png";
+                    String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
                     aNews.add(new News(urlProfile, url,
                             userName, movieTitle, rating, reviewInText));
                 }

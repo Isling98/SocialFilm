@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     EditText password;
     TextView forgotPassword;
     TextView newAccount;
+     ProgressBar simpleProgressBar;
 
     private static final String TAG = "LoginActivity";
 
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         password = findViewById(R.id.password);
         forgotPassword = findViewById(R.id.forgot_password);
         newAccount = findViewById(R.id.new_account);
+        simpleProgressBar = findViewById(R.id.progressBar);
 
         loginButton.setOnClickListener(this);
         newAccount.setOnClickListener(this);
@@ -45,16 +48,20 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if(view.getId()== R.id.button_login) {
+            simpleProgressBar.setVisibility(View.VISIBLE);
+            Log.d(TAG, "@@ LOADING PROGRESS BAR SAT IGANG");
+
             if(userViewModel.login(mail.getText().toString(), password.getText().toString())){
                 userViewModel.getLoggedInUser().setValue(userViewModel.getUser(mail.getText().toString(), "token"));
-                Log.d(TAG, "onClick: " + userViewModel.getLoggedInUser().getValue().getUsername());
-
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 this.finish();
+
             } else {
+                simpleProgressBar.setVisibility(View.INVISIBLE);
                 Toast toast = Toast.makeText(getApplicationContext(), "wrong pass", Toast.LENGTH_LONG);
                 toast.show();
+
             }
 
         } else if(view.getId() == R.id.new_account) {

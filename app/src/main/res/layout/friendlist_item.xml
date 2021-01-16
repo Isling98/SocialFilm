@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+    xmlns:card_view="http://schemas.android.com/tools"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_background">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
-        
+        android:layout_margin="4dp"
+        android:background="#2E2E2E">
         <ImageView
             android:id="@+id/friendListCardPic"
             android:layout_width="70dp"
@@ -22,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Midlertidigt navn---"
-            android:textColor="@color/theme1"
+            android:textColor="@color/theme4"
             android:fontFamily="sans-serif-light"
             android:textSize="18sp"
             android:layout_marginStart="80dp"
@@ -33,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Number of reviews:"
-            android:textColor="@color/theme1"
+            android:textColor="@color/light"
             android:fontFamily="sans-serif-light"
             android:textSize="18sp"
             android:layout_marginTop="33dp"
@@ -45,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5"
-            android:textColor="@color/theme1"
+            android:textColor="@color/light"
             android:fontFamily="sans-serif-light"
             android:textSize="18sp"
             android:layout_marginTop="34dp"

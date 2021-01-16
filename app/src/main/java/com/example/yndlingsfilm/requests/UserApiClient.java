@@ -468,11 +468,8 @@ public class UserApiClient {
                 Response response = saveUserReview(movieID, rating, review).execute();
                 if (response.code() == 200) {
 
-                    //Review review = new Review(1, review.toString())
-                    String hello = ((Review) response.body()).getReviewText();
-                    List<Review> fuckof = ((List<Review>) response.body());
 
-                    Log.d(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ review was added");
+
 
                 }else{
 

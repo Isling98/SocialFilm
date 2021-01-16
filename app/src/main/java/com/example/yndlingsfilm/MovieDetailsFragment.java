@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +22,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.Model.News;
+import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.util.Constants;
+import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.util.ArrayList;
+
+import static com.example.yndlingsfilm.util.Constants.API_KEY;
 
 public class MovieDetailsFragment extends Fragment {
     private static final String TAG = "MovieDetailsFragment";
@@ -37,6 +43,7 @@ public class MovieDetailsFragment extends Fragment {
     Button writeReviewButton;
     TextView movieGenres;
     Movie movie;
+    private UserViewModel userViewModel;
     private RecyclerView homeFeed;
     private HomeFeedAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -46,6 +53,7 @@ public class MovieDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         imdbLink = view.findViewById(R.id.imdbLink);
         movieTitle = view.findViewById(R.id.movieTitle);
@@ -98,10 +106,23 @@ public class MovieDetailsFragment extends Fragment {
 
         // blot for start. vi kontrollerer for alle vennr der har kommenteret på filmen og adder dem i stedet.
         final ArrayList<News> aNews = new ArrayList<>();
-        for(int i=0; i<10; i++) {
-            aNews.add(new News("https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png", "https://pbs.twimg.com/profile_images/626716482743828484/XXe2viFo.png",
-                    "Asger Åkanden:", "2hrs", 10, "asd"));
-        }
+        for (User user : userViewModel.getUsers().getValue()) {
+            for (Review review : user.getReviews()) {
+                if(review.getMovieId() == movie.getId()){
+
+
+                int rating = review.getRating();
+                String reviewInText = review.getReviewText();
+                String movieTitle = movie.getTitle();
+                String userName = user.getUsername();
+
+                String url = Constants.BASE_URL_IMG + movie.getPoster_path();
+                String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+                aNews.add(new News(urlProfile, url,
+                        userName, movieTitle, rating, reviewInText));
+            }
+
+        }}
 
         homeFeed = (RecyclerView) view.findViewById(R.id.friendsComments);
         homeFeed.setHasFixedSize(true);

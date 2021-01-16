@@ -54,7 +54,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
             like = itemView.findViewById(R.id.like);
             comment = itemView.findViewById(R.id.comment);
             thumbsUp = itemView.findViewById(R.id.thumbsUp);
-            likes = itemView.findViewById(R.id.likes);
+
             reviewtext = itemView.findViewById(R.id.textView3);
 
 
@@ -96,7 +96,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.homefe
                                                      int viewType) {
         // create a new view
         View view = (View) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.view_homefeed, parent, false);
+                .inflate(R.layout.cardview_homepage, parent, false);
 
         homefeedViewHolder viewHolder = new homefeedViewHolder(view, mListener);
         return viewHolder;
