@@ -12,6 +12,7 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:editTextColor">@color/colorPrimary</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/light</item>
     </style>
 
     <style name="RatingBar" parent="AppTheme">
