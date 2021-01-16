@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -139,11 +140,11 @@ public class MovieDetailsFragment extends Fragment {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
             // sætter popup til at fylde parent
-            //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            //lp.copyFrom(dialog.getWindow().getAttributes());
-            //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            //lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-            //dialog.getWindow().setAttributes(lp);
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(dialog.getWindow().getAttributes());
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setAttributes(lp);
 
             ImageView moviePic = dialog.findViewById(R.id.moviePic);
             TextView text = dialog.findViewById(R.id.text);

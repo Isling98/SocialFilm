@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -109,11 +110,11 @@ public class HomeFragment extends Fragment {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 // sætter popup til at fylde parent
-                //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                //lp.copyFrom(dialog.getWindow().getAttributes());
-                //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                //lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-                //dialog.getWindow().setAttributes(lp);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                dialog.getWindow().setAttributes(lp);
 
                 ImageView moviePic = dialog.findViewById(R.id.moviePic);
                 TextView text = dialog.findViewById(R.id.text);
@@ -129,6 +130,7 @@ public class HomeFragment extends Fragment {
                 closeButton.setOnClickListener(view1 -> dialog.dismiss());
 
                 moviePic.setOnClickListener(view1 -> {
+
                     //open moviedetails fragment
                     getFragmentManager().beginTransaction().replace
                             (R.id.fragment_nagivation, new MovieDetailsFragment() )
@@ -138,6 +140,5 @@ public class HomeFragment extends Fragment {
                 dialog.show();
             });return view;
         }
-
     }
 

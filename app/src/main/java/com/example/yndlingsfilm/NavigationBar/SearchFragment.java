@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
@@ -86,6 +87,7 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 return false;
             }
         });
+
 
         subscribeObservers();
         initRecyclerView();
