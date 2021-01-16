@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavn.setOnNavigationItemSelectedListener(navlistener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nagivation, new HomeFragment(),"home").commit();
+        bottomNavn.setSelectedItemId(R.id.nav_home);
     }
 
     //navigationbaren bliver opsat, med de forskellige fragments.  R.id_nav = ikonerne + titel som er referert fra bottom_navigation.xml filen
