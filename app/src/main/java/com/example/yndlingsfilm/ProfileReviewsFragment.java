@@ -58,7 +58,7 @@ public class ProfileReviewsFragment extends Fragment {
             String url = Constants.BASE_URL_IMG + movie.getPoster_path();
             String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
             aNews.add(new News(urlProfile, url,
-                    userViewModel.getLoggedInUser().getValue().getUsername(), movieTitle, rating, reviewInText));
+                    userViewModel.getLoggedInUser().getValue().getUsername(), movieTitle, rating, reviewInText, movie));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);
