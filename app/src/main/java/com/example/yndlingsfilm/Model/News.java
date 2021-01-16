@@ -2,6 +2,7 @@ package com.example.yndlingsfilm.Model;
 
 public class News {
     private String profileUrl;
+    private Movie movie;
     private String movieUrl;
     private String headLine;
     private String movieName;
@@ -14,7 +15,7 @@ public class News {
 
     // tag hellere kun et enkelt objekt i konstruktøren og brug dets getmetoder til at initialisere.
     public News(String profileUrl,String movieUrl,
-                String headLine, String movieName, int rating, String reviewInText) {
+                String headLine, String movieName, int rating, String reviewInText, Movie movie) {
         this.profileUrl = profileUrl;
         this.movieUrl = movieUrl;
         this.headLine = headLine;
@@ -22,6 +23,7 @@ public class News {
         this.rating = rating;
         liked = false;
         this.reviewInText = reviewInText;
+        this.movie = movie;
     }
     // åben detail fragment her
     public void openDetails(){
@@ -39,6 +41,10 @@ public class News {
 
     public String getHeadLine() {
         return headLine;
+    }
+
+    public Movie getMovie(){
+        return movie;
     }
 
 

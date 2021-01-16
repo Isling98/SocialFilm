@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
                     String url = Constants.BASE_URL_IMG + movie.getPoster_path();
                     String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
                     aNews.add(new News(urlProfile, url,
-                            userName, movieTitle, rating, reviewInText));
+                            userName, movieTitle, rating, reviewInText, movie));
                 }
 
             }
@@ -109,7 +109,6 @@ public class HomeFragment extends Fragment {
                 dialog.setContentView(R.layout.popup_news_details);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                // sætter popup til at fylde parent
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -131,10 +130,16 @@ public class HomeFragment extends Fragment {
 
                 moviePic.setOnClickListener(view1 -> {
 
+                    //sæt bundle med anews.get(position) eller faktisk den givne movie...
                     //open moviedetails fragment
+
+                    Fragment fragment = new MovieDetailsFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("movie", aNews.get(position).getMovie());
+                    fragment.setArguments(bundle);
+                    Log.d(TAG, "onMovieClick: " + bundle.getParcelable("movie").toString());
                     getFragmentManager().beginTransaction().replace
-                            (R.id.fragment_nagivation, new MovieDetailsFragment() )
-                            .addToBackStack(null).commit();
+                            (R.id.fragment_nagivation, fragment).addToBackStack(null).commit();
                     dialog.dismiss();
                 });
                 dialog.show();

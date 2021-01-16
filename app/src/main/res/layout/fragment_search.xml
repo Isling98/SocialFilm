@@ -19,7 +19,6 @@
             android:background="@drawable/login_background">
 
             <androidx.appcompat.widget.SearchView
-
                 style="@style/SearchViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

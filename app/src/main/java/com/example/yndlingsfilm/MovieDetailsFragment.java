@@ -120,7 +120,7 @@ public class MovieDetailsFragment extends Fragment {
                 String url = Constants.BASE_URL_IMG + movie.getPoster_path();
                 String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
                 aNews.add(new News(urlProfile, url,
-                        userName, movieTitle, rating, reviewInText));
+                        userName, movieTitle, rating, reviewInText, movie));
             }
 
         }}
@@ -190,12 +190,14 @@ public class MovieDetailsFragment extends Fragment {
 
     private String getAllGenres(){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < movie.getGenre_ids().length; i++){
-            String genre = getGenre(movie.getGenre_ids()[i]);
-            if(i == 0){
-                sb.append(genre);
-            } else{
-                sb.append(" | " + genre );
+        if(movie.getGenre_ids()!=null) {
+            for (int i = 0; i < movie.getGenre_ids().length; i++) {
+                String genre = getGenre(movie.getGenre_ids()[i]);
+                if (i == 0) {
+                    sb.append(genre);
+                } else {
+                    sb.append(" | " + genre);
+                }
             }
         }
         return sb.toString();
