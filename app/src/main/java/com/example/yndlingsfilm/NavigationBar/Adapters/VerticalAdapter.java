@@ -137,7 +137,6 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case "popular":
                 this.popularMovies = movies;
                 categoryList.add(popularMovies);
-                Log.d(TAG, "setCategoryList:_______________ " + popularMovies.get(0));
                 break;
             case "topRated":
                 this.topRatedMovies = movies;
@@ -185,7 +184,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-    public class VerticalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class VerticalViewHolder extends RecyclerView.ViewHolder{
 
         RecyclerView recyclerView;
         TextView category;
@@ -194,26 +193,6 @@ public class VerticalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             category = itemView.findViewById(R.id.genre);
             recyclerView = itemView.findViewById(R.id.recyclerview2);
-        }
-
-        @Override
-        public void onClick(View view) {
-            onMovieListener.onMovieClick(getBindingAdapterPosition(), 1);
-            Log.d(TAG, "onClick: _______________________________");
-            switch (getBindingAdapterPosition()){
-                case 0:
-                    clickedCategory = "popular";
-                    break;
-                case 1:
-                    clickedCategory = "toprated";
-                    break;
-                case 2:
-                    clickedCategory = "upcoming";
-                    break;
-                case 3:
-                    clickedCategory = "nowPlaying";
-                    break;
-            }
         }
     }
 }

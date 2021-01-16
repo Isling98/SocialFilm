@@ -1,8 +1,6 @@
  package com.example.yndlingsfilm.NavigationBar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,18 +124,6 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                 }
             }
         });
-        movieListViewModel.getNowPlayingMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(List<Movie> movies) {
-                if(movies != null){
-                    Log.d(TAG, "onChanged: -------------now playing" );
-                    for(Movie movie: movies){
-                        Log.d(TAG, "onChanged: " + movie.getTitle());
-                    }
-                    verticalAdapter.setCategoryList(movies, "nowPlaying");
-                }
-            }
-        });
         movieListViewModel.getTopratedMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
@@ -159,6 +145,18 @@ public class SearchFragment extends Fragment implements OnMovieListener {
                         Log.d(TAG, "onChanged: " + movie.getTitle());
                     }
                     verticalAdapter.setCategoryList(movies, "upcoming");
+                }
+            }
+        });
+        movieListViewModel.getNowPlayingMovies().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(List<Movie> movies) {
+                if(movies != null){
+                    Log.d(TAG, "onChanged: -------------now playing" );
+                    for(Movie movie: movies){
+                        Log.d(TAG, "onChanged: " + movie.getTitle());
+                    }
+                    verticalAdapter.setCategoryList(movies, "nowPlaying");
                 }
             }
         });
