@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.yndlingsfilm.PhotoFragment;
 import com.example.yndlingsfilm.ProfileAddFriendFragment;
 import com.example.yndlingsfilm.requests.ServiceGenerator;
 import com.example.yndlingsfilm.requests.UserApi;
@@ -46,6 +47,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     View bio;
     View topRated;
     View reviews;
+    View camera;
     TextView friends;
     TextView profileName;
     TextView bioShort;
@@ -65,6 +67,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         friends = view.findViewById(R.id.profile_friends);
         profileName = view.findViewById(R.id.profileName);
         bioShort = view.findViewById(R.id.bioShort);
+        camera = view.findViewById(R.id.camera);
 
         profileName.setText(userViewModel.getLoggedInUser().getValue().getUsername());
 
@@ -90,6 +93,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         topRated.setOnClickListener(this);
         reviews.setOnClickListener(this);
         friends.setOnClickListener(this);
+        camera.setOnClickListener(this);
 
 
 
@@ -133,6 +137,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     break;
                 case R.id.profile_followers:
                     selectedFragment = new FollowersFragment();
+                    break;
+                case R.id.camera:
+                    selectedFragment = new PhotoFragment();
                     break;
             }
             getFragmentManager().beginTransaction().replace

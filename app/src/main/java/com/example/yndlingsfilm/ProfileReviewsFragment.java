@@ -19,8 +19,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.yndlingsfilm.Model.Movie;
 import com.example.yndlingsfilm.Model.News;
 import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.util.Constants;
 import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 
@@ -43,21 +45,20 @@ public class ProfileReviewsFragment extends Fragment {
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
-        // go through each review the user has
 
-        // time skal måske slettes. er den svær at holde styr på?
-        // vi skal have lavet både movieID og userID om til navme i stedet
         final ArrayList<News> aNews = new ArrayList<>();
-        Log.d(TAG, "onCreateView: " + userViewModel.getLoggedInUser().getValue().getReviews().get(0).getReviewText());
+
         for (Review review: userViewModel.getLoggedInUser().getValue().getReviews()) {
-            Log.d(TAG, "onCreateView: " + review.getReviewText());
-            String userName = userViewModel.getLoggedInUser().getValue().getUsername();
-            String movieName = String.valueOf(review.getMovieId());
+            Movie movie = movieListViewModel.searchMovieForSearch(review.getMovieId(), API_KEY);
+
             int rating = review.getRating();
             String reviewInText = review.getReviewText();
+            String movieTitle = movie.getTitle();
 
-            aNews.add(new News("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",movieListViewModel.searchMovieForSearch(review.getMovieId(),API_KEY).getPoster_path() ,
-                    userName, movieName, rating, reviewInText));
+            String url = Constants.BASE_URL_IMG + movie.getPoster_path();
+            String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+            aNews.add(new News(urlProfile, url,
+                    userViewModel.getLoggedInUser().getValue().getUsername(), movieTitle, rating, reviewInText));
         }
 
         homeFeed = (RecyclerView) view.findViewById(R.id.recycler_view);

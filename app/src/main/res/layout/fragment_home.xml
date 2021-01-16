@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/login_background">
 
-
-    <LinearLayout
-        android:id="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="vertical"
-        android:background="#2E2E2E">
-
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:fontFamily="serif"
+        android:paddingTop="7dp"
         android:text="Homefeed"
         android:textColor="@color/light"
         android:textSize="25sp"
-        android:paddingTop="7dp"/>
-
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -30,6 +23,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/top"
         android:background="@drawable/login_background"
+        android:layout_marginTop="45dp"
         >
 
 
