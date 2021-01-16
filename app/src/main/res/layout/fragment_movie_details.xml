@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MovieDetailsFragment"
+    android:background="@drawable/login_background"
     >
 
     <LinearLayout
@@ -38,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="Harry Potter"
                     android:textSize="26dp"
+                    android:textColor="@color/light"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                 <com.google.android.material.textview.MaterialTextView
@@ -47,6 +49,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:text="Fantasy | Drama"
+                    android:textColor="@color/light"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
                 <LinearLayout
@@ -58,19 +61,21 @@
                         android:id="@+id/ratingInText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="4dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp"
-                        android:drawableStart="@drawable/starfull"
+                        android:drawableStart="@drawable/ic_outline_star_border_24"
+                        android:drawablePadding="4dp"
                         android:gravity="center_vertical"
                         android:text="120 min"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textColor="@color/light" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/releaseDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:textColor="@color/light"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp"
                         android:drawableStart="@drawable/calender"
@@ -107,6 +112,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Overview"
+            android:textColor="@color/light"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
 
@@ -121,6 +127,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:textColor="@color/light"
             tools:text="@tools:sample/lorem/random" />
         </ScrollView>
 
@@ -138,14 +145,16 @@
             android:layout_height="wrap_content"
             android:text="Your friends had this to say:"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:layout_margin="12dp"/>
+            android:layout_margin="12dp"
+            android:textColor="@color/light"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp">
+            android:layout_height="260dp">
 
 
             <androidx.recyclerview.widget.RecyclerView
+
 
                 android:scrollbars="vertical"
                 android:id="@+id/friendsComments"
@@ -165,7 +174,8 @@
             android:layout_marginLeft="80dp"
             android:text="Write a full review"
             android:fontFamily="sans-serif-light"
-            android:textColor="@color/theme1"/>
+            android:textColor="@color/light"
+            android:background="@drawable/button_login_background"/>
 
     </LinearLayout>
 

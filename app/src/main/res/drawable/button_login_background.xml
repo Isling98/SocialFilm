@@ -10,8 +10,8 @@
 
     <item>
         <shape>
-            <stroke android:color="@color/transparent_color_light"
-                android:width="2dp"/>
+            <stroke android:color="@color/light"
+                android:width="5dp"/>
             <corners android:radius="4dp"/>
         </shape>
     </item>
