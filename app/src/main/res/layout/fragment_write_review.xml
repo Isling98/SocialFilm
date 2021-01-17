@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="2dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="#171717"
             app:cardCornerRadius="10dp">
 
             <ScrollView
@@ -98,10 +98,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
+                    android:padding="4dp"
                     android:background="@android:color/transparent"
                     android:gravity="top|start"
                     android:hint="Write your review here..."
                     android:inputType="textMultiLine"
+                    android:textColor="#fff"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical" />
