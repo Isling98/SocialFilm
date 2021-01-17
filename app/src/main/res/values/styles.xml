@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/theme1</item>
-        <item name="colorPrimaryDark">@color/theme2</item>
+        <item name="colorPrimaryDark">#171717</item>
         <item name="colorAccent">@color/theme4</item>
         <item name="android:windowContentTransitions">true</item>
     </style>

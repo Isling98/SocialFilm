@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                             newPosition = 1;
                             Fragment searchFragment = fragmentManager.findFragmentByTag("search");
                             if(searchFragment == null){
-                                Log.d(TAG, "onNavigationItemSelected: ikke lavet endnu");
                                 searchFragment = new SearchFragment();
                             }
                             selectedFragment = searchFragment;

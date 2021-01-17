@@ -40,7 +40,6 @@ public class MovieDetailsFragment extends Fragment {
     TextView overview;
     TextView releaseDate;
     TextView ratingInText;
-    RatingBar rating;
     Button writeReviewButton;
     TextView movieGenres;
     Movie movie;
@@ -62,7 +61,6 @@ public class MovieDetailsFragment extends Fragment {
         overview = view.findViewById(R.id.overview);
         releaseDate = view.findViewById(R.id.releaseDate);
         writeReviewButton = view.findViewById(R.id.writeReviewButton);
-        // runtime findes ikke i api, skal den bare slettes så?
         ratingInText = view.findViewById(R.id.ratingInText);
         movieGenres = view.findViewById(R.id.movieGenres);
 

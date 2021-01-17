@@ -28,10 +28,6 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
     private OnMovieListener onMovieListener;
     private int verticalPosition;
 
-    public int getVerticalPosition() {
-        return verticalPosition;
-    }
-
     public HorizontalAdapter(Context context, List<Movie> movies, OnMovieListener onMovieListener, int verticalPosition) {
         this.context = context;
         this.movies = movies;

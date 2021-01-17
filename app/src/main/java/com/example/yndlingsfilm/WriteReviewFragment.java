@@ -81,6 +81,7 @@ public class WriteReviewFragment extends Fragment {
                      Log.d(TAG, "onClick: " + mRating);
                      userViewModel.saveReview(movie.getId(), mRating, String.valueOf(textBox.getText()));
                      Toast.makeText(getActivity(), "Review submitted", Toast.LENGTH_LONG).show();
+                     getActivity().getFragmentManager().popBackStack();
                  } else {
                      Toast.makeText(getActivity(), "Please enter rating and review", Toast.LENGTH_LONG).show();
                  }
