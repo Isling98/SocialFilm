@@ -14,15 +14,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:fontFamily="cursive"
-        android:text="Cinemano"
-        android:textColor="@color/theme1"
-        android:textSize="32dp" />
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,6 +29,7 @@
         android:textSize="20dp"
         android:fontFamily="sans-serif-light"
         android:padding="10dp"
+       android:textColor="@color/light"
         tools:text="@tools:sample/lorem/random">
     </TextView>
     </ScrollView>

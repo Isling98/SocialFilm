@@ -3,13 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/tools"
-    card_view:cardPreventCornerOverlap="true"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:cardCornerRadius="5dp"
-    card_view:cardElevation="6dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/login_background">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="#2E2E2E"
+    android:background="@drawable/login_background"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <RelativeLayout
