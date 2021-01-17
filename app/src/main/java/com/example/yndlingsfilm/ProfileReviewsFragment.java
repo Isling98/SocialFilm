@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -80,21 +81,25 @@ public class ProfileReviewsFragment extends Fragment {
             dialog.setContentView(R.layout.popup_news_details);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            // sætter popup til at fylde parent
-            //WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            //lp.copyFrom(dialog.getWindow().getAttributes());
-            //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            //lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-            //dialog.getWindow().setAttributes(lp);
+
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(dialog.getWindow().getAttributes());
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setAttributes(lp);
 
             ImageView moviePic = dialog.findViewById(R.id.moviePic);
             TextView text = dialog.findViewById(R.id.text);
             RatingBar rating = dialog.findViewById(R.id.rating);
+            TextView movieTitle = dialog.findViewById(R.id.movieTitle);
             ImageView closeButton = dialog.findViewById(R.id.closeButton);
+
 
 
             Glide.with(this).load(aNews.get(position).getMovieUrl()).into(moviePic);
             rating.setRating(aNews.get(position).getRating());
+            movieTitle.setText(aNews.get(position).getMovieName());
+            text.setText(aNews.get(position).getReviewInText());
 
             closeButton.setOnClickListener(view1 -> dialog.dismiss());
 

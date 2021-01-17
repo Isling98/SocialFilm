@@ -149,12 +149,15 @@ public class MovieDetailsFragment extends Fragment {
 
             ImageView moviePic = dialog.findViewById(R.id.moviePic);
             TextView text = dialog.findViewById(R.id.text);
+            TextView movieTitle = dialog.findViewById(R.id.movieTitle);
             RatingBar rating = dialog.findViewById(R.id.rating);
             ImageView closeButton = dialog.findViewById(R.id.closeButton);
 
 
             Glide.with(this).load(aNews.get(position).getMovieUrl()).into(moviePic);
             rating.setRating(aNews.get(position).getRating());
+            text.setText(aNews.get(position).getReviewInText());
+            movieTitle.setText(aNews.get(position).getMovieName());
 
             closeButton.setOnClickListener(view1 -> dialog.dismiss());
 
