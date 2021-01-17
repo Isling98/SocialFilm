@@ -56,7 +56,12 @@ public class ProfileReviewsFragment extends Fragment {
             String movieTitle = movie.getTitle();
 
             String url = Constants.BASE_URL_IMG + movie.getPoster_path();
-            String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+            String urlProfile = "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+
+            if(userViewModel.getLoggedInUser().getValue().getProfileUrl() != null) {
+                urlProfile = userViewModel.getLoggedInUser().getValue().getProfileUrl();
+
+            }
             aNews.add(new News(urlProfile, url,
                     userViewModel.getLoggedInUser().getValue().getUsername(), movieTitle, rating, reviewInText, movie));
         }

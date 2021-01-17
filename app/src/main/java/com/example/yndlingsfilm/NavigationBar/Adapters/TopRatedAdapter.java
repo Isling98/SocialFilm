@@ -15,20 +15,19 @@ import com.example.yndlingsfilm.R;
 
 import java.util.ArrayList;
 
-public class FriendlistAdapter extends RecyclerView.Adapter<FriendlistAdapter.FriendlistViewHolder> {
-
+public class TopRatedAdapter extends RecyclerView.Adapter<FriendlistAdapter.FriendlistViewHolder> {
     private ArrayList<Friendlist> mfriendlist;
 
     @NonNull
     @Override
-    public FriendlistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friendlist_item, parent, false);
-        FriendlistViewHolder friendlistVH = new FriendlistViewHolder(view);
+    public FriendlistAdapter.FriendlistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.toprated_item, parent, false);
+        FriendlistAdapter.FriendlistViewHolder friendlistVH = new FriendlistAdapter.FriendlistViewHolder(view);
         return friendlistVH;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FriendlistViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FriendlistAdapter.FriendlistViewHolder holder, int position) {
         Friendlist currentFriend = mfriendlist.get(position);
 
         Glide.with(holder.itemView.getContext()).load(currentFriend.getImageResource()).into(holder.friendlistPic);
@@ -60,7 +59,9 @@ public class FriendlistAdapter extends RecyclerView.Adapter<FriendlistAdapter.Fr
         }
     }
 
-    public FriendlistAdapter(ArrayList<Friendlist> friendlist){
+    public TopRatedAdapter(ArrayList<Friendlist> friendlist){
         mfriendlist = friendlist;
     }
 }
+
+

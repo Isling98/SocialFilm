@@ -2,17 +2,17 @@ package com.example.yndlingsfilm.Model;
 
 public class Friendlist {
 
-    private int imageResource;
+    private String imageResource;
     private String friendListName;
     private int friendListReviews;
 
-    public Friendlist(int imageResource, String friendListName, int friendListReviews) {
+    public Friendlist(String imageResource, String friendListName, int friendListReviews) {
         this.imageResource = imageResource;
         this.friendListName = friendListName;
         this.friendListReviews = friendListReviews;
     }
 
-    public int getImageResource() {
+    public String getImageResource() {
         return imageResource;
     }
 

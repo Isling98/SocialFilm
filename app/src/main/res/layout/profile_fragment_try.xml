@@ -15,6 +15,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hGuide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hGuide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.37" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hGuide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vGuideLeft"
@@ -69,11 +88,12 @@
         android:id="@+id/relativeLayout"
         android:layout_width="322dp"
         android:layout_height="73dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/layout_relative"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileName">
+        app:layout_constraintTop_toBottomOf="@+id/hGuide2">
 
         <View
             android:layout_width="1dp"
@@ -138,12 +158,13 @@
         android:layout_width="312dp"
         android:layout_height="299dp"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="8dp"
+
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hGuide3">
 
         <LinearLayout
             android:id="@+id/profile_bio"
@@ -198,6 +219,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/topRatedId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -232,6 +254,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/lastReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -262,7 +285,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+        app:layout_constraintTop_toBottomOf="@+id/hGuide1" />
 
     <ImageView
         android:id="@+id/camera"

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.yndlingsfilm.Model.Movie;
+import com.example.yndlingsfilm.Model.Review;
 import com.example.yndlingsfilm.util.Constants;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 
@@ -79,7 +80,13 @@ public class WriteReviewFragment extends Fragment {
                          textBox.getText().append("No comments...");
                      }
                      Log.d(TAG, "onClick: " + mRating);
+
                      userViewModel.saveReview(movie.getId(), mRating, String.valueOf(textBox.getText()));
+
+                     Review review = new Review(10000, String.valueOf(textBox.getText()), movie.getId(),userViewModel.getLoggedInUser().getValue().getUserId(),mRating);
+
+                     userViewModel.getLoggedInUser().getValue().getReviews().add(review);
+
                      Toast.makeText(getActivity(), "Review submitted", Toast.LENGTH_LONG).show();
                      getActivity().getFragmentManager().popBackStack();
                  } else {

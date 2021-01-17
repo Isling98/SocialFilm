@@ -17,11 +17,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.example.yndlingsfilm.Model.Review;
+import com.example.yndlingsfilm.Model.User;
 import com.example.yndlingsfilm.PhotoFragment;
 import com.example.yndlingsfilm.ProfileAddFriendFragment;
 import com.example.yndlingsfilm.requests.ServiceGenerator;
 import com.example.yndlingsfilm.requests.UserApi;
 import com.example.yndlingsfilm.requests.responses.RelationshipResponse;
+import com.example.yndlingsfilm.util.Constants;
 import com.example.yndlingsfilm.viewModels.MovieListViewModel;
 import com.example.yndlingsfilm.viewModels.UserViewModel;
 import com.example.yndlingsfilm.FollowersFragment;
@@ -33,6 +37,8 @@ import com.example.yndlingsfilm.ProfileTopRatedFragment;
 import com.example.yndlingsfilm.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +50,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ProfileFragment";
 
     ImageView addFriend;
+    ImageView profilePic;
     View bio;
     View topRated;
     View reviews;
@@ -51,7 +58,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     TextView friends;
     TextView profileName;
     TextView bioShort;
+    TextView numberreview,numberfriends,topRatedId,lastReview;
     private UserViewModel userViewModel;
+    private MovieListViewModel movieListViewModel;
+    private List<User> friendList = new ArrayList<>();
+    ArrayList<Integer> highest = new ArrayList<Integer>();
 
     @Nullable
     @Override
@@ -59,7 +70,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.profile_fragment_try, container, false);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         addFriend = view.findViewById(R.id.add_friend);
         bio = view.findViewById(R.id.profile_bio);
         topRated = view.findViewById(R.id.profile_top_rated);
@@ -68,8 +79,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileName = view.findViewById(R.id.profileName);
         bioShort = view.findViewById(R.id.bioShort);
         camera = view.findViewById(R.id.camera);
+        numberreview = view.findViewById(R.id.textView7);
+        numberfriends = view.findViewById(R.id.textView6);
+        topRatedId = view.findViewById(R.id.topRatedId);
+        lastReview = view.findViewById(R.id.lastReview);
+        profilePic = view.findViewById(R.id.profilePic);
+
 
         profileName.setText(userViewModel.getLoggedInUser().getValue().getUsername());
+        Glide.with(this).load(userViewModel.getLoggedInUser().getValue().getProfileUrl()).into(profilePic);
+
+        friendList = userViewModel.getUsers().getValue();
 
         String bioShortDescprition;
         try {
@@ -82,6 +102,32 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             bioShortDescprition = userViewModel.getLoggedInUser().getValue().getBio() + "...";
         }
             bioShort.setText(bioShortDescprition);
+        numberreview.setText(Integer.toString(userViewModel.getLoggedInUser().getValue().getReviews().size()));
+        numberfriends.setText(Integer.toString(friendList.size()));
+
+        int currentHighestRating = 0;
+        int currentHighestReviewId = 0;
+        Review reviewBestRating = null;
+        Review reviewLatest = null;
+        for(Review review : userViewModel.getLoggedInUser().getValue().getReviews()){
+            if(review.getRating() > currentHighestRating){
+
+                currentHighestRating = review.getRating();
+
+                reviewBestRating = review;
+                Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + reviewBestRating.getRating() + " currentHighestrating: " + currentHighestRating);
+            }
+
+            if(review.getReviewId() > currentHighestReviewId){
+
+                currentHighestReviewId = review.getReviewId();
+                reviewLatest = review;
+            }
+
+        }
+        topRatedId.setText(movieListViewModel.searchMovieForSearch(reviewBestRating.getMovieId(), Constants.API_KEY).getTitle());
+        lastReview.setText(movieListViewModel.searchMovieForSearch(reviewLatest.getMovieId(), Constants.API_KEY).getTitle());
+
 
 
         //profileName.setText(userViewModel.getUsers().getValue().get(0).getUsername());

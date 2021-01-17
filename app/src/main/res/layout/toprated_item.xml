@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_background">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:background="#2E2E2E">
+        <ImageView
+            android:id="@+id/friendListCardPic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="2dp"
+            android:src="@drawable/profile_pic"/>
+
+        <TextView
+            android:id="@+id/friendListCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Midlertidigt navn---"
+            android:textColor="@color/theme4"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/numberReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="33dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Rating:"
+            android:textColor="@color/light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/friendListCardReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="34dp"
+            android:layout_toEndOf="@+id/numberReviews"
+            android:fontFamily="sans-serif-light"
+            android:text="5"
+            android:textColor="@color/light"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -36,6 +36,14 @@ public class GetUserResponse {
     @Expose()
     private List<ReviewResponse> review;
 
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    @SerializedName("profile_url")
+    @Expose()
+    private String profileUrl;
+
 
 
     public int getUserId() {

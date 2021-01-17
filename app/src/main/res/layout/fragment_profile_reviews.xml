@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:fontFamily="serif"
-        android:text="Reviews"
+        android:text="Your reviews"
         android:textColor="@color/light"
         android:textSize="25sp"
         android:paddingTop="7dp" />

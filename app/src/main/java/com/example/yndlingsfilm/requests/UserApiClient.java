@@ -200,7 +200,8 @@ public class UserApiClient {
                     String password = ((GetUserResponse)response.body()).getPassword();
                     String email = ((GetUserResponse)response.body()).getEmail();
                     String bio = ((GetUserResponse)response.body()).getBio();
-                    String fuckoff = ((((GetUserResponse)response.body()).getReviews().toString()));
+                    String url = ((((GetUserResponse)response.body()).getProfileUrl()));
+
               //List of reviews. Since they are in ReviewResponse type, they will be convertet to review
               //type in the for each loop
                     List<ReviewResponse> reviewList =
@@ -209,13 +210,13 @@ public class UserApiClient {
                         Review review = new Review(s.getReviewId(),s.getReviewText(),s.getMovieId(),s.getUserId(), s.getRating());
                         tempReviewList.add(review);
                     }
-                    Log.d(TAG,tempReviewList.get(1).toString());
+
                     userReview.postValue(tempReviewList);
 
 
-                    User user = new User(userId, username, password, email, bio, tempReviewList);
+                    User user = new User(userId, username, password, email, bio, tempReviewList,url);
 
-                    Log.d(TAG, "call: " + user.getReviews().get(1).getReviewText());
+
 
                     Log.d(TAG, "run: ____________________________");
                     Log.d(TAG, "run: " + user.getUsername());
@@ -544,7 +545,7 @@ public class UserApiClient {
                             tempReviewListHomePage.add(review);
                         }
 
-                        User user = new User(s.getUserId(),s.getUserName(),s.getPassword(),s.getEmail(),s.getBio(),tempReviewListHomePage);
+                        User user = new User(s.getUserId(),s.getUserName(),s.getPassword(),s.getEmail(),s.getBio(),tempReviewListHomePage,s.getProfileUrl());
 
 
                         tempUserListHomePage.add(user);

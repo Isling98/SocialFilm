@@ -53,8 +53,12 @@ public class FriendsFragment extends Fragment {
         for (User user: userViewModel.getUsers().getValue()) {
             Log.d(TAG, "onCreateView: @@@@@@@@" + user.getUsername());
 
+            String urlProfile = "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+            if(user.getProfileUrl() != null) {
+                urlProfile = user.getProfileUrl();
+            }
 
-            exampleFriendlist.add(new Friendlist(R.drawable.profile_pic, user.getUsername(), user.getReviews().size()));
+            exampleFriendlist.add(new Friendlist(urlProfile, user.getUsername(), user.getReviews().size()));
 
         }
 

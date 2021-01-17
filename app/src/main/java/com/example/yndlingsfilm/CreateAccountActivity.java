@@ -51,9 +51,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                     Toast.makeText(this, "Mail is already in use", Toast.LENGTH_LONG).show();
                     addRedBorder(mail);
                 } else{
-                    User user = new User(1, username.getText().toString(),
-                            password.getText().toString(), mail.getText().toString(), null, null
-                            );
+                 //   User user = new User(1, username.getText().toString(),
+               //             password.getText().toString(), mail.getText().toString(), null, null
+                     //       );
                 }
             }
         });

@@ -36,9 +36,13 @@ import com.example.yndlingsfilm.viewModels.UserViewModel;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static androidx.constraintlayout.solver.SolverVariable.Type.CONSTANT;
 import static com.example.yndlingsfilm.util.Constants.API_KEY;
 
 
@@ -68,7 +72,10 @@ public class HomeFragment extends Fragment {
             //metoden til at få hentet user objekterne med de reviews som skal vises på homepage
             Log.d(TAG, "@@@@@ind homepagefragment" + beenCreated);
 
+            Collections.shuffle(Arrays.asList(Constants.fuckOff));
+            int count = 0;
             for (User user : tempReviewListHomePage) {
+
                 for (Review review : user.getReviews()) {
                     Movie movie = movieListViewModel.searchMovieForSearch(review.getMovieId(), API_KEY);
 
@@ -80,7 +87,13 @@ public class HomeFragment extends Fragment {
 
 
                     String url = Constants.BASE_URL_IMG + movie.getPoster_path();
-                    String urlProfile = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+                    String urlProfile = "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+                    Log.d(TAG, "@@@Homepagefragment_" + user.getProfileUrl());
+                    if(user.getProfileUrl() != null) {
+                        urlProfile = user.getProfileUrl();
+
+                    }
+
                     aNews.add(new News(urlProfile, url,
                             userName, movieTitle, rating, reviewInText, movie));
                 }

@@ -14,9 +14,18 @@ public class User {
     private int friends; // antallet kan vi hente direkte fra listen af venner, men for nu har vi ikke listen
     private int followers; //same
     private String bio;
+    private String profileUrl;
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
 
 
-    public User(int userId, String username, String password, String email, String bio, ArrayList<Review> reviews) {
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public User(int userId, String username, String password, String email, String bio, ArrayList<Review> reviews, String profileUrl) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -25,6 +34,7 @@ public class User {
         this.reviews = reviews;
         friends = 0;
         followers = 0;
+        this.profileUrl = profileUrl;
 
     }
 
