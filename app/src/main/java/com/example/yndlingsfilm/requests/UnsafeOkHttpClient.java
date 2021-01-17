@@ -15,7 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 
 /*
-Kode fra ::::::::::::::::::
+Kode fra https://stackoverflow.com/questions/25509296/trusting-all-certificates-with-okhttp
  */
 
 public class UnsafeOkHttpClient {
